@@ -16,6 +16,8 @@ import PopupForm from './components/PopupForm';
 import WhatsAppButton from './components/WhatsAppButton';
 import AdminLogin from './pages/admin/Login';
 import AdminDashboard from './pages/admin/Dashboard';
+import AdminBlogs from './pages/admin/Blogs';
+import AdminCollegesManager from './pages/admin/CollegesManager';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Terms from './pages/Terms';
 
@@ -129,6 +131,8 @@ export default function App() {
             <Route path="/blog/:id" element={<BlogPost />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
+            <Route path="/admin/blogs" element={<AdminBlogs />} />
+            <Route path="/admin/colleges" element={<AdminCollegesManager />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<Terms />} />
           </Routes>
@@ -138,7 +142,7 @@ export default function App() {
           isOpen={showPopup && !hasSubmittedForm && !isAdmin}
           onSubmit={handleFormSubmit}
         />
-        <WhatsAppButton phoneNumber="+917004221975" />
+        <WhatsAppButton phoneNumber="+918877434088" />
       </div>
     </Router>
   );

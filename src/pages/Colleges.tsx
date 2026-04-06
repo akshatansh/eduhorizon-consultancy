@@ -1,12 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Search } from 'lucide-react';
-import { colleges } from '../data/colleges';
+import { colleges as seedColleges } from '../data/colleges';
 import CollegeCard from '../components/colleges/CollegeCard';
+import { createClient } from '@supabase/supabase-js';
+import { mapDbCollegeToUi, type DbCollegeRow } from '../utils/cmsMappers';
+import type { College } from '../types/college';
 
 export default function Colleges() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCourse, setSelectedCourse] = useState('');
+  const [colleges, setColleges] = useState<College[]>(seedColleges);
+
+  useEffect(() => {
+    const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+    const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+    if (!supabaseUrl || !supabaseAnonKey) return;
+
+    const supabase = createClient(supabaseUrl, supabaseAnonKey);
+    const run = async () => {
+      const { data, error } = await supabase
+        .from('colleges')
+        .select('slug,name,location,courses,images,description,fees,website,established,ranking,facilities,highlights')
+        .order('name', { ascending: true });
+
+      if (error || !data) return;
+      if (data.length === 0) return;
+      setColleges((data as DbCollegeRow[]).map(mapDbCollegeToUi));
+    };
+    run();
+  }, []);
 
   const filteredColleges = colleges.filter(college => {
     const matchesSearch = college.name.toLowerCase().includes(searchTerm.toLowerCase());

@@ -73,7 +73,7 @@ export default function Contact() {
               </div>
               <div className="flex items-center">
                 <Phone className="h-6 w-6 text-blue-600" />
-                <span className="ml-4 text-gray-600">+91 7004221975</span>
+                <span className="ml-4 text-gray-600">+91 8877434088</span>
               </div>
               <div className="flex items-center">
                 <MapPin className="h-6 w-6 text-blue-600" />

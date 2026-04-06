@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { GraduationCap, Menu, X } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import ConsultationButton from './consultation/ConsultationButton';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navigate = useNavigate();
 
   const navItems = [
     { path: '/', label: 'Home' },
@@ -14,18 +14,6 @@ export default function Navbar() {
     { path: '/testimonials', label: 'Testimonials' },
     { path: '/blog', label: 'Blog' }
   ];
-
-  const handleConsultation = () => {
-    navigate('/#contact');
-    // Ensure smooth scrolling to contact section if on home page
-    if (window.location.pathname === '/') {
-      const contactSection = document.getElementById('contact');
-      if (contactSection) {
-        contactSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-    setIsMenuOpen(false);
-  };
 
   return (
     <nav className="bg-white shadow-md fixed w-full z-50">
@@ -48,12 +36,10 @@ export default function Navbar() {
                 {item.label}
               </Link>
             ))}
-            <button 
-              onClick={handleConsultation}
-              className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
-            >
-              Book Consultation
-            </button>
+            <ConsultationButton
+              label="Book Consultation"
+              className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors flex items-center gap-2"
+            />
           </div>
 
           <div className="md:hidden flex items-center">
@@ -77,12 +63,12 @@ export default function Navbar() {
                 {item.label}
               </Link>
             ))}
-            <button
-              onClick={handleConsultation}
-              className="block w-full text-left px-3 py-2 bg-blue-600 text-white rounded-md"
-            >
-              Book Consultation
-            </button>
+            <div onClick={() => setIsMenuOpen(false)}>
+              <ConsultationButton
+                label="Book Consultation"
+                className="w-full justify-center bg-blue-600 text-white px-3 py-2 rounded-md hover:bg-blue-700 transition-colors flex items-center gap-2"
+              />
+            </div>
           </div>
         </div>
       )}

@@ -4,10 +4,36 @@ import { useParams, Link } from 'react-router-dom';
 import { Calendar, Clock, Tag, ArrowLeft } from 'lucide-react';
 import { blogPosts } from '../../data/blogPosts';
 import ReactMarkdown from 'react-markdown';
+import DOMPurify from 'dompurify';
+import { createClient } from '@supabase/supabase-js';
+import { mapDbBlogPostToUi, type DbBlogPostRow } from '../../utils/cmsMappers';
+import type { BlogPost as BlogPostType } from '../../types';
 
 export default function BlogPost() {
   const { id } = useParams();
-  const post = blogPosts.find(p => p.id === id);
+  const [post, setPost] = React.useState<BlogPostType | undefined>(() => blogPosts.find(p => p.id === id));
+
+  React.useEffect(() => {
+    const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+    const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+    if (!supabaseUrl || !supabaseAnonKey || !id) return;
+
+    const supabase = createClient(supabaseUrl, supabaseAnonKey);
+    const run = async () => {
+      const { data, error } = await supabase
+        .from('blog_posts')
+        .select(
+          'slug,title,excerpt,content_html,cover_image_url,category,tags,author_name,author_role,author_avatar_url,read_time,published,published_at,created_at,updated_at'
+        )
+        .eq('slug', id)
+        .maybeSingle();
+
+      if (error || !data) return;
+      const mapped = mapDbBlogPostToUi(data as DbBlogPostRow);
+      setPost(mapped);
+    };
+    run();
+  }, [id]);
 
   if (!post) {
     return (
@@ -78,7 +104,15 @@ export default function BlogPost() {
             </div>
 
             <div className="prose prose-lg max-w-none">
-              <ReactMarkdown>{post.content}</ReactMarkdown>
+              {post.contentHtml ? (
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: DOMPurify.sanitize(post.contentHtml)
+                  }}
+                />
+              ) : (
+                <ReactMarkdown>{post.content || ''}</ReactMarkdown>
+              )}
             </div>
 
             <div className="mt-8 pt-8 border-t">

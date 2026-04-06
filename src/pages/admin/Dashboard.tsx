@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { createClient } from '@supabase/supabase-js';
 import { format } from 'date-fns';
 import {
@@ -32,6 +32,8 @@ export default function Dashboard() {
   const [activeTab, setActiveTab] = useState<'inquiries' | 'messages' | 'consultations'>('inquiries');
   const [data, setData] = useState<DataItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [statusDrafts, setStatusDrafts] = useState<Record<string, string>>({});
+  const [updatingStatusId, setUpdatingStatusId] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortConfig, setSortConfig] = useState<{
     key: string;
@@ -76,10 +78,57 @@ export default function Dashboard() {
 
       if (error) throw error;
       setData(fetchedData || []);
+      setStatusDrafts(
+        (fetchedData || []).reduce<Record<string, string>>((acc, item) => {
+          acc[item.id] = String(item.status || (activeTab === 'consultations' ? 'pending' : 'new'));
+          return acc;
+        }, {})
+      );
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const getTableName = () => {
+    switch (activeTab) {
+      case 'inquiries':
+        return 'popup_inquiries';
+      case 'messages':
+        return 'contact_messages';
+      case 'consultations':
+        return 'consultation_bookings';
+      default:
+        return 'popup_inquiries';
+    }
+  };
+
+  const getStatusOptions = () => {
+    if (activeTab === 'consultations') {
+      return ['pending', 'confirmed', 'completed', 'cancelled'];
+    }
+    return ['new', 'in_progress', 'resolved', 'closed'];
+  };
+
+  const handleStatusUpdate = async (id: string) => {
+    try {
+      const nextStatus =
+        statusDrafts[id] || (activeTab === 'consultations' ? 'pending' : 'new');
+
+      setUpdatingStatusId(id);
+      const { error } = await supabase
+        .from(getTableName())
+        .update({ status: nextStatus })
+        .eq('id', id);
+
+      if (error) throw error;
+
+      setData(prev => prev.map(item => (item.id === id ? { ...item, status: nextStatus } : item)));
+    } catch (error) {
+      console.error('Error updating status:', error);
+    } finally {
+      setUpdatingStatusId(null);
     }
   };
 
@@ -157,6 +206,7 @@ export default function Dashboard() {
     if (!data.length) return null;
 
     const columns = Object.keys(data[0]).filter(key => key !== 'id');
+    const statusOptions = getStatusOptions();
 
     return (
       <div className="overflow-x-auto">
@@ -183,6 +233,9 @@ export default function Dashboard() {
                   </div>
                 </th>
               ))}
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Status Update
+              </th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
@@ -195,6 +248,33 @@ export default function Dashboard() {
                       : item[column]}
                   </td>
                 ))}
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <div className="flex items-center gap-2">
+                    <select
+                      value={
+                        statusDrafts[item.id] ||
+                        String(item.status || (activeTab === 'consultations' ? 'pending' : 'new'))
+                      }
+                      onChange={(e) =>
+                        setStatusDrafts(prev => ({ ...prev, [item.id]: e.target.value }))
+                      }
+                      className="rounded-md border-gray-300 text-sm focus:border-blue-500 focus:ring-blue-500"
+                    >
+                      {statusOptions.map(status => (
+                        <option key={status} value={status}>
+                          {status.replace(/_/g, ' ')}
+                        </option>
+                      ))}
+                    </select>
+                    <button
+                      onClick={() => handleStatusUpdate(item.id)}
+                      disabled={updatingStatusId === item.id}
+                      className="rounded-md bg-blue-600 px-3 py-1 text-xs font-medium text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
+                    >
+                      {updatingStatusId === item.id ? 'Updating...' : 'Update'}
+                    </button>
+                  </div>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -212,6 +292,18 @@ export default function Dashboard() {
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
               <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
               <div className="flex gap-2">
+                <Link
+                  to="/admin/blogs"
+                  className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                >
+                  Manage Blogs
+                </Link>
+                <Link
+                  to="/admin/colleges"
+                  className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                >
+                  Manage Colleges
+                </Link>
                 <button
                   onClick={() => fetchData()}
                   className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"

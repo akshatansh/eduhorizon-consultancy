@@ -72,7 +72,7 @@ export default function Terms() {
             <p>For any queries regarding these terms, contact us at:</p>
             <ul>
               <li>Email: legal@eduhorizon.com</li>
-              <li>Phone: +91 7004221975</li>
+              <li>Phone: +91 8877434088</li>
               <li>Address: Kankarbagh, Kumhrar, Patna, Bihar 800001</li>
             </ul>
           </div>
