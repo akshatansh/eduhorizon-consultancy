@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /admin/login
+Disallow: /admin/
+
+# Optional non-standard hints supported by some crawlers
+Noindex: /admin/login
+Nofollow: /admin/login
+
+Sitemap: https://your-domain.com/sitemap.xml

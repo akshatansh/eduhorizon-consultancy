@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { GraduationCap, Mail, Phone, MapPin } from 'lucide-react';
+import { GraduationCap, Mail, Phone, MapPin, Lock } from 'lucide-react';
 import SocialLinks from './social/SocialLinks';
 
 export default function Footer() {
@@ -41,15 +41,21 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Legal */}
+          {/* Legal & Admin */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-4">Legal</h3>
+            <h3 className="text-lg font-semibold text-white mb-4">Legal & Admin</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/privacy-policy" className="hover:text-blue-400">Privacy Policy</Link>
               </li>
               <li>
                 <Link to="/terms" className="hover:text-blue-400">Terms & Conditions</Link>
+              </li>
+              <li>
+                <Link to="/admin/login" className="hover:text-blue-400 flex items-center gap-2">
+                  <Lock className="h-4 w-4" />
+                  Admin Login
+                </Link>
               </li>
             </ul>
           </div>
