@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { createClient } from '@supabase/supabase-js';
 import { slugify } from '../../utils/slug';
 import { uploadPublicImage } from '../../utils/storageUpload';
+import AdminTopBar from '../../components/admin/AdminTopBar';
 
 type CollegeRow = {
   id: string;
@@ -199,8 +200,14 @@ export default function AdminCollegesManager() {
     await fetchRows();
   };
 
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    navigate('/admin/login');
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 pt-24 pb-12">
+      <AdminTopBar />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between mb-6">
           <div>
@@ -223,6 +230,12 @@ export default function AdminCollegesManager() {
               className="rounded-md bg-blue-600 px-3 py-2 text-sm text-white"
             >
               Refresh
+            </button>
+            <button
+              onClick={handleLogout}
+              className="rounded-md border border-red-300 bg-white px-3 py-2 text-sm text-red-700 hover:bg-red-50"
+            >
+              Logout
             </button>
           </div>
         </div>

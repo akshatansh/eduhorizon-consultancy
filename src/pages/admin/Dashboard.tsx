@@ -15,6 +15,7 @@ import {
   ChevronUp,
   ArrowUpDown
 } from 'lucide-react';
+import AdminTopBar from '../../components/admin/AdminTopBar';
 
 const supabase = createClient(
   import.meta.env.VITE_SUPABASE_URL,
@@ -30,6 +31,7 @@ interface DataItem {
 export default function Dashboard() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<'inquiries' | 'messages' | 'consultations'>('inquiries');
+  const [currentRole, setCurrentRole] = useState<string>('admin');
   const [data, setData] = useState<DataItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [statusDrafts, setStatusDrafts] = useState<Record<string, string>>({});
@@ -53,6 +55,17 @@ export default function Dashboard() {
     const { data: { session } } = await supabase.auth.getSession();
     if (!session) {
       navigate('/admin/login');
+      return;
+    }
+
+    const { data: meData } = await supabase
+      .from('admin_users')
+      .select('role')
+      .eq('email', session.user.email)
+      .single();
+
+    if (meData?.role) {
+      setCurrentRole(String(meData.role));
     }
   };
 
@@ -202,6 +215,11 @@ export default function Dashboard() {
     document.body.removeChild(link);
   };
 
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    navigate('/admin/login');
+  };
+
   const renderTable = () => {
     if (!data.length) return null;
 
@@ -285,7 +303,8 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <AdminTopBar />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-8">
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           {/* Header */}
           <div className="p-6 border-b border-gray-200">
@@ -304,6 +323,14 @@ export default function Dashboard() {
                 >
                   Manage Colleges
                 </Link>
+                {currentRole === 'super_admin' && (
+                  <Link
+                    to="/admin/access"
+                    className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                  >
+                    Manage Admin Access
+                  </Link>
+                )}
                 <button
                   onClick={() => fetchData()}
                   className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
@@ -324,6 +351,12 @@ export default function Dashboard() {
                 >
                   <Download className="h-4 w-4 mr-2" />
                   Export CSV
+                </button>
+                <button
+                  onClick={handleLogout}
+                  className="inline-flex items-center px-3 py-2 border border-red-300 shadow-sm text-sm leading-4 font-medium rounded-md text-red-700 bg-white hover:bg-red-50"
+                >
+                  Logout
                 </button>
               </div>
             </div>

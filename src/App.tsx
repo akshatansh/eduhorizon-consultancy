@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { createClient } from '@supabase/supabase-js';
 import { testSupabaseConnection } from './utils/supabaseTest';
 import { sendEmail } from './utils/email';
@@ -18,6 +18,7 @@ import AdminLogin from './pages/admin/Login';
 import AdminDashboard from './pages/admin/Dashboard';
 import AdminBlogs from './pages/admin/Blogs';
 import AdminCollegesManager from './pages/admin/CollegesManager';
+import AdminAccess from './pages/admin/AdminAccess';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Terms from './pages/Terms';
 
@@ -26,7 +27,8 @@ const supabase = createClient(
   import.meta.env.VITE_SUPABASE_ANON_KEY
 );
 
-export default function App() {
+function AppContent() {
+  const location = useLocation();
   const [showPopup, setShowPopup] = useState(false);
   const [hasSubmittedForm, setHasSubmittedForm] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -117,33 +119,45 @@ export default function App() {
   }
 
   return (
+    <div className="min-h-screen bg-white flex flex-col">
+      {/** Hide user-side shell on admin routes */}
+      {location.pathname.startsWith('/admin') ? null : <Navbar />}
+      <main className="flex-grow">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/colleges" element={<Colleges />} />
+          <Route path="/success-stories" element={<SuccessStories />} />
+          <Route path="/testimonials" element={<TestimonialsPage />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:id" element={<BlogPost />} />
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/blogs" element={<AdminBlogs />} />
+          <Route path="/admin/colleges" element={<AdminCollegesManager />} />
+          <Route path="/admin/access" element={<AdminAccess />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<Terms />} />
+        </Routes>
+      </main>
+      {location.pathname.startsWith('/admin') ? null : <Footer />}
+      {location.pathname.startsWith('/admin') ? null : (
+        <>
+          <PopupForm
+            isOpen={showPopup && !hasSubmittedForm && !isAdmin}
+            onSubmit={handleFormSubmit}
+          />
+          <WhatsAppButton phoneNumber="+918877434088" />
+        </>
+      )}
+    </div>
+  );
+}
+
+export default function App() {
+  return (
     <Router>
-      <div className="min-h-screen bg-white flex flex-col">
-        <Navbar />
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/colleges" element={<Colleges />} />
-            <Route path="/success-stories" element={<SuccessStories />} />
-            <Route path="/testimonials" element={<TestimonialsPage />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:id" element={<BlogPost />} />
-            <Route path="/admin/login" element={<AdminLogin />} />
-            <Route path="/admin/dashboard" element={<AdminDashboard />} />
-            <Route path="/admin/blogs" element={<AdminBlogs />} />
-            <Route path="/admin/colleges" element={<AdminCollegesManager />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/terms" element={<Terms />} />
-          </Routes>
-        </main>
-        <Footer />
-        <PopupForm
-          isOpen={showPopup && !hasSubmittedForm && !isAdmin}
-          onSubmit={handleFormSubmit}
-        />
-        <WhatsAppButton phoneNumber="+918877434088" />
-      </div>
+      <AppContent />
     </Router>
   );
 }

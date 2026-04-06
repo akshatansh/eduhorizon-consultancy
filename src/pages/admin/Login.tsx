@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { createClient } from '@supabase/supabase-js';
 import { Lock } from 'lucide-react';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
+import AdminTopBar from '../../components/admin/AdminTopBar';
 
 const supabase = createClient(
   import.meta.env.VITE_SUPABASE_URL,
@@ -81,7 +82,9 @@ export default function AdminLogin() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50">
+      <AdminTopBar />
+      <div className="flex items-center justify-center py-12 pt-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
           <div className="mx-auto h-12 w-12 flex items-center justify-center rounded-full bg-blue-100">
@@ -147,6 +150,7 @@ export default function AdminLogin() {
             </button>
           </div>
         </form>
+      </div>
       </div>
     </div>
   );
