@@ -139,19 +139,6 @@ export default function AdminAccess() {
         }
       }
 
-      // Ensure Auth account exists for direct admin login.
-      const { error: signUpError } = await supabase.auth.signUp({
-        email: targetEmail,
-        password: form.password
-      });
-
-      if (
-        signUpError &&
-        !/already registered|already exists|user already exists/i.test(signUpError.message || '')
-      ) {
-        throw signUpError;
-      }
-
       setForm({ email: '', password: '', role: 'admin' });
       await load();
     } catch (e) {
