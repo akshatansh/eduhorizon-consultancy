@@ -22,4 +22,5 @@ lerna-debug.log*
 node_modules
 dist
 .env
-.vercel
+.vercelgit add .
+git commit -m "first upload"

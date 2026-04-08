@@ -6,4 +6,4 @@ Disallow: /admin/
 Noindex: /admin/login
 Nofollow: /admin/login
 
-Sitemap: https://your-domain.com/sitemap.xml
+Sitemap: https://eduhorizon.online/sitemap.xml
