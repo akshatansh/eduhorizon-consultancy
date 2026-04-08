@@ -21,6 +21,7 @@ import AdminCollegesManager from './pages/admin/CollegesManager';
 import AdminAccess from './pages/admin/AdminAccess';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Terms from './pages/Terms';
+import { blogPosts } from './data/blogPosts';
 
 const supabase = createClient(
   import.meta.env.VITE_SUPABASE_URL,
@@ -73,6 +74,171 @@ function AppContent() {
 
     return () => clearTimeout(timer);
   }, [hasSubmittedForm, isAdmin]);
+
+  useEffect(() => {
+    const siteName = 'Edu Horizon';
+    const siteUrl = 'https://www.eduhorizon.online';
+    const defaultImage = `${siteUrl}/EDUHORIZON%20(1).jpg`;
+    const pathname = location.pathname;
+    const fullUrl = `${siteUrl}${pathname}`;
+
+    const setMetaByName = (name: string, content: string) => {
+      let tag = document.head.querySelector(`meta[name="${name}"]`) as HTMLMetaElement | null;
+      if (!tag) {
+        tag = document.createElement('meta');
+        tag.setAttribute('name', name);
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute('content', content);
+    };
+
+    const setMetaByProperty = (property: string, content: string) => {
+      let tag = document.head.querySelector(`meta[property="${property}"]`) as HTMLMetaElement | null;
+      if (!tag) {
+        tag = document.createElement('meta');
+        tag.setAttribute('property', property);
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute('content', content);
+    };
+
+    const setCanonical = (url: string) => {
+      let canonical = document.head.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+      if (!canonical) {
+        canonical = document.createElement('link');
+        canonical.setAttribute('rel', 'canonical');
+        document.head.appendChild(canonical);
+      }
+      canonical.setAttribute('href', url);
+    };
+
+    const getSeoForPath = () => {
+      if (pathname.startsWith('/admin')) {
+        return {
+          title: `Admin Panel | ${siteName}`,
+          description: 'Secure admin dashboard for Edu Horizon content and access management.',
+          robots: 'noindex, nofollow',
+          image: defaultImage
+        };
+      }
+
+      if (pathname === '/') {
+        return {
+          title: `${siteName} | Study Abroad & Career Consultancy`,
+          description:
+            'Edu Horizon helps students with study abroad guidance, university admissions, visa support, and career counselling for a successful global education journey.',
+          robots: 'index, follow',
+          image: defaultImage
+        };
+      }
+
+      if (pathname === '/about') {
+        return {
+          title: `About ${siteName} | Trusted Education Consultants`,
+          description:
+            'Learn about Edu Horizon, our mission, and how our expert counselors help students choose the right college and career path.',
+          robots: 'index, follow',
+          image: defaultImage
+        };
+      }
+
+      if (pathname === '/colleges') {
+        return {
+          title: `Top Colleges & Universities | ${siteName}`,
+          description:
+            'Explore top colleges, courses, fees, and admission guidance with Edu Horizon to find the best-fit institution for your future.',
+          robots: 'index, follow',
+          image: defaultImage
+        };
+      }
+
+      if (pathname === '/success-stories') {
+        return {
+          title: `Student Success Stories | ${siteName}`,
+          description:
+            'Read real success stories of students guided by Edu Horizon for admissions, study abroad plans, and career outcomes.',
+          robots: 'index, follow',
+          image: defaultImage
+        };
+      }
+
+      if (pathname === '/testimonials') {
+        return {
+          title: `Testimonials | ${siteName}`,
+          description:
+            'See what students and parents say about Edu Horizon consultation, counselling quality, and admission support.',
+          robots: 'index, follow',
+          image: defaultImage
+        };
+      }
+
+      if (pathname === '/blog') {
+        return {
+          title: `Education Blog | ${siteName}`,
+          description:
+            'Get expert articles on admissions, college selection, career guidance, and student life from Edu Horizon.',
+          robots: 'index, follow',
+          image: defaultImage
+        };
+      }
+
+      if (pathname.startsWith('/blog/')) {
+        const slug = pathname.split('/blog/')[1] || '';
+        const post = blogPosts.find((item) => item.id === slug);
+        return {
+          title: post ? `${post.title} | ${siteName}` : `Blog Article | ${siteName}`,
+          description:
+            post?.excerpt ||
+            'Read detailed guidance from Edu Horizon on admissions, career planning, and choosing the right college.',
+          robots: 'index, follow',
+          image: post?.image || defaultImage
+        };
+      }
+
+      if (pathname === '/privacy-policy') {
+        return {
+          title: `Privacy Policy | ${siteName}`,
+          description: `Read the privacy policy of ${siteName} and understand how we collect and use your information.`,
+          robots: 'index, follow',
+          image: defaultImage
+        };
+      }
+
+      if (pathname === '/terms') {
+        return {
+          title: `Terms & Conditions | ${siteName}`,
+          description: `Review the terms and conditions for using ${siteName} services and website.`,
+          robots: 'index, follow',
+          image: defaultImage
+        };
+      }
+
+      return {
+        title: `${siteName} | Education Consultancy`,
+        description:
+          'Edu Horizon offers trusted support for admissions, career counselling, and study abroad planning.',
+        robots: 'index, follow',
+        image: defaultImage
+      };
+    };
+
+    const seo = getSeoForPath();
+    document.title = seo.title;
+    setCanonical(fullUrl);
+    setMetaByName('description', seo.description);
+    setMetaByName('robots', seo.robots);
+    setMetaByName('twitter:card', 'summary_large_image');
+    setMetaByName('twitter:title', seo.title);
+    setMetaByName('twitter:description', seo.description);
+    setMetaByName('twitter:image', seo.image);
+
+    setMetaByProperty('og:type', 'website');
+    setMetaByProperty('og:site_name', siteName);
+    setMetaByProperty('og:title', seo.title);
+    setMetaByProperty('og:description', seo.description);
+    setMetaByProperty('og:url', fullUrl);
+    setMetaByProperty('og:image', seo.image);
+  }, [location.pathname]);
 
   const handleFormSubmit = async (formData: any) => {
     try {
