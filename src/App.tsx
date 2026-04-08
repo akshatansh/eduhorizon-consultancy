@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { createClient } from '@supabase/supabase-js';
 import { testSupabaseConnection } from './utils/supabaseTest';
@@ -124,9 +124,8 @@ function AppContent() {
 
       if (pathname === '/') {
         return {
-          title: `${siteName} | Study Abroad & Career Consultancy`,
-          description:
-            'Edu Horizon helps students with study abroad guidance, university admissions, visa support, and career counselling for a successful global education journey.',
+          title: 'Best Admission Consultancy in Noida | EduHorizon',
+          description: 'Direct Admission in Noida Colleges Without Donation',
           robots: 'index, follow',
           image: defaultImage
         };
