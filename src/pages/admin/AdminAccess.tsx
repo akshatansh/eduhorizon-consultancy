@@ -105,16 +105,17 @@ export default function AdminAccess() {
     setSaving(true);
     setError(null);
     try {
+      const targetEmail = form.email.trim().toLowerCase();
+
       // Preferred path: RPC helper (hash + upsert in DB function).
       const { error: rpcError } = await supabase.rpc('create_admin_user', {
-        p_email: form.email.trim().toLowerCase(),
+        p_email: targetEmail,
         p_password: form.password,
         p_role: form.role
       });
 
       if (rpcError) {
         // Fallback path: direct role toggle for already-created admin rows.
-        const targetEmail = form.email.trim().toLowerCase();
         const { data: existingAdmin, error: checkError } = await supabase
           .from('admin_users')
           .select('id')
@@ -136,6 +137,19 @@ export default function AdminAccess() {
         if (updateError) {
           throw rpcError;
         }
+      }
+
+      // Ensure Auth account exists for direct admin login.
+      const { error: signUpError } = await supabase.auth.signUp({
+        email: targetEmail,
+        password: form.password
+      });
+
+      if (
+        signUpError &&
+        !/already registered|already exists|user already exists/i.test(signUpError.message || '')
+      ) {
+        throw signUpError;
       }
 
       setForm({ email: '', password: '', role: 'admin' });

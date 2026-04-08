@@ -45,32 +45,29 @@ export default function AdminLogin() {
         throw new Error(authError?.message || 'Invalid credentials');
       }
 
-      // If admin auth successful, create a session
-      const { data: { session }, error: signInError } = await supabase.auth.signInWithPassword({
+      // If admin auth successful, create Supabase auth session
+      const { error: signInError } = await supabase.auth.signInWithPassword({
         email: formData.email,
         password: formData.password
       });
 
       if (signInError) {
-        // If sign in fails, create a new user first
+        // Fallback: create auth user if it doesn't exist, then retry login.
         const { error: signUpError } = await supabase.auth.signUp({
           email: formData.email,
           password: formData.password
         });
 
-        if (signUpError) {
-          throw signUpError;
+        if (signUpError && !/already registered|already exists|user already exists/i.test(signUpError.message || '')) {
+          throw signInError;
         }
 
-        // Try signing in again
         const { error: retryError } = await supabase.auth.signInWithPassword({
           email: formData.email,
           password: formData.password
         });
 
-        if (retryError) {
-          throw retryError;
-        }
+        if (retryError) throw retryError;
       }
 
       navigate('/admin/dashboard');
