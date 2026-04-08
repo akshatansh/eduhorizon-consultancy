@@ -9,6 +9,11 @@ interface BlogCardProps {
   index: number;
 }
 
+const FALLBACK_COVER =
+  'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80';
+const FALLBACK_AVATAR =
+  'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80';
+
 export default function BlogCard({ post, index }: BlogCardProps) {
   return (
     <motion.article
@@ -21,6 +26,9 @@ export default function BlogCard({ post, index }: BlogCardProps) {
         <img
           src={post.image}
           alt={post.title}
+          onError={(e) => {
+            e.currentTarget.src = FALLBACK_COVER;
+          }}
           className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
         />
       </Link>
@@ -45,6 +53,9 @@ export default function BlogCard({ post, index }: BlogCardProps) {
             <img
               src={post.author.avatar}
               alt={post.author.name}
+              onError={(e) => {
+                e.currentTarget.src = FALLBACK_AVATAR;
+              }}
               className="w-10 h-10 rounded-full object-cover"
             />
             <div>
