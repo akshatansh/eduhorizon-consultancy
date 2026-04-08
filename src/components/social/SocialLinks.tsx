@@ -23,27 +23,27 @@ export default function SocialLinks() {
   const socialLinks = [
     {
       href: "",
-      icon: <Facebook className="h-5 w-5" />,
+      icon: <Facebook className="h-5 w-5" aria-hidden="true" />,
       label: "Facebook"
     },
     {
       href: "",
-      icon: <Twitter className="h-5 w-5" />,
+      icon: <Twitter className="h-5 w-5" aria-hidden="true" />,
       label: "Twitter"
     },
     {
       href: "",
-      icon: <Instagram className="h-5 w-5" />,
+      icon: <Instagram className="h-5 w-5" aria-hidden="true" />,
       label: "Instagram"
     },
     {
       href: "",
-      icon: <Linkedin className="h-5 w-5" />,
+      icon: <Linkedin className="h-5 w-5" aria-hidden="true" />,
       label: "LinkedIn"
     },
     {
       href: "",
-      icon: <Youtube className="h-5 w-5" />,
+      icon: <Youtube className="h-5 w-5" aria-hidden="true" />,
       label: "YouTube"
     }
   ];

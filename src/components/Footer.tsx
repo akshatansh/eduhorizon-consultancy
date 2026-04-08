@@ -13,7 +13,7 @@ export default function Footer() {
           {/* Company Info */}
           <div>
             <Link to="/" className="flex items-center mb-4">
-              <GraduationCap className="h-8 w-8 text-blue-500" />
+              <GraduationCap className="h-8 w-8 text-blue-500" aria-hidden="true" />
               <span className="ml-2 text-xl font-bold text-white">EduHorizon</span>
             </Link>
             <p className="text-sm mb-4">
@@ -53,7 +53,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link to="/admin/login" className="hover:text-blue-400 flex items-center gap-2">
-                  <Lock className="h-4 w-4" />
+                  <Lock className="h-4 w-4" aria-hidden="true" />
                   Admin Login
                 </Link>
               </li>
@@ -65,15 +65,15 @@ export default function Footer() {
             <h3 className="text-lg font-semibold text-white mb-4">Contact Us</h3>
             <div className="space-y-3">
               <div className="flex items-center">
-                <Mail className="h-5 w-5 text-blue-500 mr-2" />
+                <Mail className="h-5 w-5 text-blue-500 mr-2" aria-hidden="true" />
                 <span>contact@eduhorizon.com</span>
               </div>
               <div className="flex items-center">
-                <Phone className="h-5 w-5 text-blue-500 mr-2" />
+                <Phone className="h-5 w-5 text-blue-500 mr-2" aria-hidden="true" />
                 <span>+91 8877434088</span>
               </div>
               <div className="flex items-center">
-                <MapPin className="h-5 w-5 text-blue-500 mr-2" />
+                <MapPin className="h-5 w-5 text-blue-500 mr-2" aria-hidden="true" />
                 <span>Kankarbagh, Kumhrar, Patna</span>
               </div>
             </div>

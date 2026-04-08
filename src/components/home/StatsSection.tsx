@@ -5,25 +5,25 @@ import { Users, Award, BookOpen, Trophy } from 'lucide-react';
 
 const stats = [
   {
-    icon: <Users className="h-12 w-12" />,
+    icon: <Users className="h-12 w-12" aria-hidden="true" />,
     value: "1000+",
     label: "Students Guided",
     description: "Successfully helped students achieve their academic goals"
   },
   {
-    icon: <Award className="h-12 w-12" />,
+    icon: <Award className="h-12 w-12" aria-hidden="true" />,
     value: "95%",
     label: "Success Rate",
     description: "Of our students get into their preferred colleges"
   },
   {
-    icon: <BookOpen className="h-12 w-12" />,
+    icon: <BookOpen className="h-12 w-12" aria-hidden="true" />,
     value: "50+",
     label: "Partner Colleges",
     description: "Strong network of top colleges in Greater Noida"
   },
   {
-    icon: <Trophy className="h-12 w-12" />,
+    icon: <Trophy className="h-12 w-12" aria-hidden="true" />,
     value: "5+",
     label: "Years Experience",
     description: "Decade of expertise in education consulting"

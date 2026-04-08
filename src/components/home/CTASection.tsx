@@ -1,6 +1,5 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, CheckCircle } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 import ConsultationButton from '../consultation/ConsultationButton';
 
 const benefits = [
@@ -37,7 +36,7 @@ export default function CTASection() {
                   viewport={{ once: true }}
                   className="flex items-center gap-3"
                 >
-                  <CheckCircle className="h-6 w-6 text-blue-300" />
+                  <CheckCircle className="h-6 w-6 text-blue-300" aria-hidden="true" />
                   <span className="text-lg">{benefit}</span>
                 </motion.li>
               ))}

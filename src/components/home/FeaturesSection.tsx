@@ -5,25 +5,25 @@ import { BookOpen, Users, Target, Calendar, CheckCircle } from 'lucide-react';
 
 const features = [
   {
-    icon: <BookOpen className="h-8 w-8" />,
+    icon: <BookOpen className="h-8 w-8" aria-hidden="true" />,
     title: "Expert College Selection",
     description: "Get personalized guidance on choosing the right college based on your academic profile and career goals.",
     points: ["Profile Analysis", "College Shortlisting", "Course Selection"]
   },
   {
-    icon: <Users className="h-8 w-8" />,
+    icon: <Users className="h-8 w-8" aria-hidden="true" />,
     title: "Application Support",
     description: "Comprehensive assistance throughout your college application process.",
     points: ["Document Preparation", "Form Filling", "Interview Preparation"]
   },
   {
-    icon: <Target className="h-8 w-8" />,
+    icon: <Target className="h-8 w-8" aria-hidden="true" />,
     title: "Career Counseling",
     description: "Make informed decisions about your career path with expert guidance.",
     points: ["Career Assessment", "Industry Insights", "Future Planning"]
   },
   {
-    icon: <Calendar className="h-8 w-8" />,
+    icon: <Calendar className="h-8 w-8" aria-hidden="true" />,
     title: "Admission Timeline",
     description: "Stay on track with a customized admission timeline and regular updates.",
     points: ["Deadline Tracking", "Regular Updates", "Process Management"]
@@ -70,7 +70,7 @@ export default function FeaturesSection() {
               <ul className="space-y-2">
                 {feature.points.map((point, idx) => (
                   <li key={idx} className="flex items-center gap-2 text-gray-700">
-                    <CheckCircle className="h-4 w-4 text-blue-600" />
+                    <CheckCircle className="h-4 w-4 text-blue-600" aria-hidden="true" />
                     <span>{point}</span>
                   </li>
                 ))}

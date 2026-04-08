@@ -4,10 +4,10 @@ import { Users, Award, BookOpen, Trophy } from 'lucide-react';
 import ConsultationButton from '../consultation/ConsultationButton';
 
 const stats = [
-  { icon: <Users className="h-6 w-6" />, label: "1000+ Students" },
-  { icon: <Award className="h-6 w-6" />, label: "95% Success Rate" },
-  { icon: <BookOpen className="h-6 w-6" />, label: "50+ Colleges" },
-  { icon: <Trophy className="h-6 w-6" />, label: "10+ Years Experience" }
+  { icon: <Users className="h-6 w-6" aria-hidden="true" />, label: "1000+ Students" },
+  { icon: <Award className="h-6 w-6" aria-hidden="true" />, label: "95% Success Rate" },
+  { icon: <BookOpen className="h-6 w-6" aria-hidden="true" />, label: "50+ Colleges" },
+  { icon: <Trophy className="h-6 w-6" aria-hidden="true" />, label: "10+ Years Experience" }
 ];
 
 export default function HeroSection() {
@@ -21,7 +21,7 @@ export default function HeroSection() {
             transition={{ duration: 0.8 }}
           >
             <div className="flex items-center gap-2 mb-6">
-              <BookOpen className="h-8 w-8 text-blue-600" />
+              <BookOpen className="h-8 w-8 text-blue-600" aria-hidden="true" />
               <span className="text-2xl font-bold text-blue-600">EduHorizon</span>
             </div>
             <h1 className="text-5xl font-bold text-gray-900 leading-tight mb-6">
