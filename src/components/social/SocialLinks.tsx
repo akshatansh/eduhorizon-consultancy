@@ -1,5 +1,5 @@
 import React from 'react';
-import { Facebook, Twitter, Instagram, Linkedin, Youtube } from 'lucide-react';
+import { Facebook, Instagram, Linkedin } from 'lucide-react';
 
 interface SocialLinkProps {
   href: string;
@@ -22,29 +22,19 @@ const SocialLink = ({ href, icon, label }: SocialLinkProps) => (
 export default function SocialLinks() {
   const socialLinks = [
     {
-      href: "",
+      href: "https://www.facebook.com/profile.php?id=61573480496787",
       icon: <Facebook className="h-5 w-5" aria-hidden="true" />,
       label: "Facebook"
     },
     {
-      href: "",
-      icon: <Twitter className="h-5 w-5" aria-hidden="true" />,
-      label: "Twitter"
-    },
-    {
-      href: "",
+      href: "https://www.instagram.com/edu__horizon/",
       icon: <Instagram className="h-5 w-5" aria-hidden="true" />,
       label: "Instagram"
     },
     {
-      href: "",
+      href: "https://www.linkedin.com/company/105347584/admin/dashboard/",
       icon: <Linkedin className="h-5 w-5" aria-hidden="true" />,
       label: "LinkedIn"
-    },
-    {
-      href: "",
-      icon: <Youtube className="h-5 w-5" aria-hidden="true" />,
-      label: "YouTube"
     }
   ];
 
