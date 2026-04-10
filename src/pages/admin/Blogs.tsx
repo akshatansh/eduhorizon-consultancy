@@ -53,6 +53,7 @@ export default function AdminBlogs() {
     content_html: ''
   });
   const [uploadingCover, setUploadingCover] = useState(false);
+  const [uploadingAvatar, setUploadingAvatar] = useState(false);
   const [saving, setSaving] = useState(false);
 
   const quillModules = useMemo(
@@ -151,6 +152,23 @@ export default function AdminBlogs() {
       setError(e instanceof Error ? e.message : 'Upload failed');
     } finally {
       setUploadingCover(false);
+    }
+  };
+
+  const onAvatarUpload = async (file: File) => {
+    setUploadingAvatar(true);
+    try {
+      const url = await uploadPublicImage({
+        supabase,
+        bucket: 'blog-images',
+        file,
+        pathPrefix: 'blogs/avatars'
+      });
+      setForm(prev => ({ ...prev, author_avatar_url: url }));
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Avatar upload failed');
+    } finally {
+      setUploadingAvatar(false);
     }
   };
 
@@ -380,12 +398,25 @@ export default function AdminBlogs() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">Author Avatar URL</label>
-                  <input
-                    value={form.author_avatar_url}
-                    onChange={(e) => setForm(prev => ({ ...prev, author_avatar_url: e.target.value }))}
-                    className="mt-1 w-full rounded-md border-gray-300"
-                  />
+                  <label className="block text-sm font-medium text-gray-700">Author Avatar</label>
+                  <div className="mt-1 flex flex-col gap-2">
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (file) onAvatarUpload(file);
+                      }}
+                    />
+                    {uploadingAvatar && <div className="text-xs text-gray-600">Uploading avatar…</div>}
+                    {form.author_avatar_url && (
+                      <img
+                        src={form.author_avatar_url}
+                        alt="author avatar preview"
+                        className="h-16 w-16 rounded-full object-cover border"
+                      />
+                    )}
+                  </div>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700">Read Time</label>
