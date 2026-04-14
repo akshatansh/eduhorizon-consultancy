@@ -30,6 +30,7 @@ const supabase = createClient(
 
 function AppContent() {
   const location = useLocation();
+  const isPrerender = typeof navigator !== 'undefined' && navigator.userAgent === 'ReactSnap';
   const [showPopup, setShowPopup] = useState(false);
   const [hasSubmittedForm, setHasSubmittedForm] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -40,6 +41,8 @@ function AppContent() {
   } | null>(null);
 
   useEffect(() => {
+    if (isPrerender) return;
+
     const checkConnection = async () => {
       const status = await testSupabaseConnection();
       setDbConnectionStatus(status);
@@ -50,9 +53,11 @@ function AppContent() {
 
     checkConnection();
     checkAdminStatus();
-  }, []);
+  }, [isPrerender]);
 
   const checkAdminStatus = async () => {
+    if (isPrerender) return;
+
     const { data: { session } } = await supabase.auth.getSession();
     if (session) {
       const { data: adminData } = await supabase

@@ -9,12 +9,14 @@ interface BlogCardProps {
   index: number;
 }
 
-const FALLBACK_COVER =
-  'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80';
-const FALLBACK_AVATAR =
-  'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80';
+const FALLBACK_COVER = '/EDUHORIZON%20(1).jpg';
+const FALLBACK_AVATAR = '/EDUHORIZON%20(1).jpg';
 
 export default function BlogCard({ post, index }: BlogCardProps) {
+  const isPrerender = typeof navigator !== 'undefined' && navigator.userAgent === 'ReactSnap';
+  const coverSrc = isPrerender ? FALLBACK_COVER : post.image;
+  const avatarSrc = isPrerender ? FALLBACK_AVATAR : post.author.avatar;
+
   return (
     <motion.article
       initial={{ opacity: 0, y: 20 }}
@@ -24,9 +26,10 @@ export default function BlogCard({ post, index }: BlogCardProps) {
     >
       <Link to={`/blog/${post.id}`}>
         <img
-          src={post.image}
+          src={coverSrc}
           alt={post.title}
           onError={(e) => {
+            e.currentTarget.onerror = null;
             e.currentTarget.src = FALLBACK_COVER;
           }}
           className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
@@ -51,9 +54,10 @@ export default function BlogCard({ post, index }: BlogCardProps) {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <img
-              src={post.author.avatar}
+              src={avatarSrc}
               alt={post.author.name}
               onError={(e) => {
+                e.currentTarget.onerror = null;
                 e.currentTarget.src = FALLBACK_AVATAR;
               }}
               className="w-10 h-10 rounded-full object-cover"

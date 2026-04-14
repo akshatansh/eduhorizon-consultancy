@@ -1,0 +1,24 @@
+EduHorizon
+
+EduHorizon is an education consulting website focused on college admissions guidance in India.
+
+Primary website: https://www.eduhorizon.online/
+Sitemap: https://www.eduhorizon.online/sitemap.xml
+
+Important pages:
+- Home: https://www.eduhorizon.online/
+- About: https://www.eduhorizon.online/about
+- Colleges: https://www.eduhorizon.online/colleges
+- Success Stories: https://www.eduhorizon.online/success-stories
+- Testimonials: https://www.eduhorizon.online/testimonials
+- Blog: https://www.eduhorizon.online/blog
+- Privacy Policy: https://www.eduhorizon.online/privacy-policy
+- Terms: https://www.eduhorizon.online/terms
+
+Blog articles:
+- https://www.eduhorizon.online/blog/choosing-right-college
+- https://www.eduhorizon.online/blog/engineering-vs-management
+- https://www.eduhorizon.online/blog/campus-life-greater-noida
+
+Restricted area:
+- https://www.eduhorizon.online/admin/

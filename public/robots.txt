@@ -1,9 +1,36 @@
 User-agent: *
+Allow: /
 Disallow: /admin/login
 Disallow: /admin/
 
-# Optional non-standard hints supported by some crawlers
-Noindex: /admin/login
-Nofollow: /admin/login
+# Explicit allow rules for AI/search crawlers
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+
+User-agent: GPTBot
+Allow: /
+Disallow: /admin/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /admin/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin/
+
+User-agent: anthropic-ai
+Allow: /
+Disallow: /admin/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin/
 
 Sitemap: https://eduhorizon.online/sitemap.xml
+Sitemap: https://www.eduhorizon.online/sitemap.xml

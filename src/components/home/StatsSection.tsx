@@ -18,13 +18,13 @@ const stats = [
   },
   {
     icon: <BookOpen className="h-12 w-12" aria-hidden="true" />,
-    value: "50+",
+    value: "200+",
     label: "Partner Colleges",
     description: "Strong network of top colleges in Greater Noida"
   },
   {
     icon: <Trophy className="h-12 w-12" aria-hidden="true" />,
-    value: "5+",
+    value: "7+",
     label: "Years Experience",
     description: "Decade of expertise in education consulting"
   }

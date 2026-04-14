@@ -72,9 +72,20 @@ export default function Footer() {
                 <Phone className="h-5 w-5 text-blue-500 mr-2" aria-hidden="true" />
                 <span>+91 8877434088</span>
               </div>
-              <div className="flex items-center">
-                <MapPin className="h-5 w-5 text-blue-500 mr-2" aria-hidden="true" />
-                <span>Kankarbagh, Kumhrar, Patna</span>
+              <div className="flex items-start">
+                <MapPin className="h-5 w-5 text-blue-500 mr-2 mt-0.5 shrink-0" aria-hidden="true" />
+                <div>
+                  <p className="text-white font-medium">Patna Office</p>
+                  <p>Kumhrar, Patna, Bihar - 800026, India</p>
+                </div>
+              </div>
+              <div className="flex items-start">
+                <MapPin className="h-5 w-5 text-blue-500 mr-2 mt-0.5 shrink-0" aria-hidden="true" />
+                <div>
+                  <p className="text-white font-medium">Noida Office</p>
+                  <p>Urbtech NPX, Sector-153</p>
+                  <p>NOIDA, Gautam Buddha Nagar, Uttar Pradesh, India - 201310</p>
+                </div>
               </div>
             </div>
           </div>

@@ -10,6 +10,9 @@ export default function BlogList() {
   const [posts, setPosts] = useState<BlogPost[]>(blogPosts);
 
   useEffect(() => {
+    const isPrerender = typeof navigator !== 'undefined' && navigator.userAgent === 'ReactSnap';
+    if (isPrerender) return;
+
     const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
     const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
     if (!supabaseUrl || !supabaseAnonKey) return;
