@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && react-snap",
+    "build": "vite build",
+    "build:prerender": "vite build && react-snap",
     "build:mac": "vite build && PUPPETEER_EXECUTABLE_PATH=\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" react-snap",
     "postinstall": "patch-package",
     "lint": "eslint .",
