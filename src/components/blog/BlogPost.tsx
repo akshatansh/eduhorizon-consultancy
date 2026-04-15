@@ -17,28 +17,64 @@ const FALLBACK_AVATAR =
 export default function BlogPost() {
   const { id } = useParams();
   const [post, setPost] = React.useState<BlogPostType | undefined>(() => blogPosts.find(p => p.id === id));
+  const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
+    let isMounted = true;
+
     const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
     const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-    if (!supabaseUrl || !supabaseAnonKey || !id) return;
+    if (!supabaseUrl || !supabaseAnonKey || !id) {
+      setIsLoading(false);
+      return () => {
+        isMounted = false;
+      };
+    }
 
     const supabase = createClient(supabaseUrl, supabaseAnonKey);
     const run = async () => {
-      const { data, error } = await supabase
-        .from('blog_posts')
-        .select(
-          'slug,title,excerpt,content_html,cover_image_url,category,tags,author_name,author_role,author_avatar_url,read_time,published,published_at,created_at,updated_at'
-        )
-        .eq('slug', id)
-        .maybeSingle();
+      try {
+        const { data, error } = await supabase
+          .from('blog_posts')
+          .select(
+            'slug,title,excerpt,content_html,cover_image_url,category,tags,author_name,author_role,author_avatar_url,read_time,published,published_at,created_at,updated_at'
+          )
+          .eq('slug', id)
+          .maybeSingle();
 
-      if (error || !data) return;
-      const mapped = mapDbBlogPostToUi(data as DbBlogPostRow);
-      setPost(mapped);
+        if (!isMounted) return;
+        if (error || !data) return;
+        const mapped = mapDbBlogPostToUi(data as DbBlogPostRow);
+        setPost(mapped);
+      } finally {
+        if (isMounted) {
+          setIsLoading(false);
+        }
+      }
     };
     run();
+
+    return () => {
+      isMounted = false;
+    };
   }, [id]);
+
+  if (isLoading) {
+    return (
+      <div className="py-20 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="h-5 w-36 bg-gray-200 rounded animate-pulse mb-8" />
+          <div className="h-72 w-full bg-gray-200 rounded-xl animate-pulse mb-8" />
+          <div className="bg-white rounded-xl p-8 shadow-lg">
+            <div className="h-8 w-2/3 bg-gray-200 rounded animate-pulse mb-6" />
+            <div className="h-4 w-full bg-gray-200 rounded animate-pulse mb-3" />
+            <div className="h-4 w-5/6 bg-gray-200 rounded animate-pulse mb-3" />
+            <div className="h-4 w-4/6 bg-gray-200 rounded animate-pulse" />
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (!post) {
     return (

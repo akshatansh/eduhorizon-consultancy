@@ -13,7 +13,7 @@ export default function About() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900">About EduHorizon | Education Consultant in Patna</h1>
-          <p className="mt-4 text-xl text-gray-600">Trusted admission guidance for students in Patna and Noida since 2014.</p>
+          <p className="mt-4 text-xl text-gray-600">Trusted admission guidance for students in Patna and Noida since 2018.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
@@ -48,7 +48,7 @@ export default function About() {
                 alt="Akshat Ansh education counsellor at EduHorizon"
                 className="w-40 h-40 object-cover rounded-full mx-auto mb-4 shadow-md"
               />
-              <h3 className="text-xl font-semibold text-gray-900 text-center">Akshat Ansh - Founder - 10+ Years Experience</h3>
+              <h3 className="text-xl font-semibold text-gray-900 text-center">Akshat Ansh - Founder - 7+ Years Experience</h3>
               <p className="text-gray-700 text-center mt-2">B.Tech from A.K.T.U</p>
               <p className="text-gray-600 text-center mt-3">
                 Specializes in career counselling, college selection, and admission planning for students across Bihar.

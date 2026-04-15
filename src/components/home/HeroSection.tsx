@@ -65,7 +65,7 @@ export default function HeroSection() {
             <div className="relative z-10">
               <img
                 src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80"
-                alt="Students studying"
+                alt="EduHorizon admission consultancy Noida students"
                 className="rounded-2xl shadow-2xl"
               />
             </div>

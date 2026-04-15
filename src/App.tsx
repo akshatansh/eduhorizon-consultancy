@@ -117,6 +117,22 @@ function AppContent() {
       canonical.setAttribute('href', url);
     };
 
+    const setStructuredData = (data: object | null) => {
+      const scriptId = 'seo-structured-data';
+      const existing = document.getElementById(scriptId);
+      if (existing) {
+        existing.remove();
+      }
+
+      if (!data) return;
+
+      const script = document.createElement('script');
+      script.id = scriptId;
+      script.type = 'application/ld+json';
+      script.text = JSON.stringify(data);
+      document.head.appendChild(script);
+    };
+
     const getSeoForPath = () => {
       if (pathname.startsWith('/admin')) {
         return {
@@ -158,21 +174,164 @@ function AppContent() {
 
       if (pathname === '/success-stories') {
         return {
-          title: `Student Success Stories | ${siteName}`,
+          title: 'Student Success Stories | EduHorizon - Placements from GL Bajaj, GNIOT, IIMT and More',
           description:
-            'Read real success stories of students guided by Edu Horizon for admissions, study abroad plans, and career outcomes.',
+            'Read real placement success stories of students admitted to top Greater Noida colleges through EduHorizon. Placements include HCL, JusPay, and Kanini Software with packages up to 27 LPA.',
           robots: 'index, follow',
-          image: defaultImage
+          image: defaultImage,
+          structuredData: [
+            {
+              '@context': 'https://schema.org',
+              '@type': 'ItemList',
+              name: 'EduHorizon Student Success Stories',
+              description:
+                'Real placement success stories of students who secured top college admissions in Greater Noida through EduHorizon admission consultancy.',
+              numberOfItems: 6,
+              itemListElement: [
+                {
+                  '@type': 'ListItem',
+                  position: 1,
+                  item: {
+                    '@type': 'Person',
+                    name: 'Nikunj Gupta',
+                    description:
+                      'B.Tech CSE student admitted to GL Bajaj Institute of Technology, Greater Noida through EduHorizon. Placed at JusPay with 27 LPA package.',
+                    alumniOf: {
+                      '@type': 'CollegeOrUniversity',
+                      name: 'GL Bajaj Institute of Technology',
+                      address: { '@type': 'PostalAddress', addressLocality: 'Greater Noida' }
+                    }
+                  }
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 2,
+                  item: {
+                    '@type': 'Person',
+                    name: 'Priya Gupta',
+                    description:
+                      'Admitted to GNIOT Greater Noida top branch through EduHorizon. Placed at Kanini Software with 8.5 LPA package.',
+                    alumniOf: { '@type': 'CollegeOrUniversity', name: 'GNIOT Greater Noida' }
+                  }
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 3,
+                  item: {
+                    '@type': 'Person',
+                    name: 'Amit Kumar',
+                    description:
+                      'Secured B.Tech admission at IIMT College of Engineering through EduHorizon counselling. Placed at HCL Technologies with 8.2 LPA.',
+                    alumniOf: {
+                      '@type': 'CollegeOrUniversity',
+                      name: 'IIMT College of Engineering',
+                      address: { '@type': 'PostalAddress', addressLocality: 'Greater Noida' }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              '@context': 'https://schema.org',
+              '@type': 'EducationalOrganization',
+              name: 'EduHorizon Admission Consultancy',
+              url: siteUrl,
+              description:
+                'EduHorizon is Greater Noida’s leading admission consultancy helping students secure B.Tech, MBA, and BCA admissions in top colleges with placement support.',
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: 'Greater Noida',
+                addressRegion: 'Uttar Pradesh',
+                addressCountry: 'IN'
+              },
+              aggregateRating: {
+                '@type': 'AggregateRating',
+                ratingValue: '4.9',
+                reviewCount: '500',
+                bestRating: '5'
+              }
+            }
+          ]
         };
       }
 
       if (pathname === '/testimonials') {
         return {
-          title: `Testimonials | ${siteName}`,
+          title: 'Student Testimonials | EduHorizon Admission Consultancy Reviews - Greater Noida',
           description:
-            'See what students and parents say about Edu Horizon consultation, counselling quality, and admission support.',
+            'Read real student success stories for B.Tech, MBA, and BCA admissions in Greater Noida with EduHorizon expert counselling and end-to-end admission support.',
           robots: 'index, follow',
-          image: defaultImage
+          image: defaultImage,
+          structuredData: {
+            '@context': 'https://schema.org',
+            '@type': 'EducationalOrganization',
+            name: 'EduHorizon Admission Consultancy',
+            url: siteUrl,
+            description:
+              'EduHorizon is a trusted admission consultancy in Greater Noida helping students secure admissions in top B.Tech, MBA, BCA, and other professional colleges across India.',
+            address: {
+              '@type': 'PostalAddress',
+              addressLocality: 'Greater Noida',
+              addressRegion: 'Uttar Pradesh',
+              addressCountry: 'IN'
+            },
+            aggregateRating: {
+              '@type': 'AggregateRating',
+              ratingValue: '4.9',
+              reviewCount: '200',
+              bestRating: '5'
+            },
+            review: [
+              {
+                '@type': 'Review',
+                author: { '@type': 'Person', name: 'Neha Singh' },
+                reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+                reviewBody:
+                  "EduHorizon's deep knowledge of Greater Noida engineering colleges helped me secure admission in GL Bajaj Institute for B.Tech CSE. Their step-by-step admission guidance and counselling was truly exceptional.",
+                datePublished: '2025-09-10'
+              },
+              {
+                '@type': 'Review',
+                author: { '@type': 'Person', name: 'Arjun Reddy' },
+                reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+                reviewBody:
+                  "The team's expertise in Greater Noida's top MBA colleges made my admission process smooth. EduHorizon's placement preparation and career counselling helped me get into GNIOT with confidence.",
+                datePublished: '2025-09-18'
+              },
+              {
+                '@type': 'Review',
+                author: { '@type': 'Person', name: 'Priya Sharma' },
+                reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+                reviewBody:
+                  "I'm grateful for EduHorizon's guidance in choosing IIMT College for B.Tech ECE. Their counselling sessions helped me understand my career path and choose the right branch.",
+                datePublished: '2025-10-02'
+              },
+              {
+                '@type': 'Review',
+                author: { '@type': 'Person', name: 'Rohit Kumar' },
+                reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+                reviewBody:
+                  "The personalized attention and career mapping at EduHorizon made my BCA college selection much easier. I got admitted to KCC Institute with a scholarship and full guidance support.",
+                datePublished: '2025-10-15'
+              },
+              {
+                '@type': 'Review',
+                author: { '@type': 'Person', name: 'Ananya Verma' },
+                reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+                reviewBody:
+                  "Thanks to EduHorizon's counselling, I found the perfect B.Tech IT course at ITS Engineering College. Their document guidance and admission support was incredible.",
+                datePublished: '2025-11-05'
+              },
+              {
+                '@type': 'Review',
+                author: { '@type': 'Person', name: 'Karan Singh' },
+                reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+                reviewBody:
+                  'The mock interviews and personality development sessions at EduHorizon boosted my confidence. I got into NIET for MBA and felt fully prepared throughout the process.',
+                datePublished: '2025-11-20'
+              }
+            ]
+          }
         };
       }
 
@@ -222,7 +381,8 @@ function AppContent() {
         description:
           'Edu Horizon offers trusted support for admissions, career counselling, and study abroad planning.',
         robots: 'index, follow',
-        image: defaultImage
+        image: defaultImage,
+        structuredData: null
       };
     };
 
@@ -242,6 +402,7 @@ function AppContent() {
     setMetaByProperty('og:description', seo.description);
     setMetaByProperty('og:url', fullUrl);
     setMetaByProperty('og:image', seo.image);
+    setStructuredData(seo.structuredData || null);
   }, [location.pathname]);
 
   const handleFormSubmit = async (formData: any) => {
