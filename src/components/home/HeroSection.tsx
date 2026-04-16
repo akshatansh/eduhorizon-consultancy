@@ -25,11 +25,11 @@ export default function HeroSection() {
               <span className="text-2xl font-bold text-blue-600">EduHorizon</span>
             </div>
             <h1 className="text-5xl font-bold text-gray-900 leading-tight mb-6">
-            Best Admission Consultancy in Noida Expert College Guidance
+              Best Admission Consultancy in Noida and Greater Noida
             </h1>
             <p className="text-xl text-gray-600 mb-8">
-            EduHorizon is Noida's trusted admission consultancy helping students get admission in 
-            top MBA, Engineering, Medical and Study Abroad colleges. With 10+ years of experience. 
+              EduHorizon helps students secure admissions in top B.Tech, MBA, BCA, Medical, and Study Abroad
+              programs with data-backed college comparisons, fee planning, and expert counselling.
             </p>
             <div className="flex gap-4 mb-12">
               <ConsultationButton />

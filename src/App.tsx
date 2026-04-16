@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { createClient } from '@supabase/supabase-js';
 import { testSupabaseConnection } from './utils/supabaseTest';
@@ -31,8 +31,13 @@ const supabase = createClient(
 function AppContent() {
   const location = useLocation();
   const isPrerender = typeof navigator !== 'undefined' && navigator.userAgent === 'ReactSnap';
+  const POPUP_SUBMITTED_KEY = 'eduhorizon_popup_submitted';
+  const reopenTimerRef = useRef<number | null>(null);
   const [showPopup, setShowPopup] = useState(false);
-  const [hasSubmittedForm, setHasSubmittedForm] = useState(false);
+  const [hasSubmittedForm, setHasSubmittedForm] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.localStorage.getItem(POPUP_SUBMITTED_KEY) === 'true';
+  });
   const [isAdmin, setIsAdmin] = useState(false);
   const [dbConnectionStatus, setDbConnectionStatus] = useState<{
     success: boolean;
@@ -71,10 +76,10 @@ function AppContent() {
   };
 
   useEffect(() => {
+    if (hasSubmittedForm || isAdmin) return;
+
     const timer = setTimeout(() => {
-      if (!hasSubmittedForm && !isAdmin) {
-        setShowPopup(true);
-      }
+      setShowPopup(true);
     }, 30000);
 
     return () => clearTimeout(timer);
@@ -84,8 +89,26 @@ function AppContent() {
     const siteName = 'Edu Horizon';
     const siteUrl = 'https://www.eduhorizon.online';
     const defaultImage = `${siteUrl}/EDUHORIZON%20(1).jpg`;
-    const pathname = location.pathname;
+    const normalizePath = (path: string) => {
+      if (!path) return '/';
+      const clean = path.startsWith('/') ? path : `/${path}`;
+      if (clean !== '/' && clean.endsWith('/')) return clean.slice(0, -1);
+      return clean;
+    };
+
+    const isKnownStaticPath = (path: string) =>
+      ['/', '/about', '/colleges', '/success-stories', '/testimonials', '/blog', '/privacy-policy', '/terms'].includes(path);
+
+    const normalizedPathname = normalizePath(location.pathname);
+    const pathname = normalizedPathname;
     const fullUrl = `${siteUrl}${pathname}`;
+    const dynamicBlogMatch = pathname.match(/^\/blog\/([^/]+)$/);
+    const blogSlug = dynamicBlogMatch?.[1] || '';
+    const hasKnownSeedBlog = blogPosts.some((item) => item.id === blogSlug);
+    const isKnownRoute =
+      isKnownStaticPath(pathname) ||
+      pathname.startsWith('/admin') ||
+      (Boolean(dynamicBlogMatch) && hasKnownSeedBlog);
 
     const setMetaByName = (name: string, content: string) => {
       let tag = document.head.querySelector(`meta[name="${name}"]`) as HTMLMetaElement | null;
@@ -139,16 +162,22 @@ function AppContent() {
           title: `Admin Panel | ${siteName}`,
           description: 'Secure admin dashboard for Edu Horizon content and access management.',
           robots: 'noindex, nofollow',
-          image: defaultImage
+          image: defaultImage,
+          keywords: '',
+          ogType: 'website' as const
         };
       }
 
       if (pathname === '/') {
         return {
-          title: 'Best Admission Consultancy in Noida | EduHorizon',
-          description: 'Direct Admission in Noida Colleges Without Donation',
+          title: 'Best Admission Consultancy in Noida & Greater Noida | EduHorizon',
+          description:
+            'Get expert admission guidance for B.Tech, MBA, BCA and other courses in Noida and Greater Noida. Compare colleges, fees and placements with EduHorizon.',
           robots: 'index, follow',
-          image: defaultImage
+          image: defaultImage,
+          keywords:
+            'admission consultancy noida, direct admission noida, engineering admission, mba admission, bca admission, college counselling',
+          ogType: 'website' as const
         };
       }
 
@@ -158,17 +187,168 @@ function AppContent() {
           description:
             'Learn about Edu Horizon, our mission, and how our expert counselors help students choose the right college and career path.',
           robots: 'index, follow',
-          image: defaultImage
+          image: defaultImage,
+          keywords:
+            'about eduhorizon, education consultants, admission guidance, career counselling, noida consultancy',
+          ogType: 'website' as const
         };
       }
 
       if (pathname === '/colleges') {
         return {
-          title: `Top Colleges & Universities | ${siteName}`,
+          title: 'Top Colleges in Greater Noida 2026 | B.Tech, MBA, BCA Admissions | EduHorizon',
           description:
-            'Explore top colleges, courses, fees, and admission guidance with Edu Horizon to find the best-fit institution for your future.',
+            'Explore top engineering, MBA and BCA colleges in Greater Noida — GNIOT, IIMT, Mangalmay, GL Bajaj, NIET, KCC and more. Compare fees, courses, NIRF ranks and get free admission guidance from EduHorizon.',
           robots: 'index, follow',
-          image: defaultImage
+          image: defaultImage,
+          keywords:
+            'top colleges in Greater Noida, engineering colleges Greater Noida, MBA colleges Greater Noida, B.Tech admission 2026 Greater Noida, GNIOT admission, IIMT college fees, Mangalmay institute, GL Bajaj B.Tech, NIET Greater Noida, college admission consultancy Greater Noida',
+          ogType: 'website' as const,
+          structuredData: [
+            {
+              '@context': 'https://schema.org',
+              '@type': 'ItemList',
+              name: 'Top Colleges in Greater Noida 2026',
+              description:
+                'List of top engineering, MBA and BCA colleges in Greater Noida with admission guidance by EduHorizon consultancy.',
+              numberOfItems: 6,
+              itemListElement: [
+                {
+                  '@type': 'ListItem',
+                  position: 1,
+                  item: {
+                    '@type': 'CollegeOrUniversity',
+                    name: 'Greater Noida Institute of Technology (GNIOT)',
+                    description:
+                      'GNIOT is an AICTE-approved, AKTU-affiliated engineering college in Greater Noida offering B.Tech, M.Tech, MBA and MCA programs with strong placement records.',
+                    url: 'https://www.gniot.edu.in',
+                    address: {
+                      '@type': 'PostalAddress',
+                      addressLocality: 'Greater Noida',
+                      addressRegion: 'Uttar Pradesh',
+                      addressCountry: 'IN'
+                    },
+                    foundingDate: '1999'
+                  }
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 2,
+                  item: {
+                    '@type': 'CollegeOrUniversity',
+                    name: 'IIMT College of Engineering',
+                    description:
+                      'IIMT College of Engineering Greater Noida is known for its innovative teaching methods, strong industry connections and excellent placement in top MNCs.',
+                    url: 'https://www.iimtindia.net',
+                    address: {
+                      '@type': 'PostalAddress',
+                      addressLocality: 'Greater Noida',
+                      addressRegion: 'Uttar Pradesh',
+                      addressCountry: 'IN'
+                    },
+                    foundingDate: '1994'
+                  }
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 3,
+                  item: {
+                    '@type': 'CollegeOrUniversity',
+                    name: 'Mangalmay Institute of Engineering & Technology',
+                    description:
+                      'Mangalmay Institute Greater Noida focuses on holistic student development with emphasis on practical learning, personality development and placement training.',
+                    url: 'https://www.mangalmay.org',
+                    address: {
+                      '@type': 'PostalAddress',
+                      addressLocality: 'Greater Noida',
+                      addressRegion: 'Uttar Pradesh',
+                      addressCountry: 'IN'
+                    },
+                    foundingDate: '1996'
+                  }
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 4,
+                  item: {
+                    '@type': 'CollegeOrUniversity',
+                    name: 'GL Bajaj Institute of Technology & Management',
+                    description:
+                      'GL Bajaj is a top-ranked engineering and management institute in Greater Noida known for strong placements and industry-aligned curriculum.',
+                    url: 'https://www.glbajaj.org',
+                    address: {
+                      '@type': 'PostalAddress',
+                      addressLocality: 'Greater Noida',
+                      addressRegion: 'Uttar Pradesh',
+                      addressCountry: 'IN'
+                    }
+                  }
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 5,
+                  item: {
+                    '@type': 'CollegeOrUniversity',
+                    name: 'NIET — Noida Institute of Engineering & Technology',
+                    description:
+                      'NIET is a prominent AKTU-affiliated institute in Greater Noida offering B.Tech, M.Tech and MBA with modern infrastructure and placement support.',
+                    url: 'https://www.niet.co.in',
+                    address: {
+                      '@type': 'PostalAddress',
+                      addressLocality: 'Greater Noida',
+                      addressRegion: 'Uttar Pradesh',
+                      addressCountry: 'IN'
+                    },
+                    foundingDate: '2001'
+                  }
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 6,
+                  item: {
+                    '@type': 'CollegeOrUniversity',
+                    name: 'KCC Institute of Technology & Management',
+                    description:
+                      'KCC is a popular choice for BCA, B.Tech and MBA admission in Greater Noida with affordable fees and career guidance support.',
+                    url: 'https://www.kccitm.edu.in',
+                    address: {
+                      '@type': 'PostalAddress',
+                      addressLocality: 'Greater Noida',
+                      addressRegion: 'Uttar Pradesh',
+                      addressCountry: 'IN'
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              '@context': 'https://schema.org',
+              '@type': 'EducationalOrganization',
+              name: 'EduHorizon Admission Consultancy',
+              url: siteUrl,
+              description: 'EduHorizon helps students find and secure admissions in top colleges in Greater Noida, Delhi NCR and India.',
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: 'Greater Noida',
+                addressRegion: 'Uttar Pradesh',
+                addressCountry: 'IN'
+              },
+              aggregateRating: {
+                '@type': 'AggregateRating',
+                ratingValue: '4.9',
+                reviewCount: '500',
+                bestRating: '5'
+              }
+            },
+            {
+              '@context': 'https://schema.org',
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+                { '@type': 'ListItem', position: 2, name: 'Colleges in Greater Noida', item: `${siteUrl}/colleges` }
+              ]
+            }
+          ]
         };
       }
 
@@ -336,25 +516,129 @@ function AppContent() {
       }
 
       if (pathname === '/blog') {
+        const postsForSchema = blogPosts
+          .slice()
+          .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+          .slice(0, 20);
+
         return {
-          title: `Education Blog | ${siteName}`,
+          title: `Education Blog: Admissions, Colleges & Career Guidance | ${siteName}`,
           description:
-            'Get expert articles on admissions, college selection, career guidance, and student life from Edu Horizon.',
+            'Read expert blog articles on college admissions, B.Tech and MBA choices, fees, counselling and career planning for Noida, Greater Noida and across India.',
           robots: 'index, follow',
-          image: defaultImage
+          image: defaultImage,
+          keywords: 'education blog, admission guidance, college counselling, career guidance',
+          ogType: 'website' as const,
+          structuredData: [
+            {
+              '@context': 'https://schema.org',
+              '@type': 'Blog',
+              name: `EduHorizon Blog`,
+              url: `${siteUrl}/blog`,
+              description:
+                'Expert articles on admissions, college selection, career guidance, and student life from EduHorizon.',
+              publisher: {
+                '@type': 'Organization',
+                name: 'EduHorizon',
+                url: siteUrl
+              }
+            },
+            {
+              '@context': 'https://schema.org',
+              '@type': 'ItemList',
+              name: 'EduHorizon Blog Posts',
+              numberOfItems: postsForSchema.length,
+              itemListElement: postsForSchema.map((p, idx) => ({
+                '@type': 'ListItem',
+                position: idx + 1,
+                item: {
+                  '@type': 'BlogPosting',
+                  headline: p.title,
+                  description: p.excerpt,
+                  url: `${siteUrl}/blog/${p.id}`,
+                  image: p.image || defaultImage,
+                  datePublished: p.date,
+                  author: {
+                    '@type': 'Person',
+                    name: p.author?.name || 'EduHorizon Team'
+                  }
+                }
+              }))
+            },
+            {
+              '@context': 'https://schema.org',
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+                { '@type': 'ListItem', position: 2, name: 'Blog', item: `${siteUrl}/blog` }
+              ]
+            }
+          ]
         };
       }
 
       if (pathname.startsWith('/blog/')) {
         const slug = pathname.split('/blog/')[1] || '';
         const post = blogPosts.find((item) => item.id === slug);
+
+        const keywordsFromTags =
+          post?.tags && post.tags.length > 0 ? Array.from(new Set(post.tags)).join(', ') : '';
+
         return {
           title: post ? `${post.title} | ${siteName}` : `Blog Article | ${siteName}`,
           description:
             post?.excerpt ||
             'Read detailed guidance from Edu Horizon on admissions, career planning, and choosing the right college.',
           robots: 'index, follow',
-          image: post?.image || defaultImage
+          image: post?.image || defaultImage,
+          keywords: keywordsFromTags
+            ? `${keywordsFromTags}, admission guidance, college selection, career guidance`
+            : 'admission guidance, college selection, career guidance',
+          ogType: 'article' as const,
+          structuredData: post
+            ? [
+                {
+                  '@context': 'https://schema.org',
+                  '@type': 'BlogPosting',
+                  mainEntityOfPage: {
+                    '@type': 'WebPage',
+                    '@id': `${siteUrl}/blog/${post.id}`
+                  },
+                  headline: post.title,
+                  description: post.excerpt,
+                  image: [post.image || defaultImage],
+                  author: {
+                    '@type': 'Person',
+                    name: post.author?.name || 'EduHorizon Team'
+                  },
+                  publisher: {
+                    '@type': 'Organization',
+                    name: 'EduHorizon',
+                    url: siteUrl,
+                    logo: {
+                      '@type': 'ImageObject',
+                      url: defaultImage
+                    }
+                  },
+                  datePublished: post.date,
+                  dateModified: post.date
+                },
+                {
+                  '@context': 'https://schema.org',
+                  '@type': 'BreadcrumbList',
+                  itemListElement: [
+                    { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+                    { '@type': 'ListItem', position: 2, name: 'Blog', item: `${siteUrl}/blog` },
+                    {
+                      '@type': 'ListItem',
+                      position: 3,
+                      name: post.title,
+                      item: `${siteUrl}/blog/${post.id}`
+                    }
+                  ]
+                }
+              ]
+            : null
         };
       }
 
@@ -363,7 +647,9 @@ function AppContent() {
           title: `Privacy Policy | ${siteName}`,
           description: `Read the privacy policy of ${siteName} and understand how we collect and use your information.`,
           robots: 'index, follow',
-          image: defaultImage
+          image: defaultImage,
+          keywords: 'privacy policy, eduhorizon privacy',
+          ogType: 'website' as const
         };
       }
 
@@ -372,35 +658,40 @@ function AppContent() {
           title: `Terms & Conditions | ${siteName}`,
           description: `Review the terms and conditions for using ${siteName} services and website.`,
           robots: 'index, follow',
-          image: defaultImage
+          image: defaultImage,
+          keywords: 'terms and conditions, eduhorizon terms',
+          ogType: 'website' as const
         };
       }
 
       return {
-        title: `${siteName} | Education Consultancy`,
+        title: `Page Not Found | ${siteName}`,
         description:
-          'Edu Horizon offers trusted support for admissions, career counselling, and study abroad planning.',
-        robots: 'index, follow',
+          'The page you are looking for could not be found. Explore EduHorizon services and admission guidance from the main pages.',
+        robots: 'noindex, follow',
         image: defaultImage,
-        structuredData: null
+        keywords: '',
+        structuredData: null,
+        ogType: 'website' as const
       };
     };
 
     const seo = getSeoForPath();
     document.title = seo.title;
-    setCanonical(fullUrl);
+    setCanonical(isKnownRoute ? fullUrl : `${siteUrl}/`);
     setMetaByName('description', seo.description);
+    setMetaByName('keywords', seo.keywords || '');
     setMetaByName('robots', seo.robots);
     setMetaByName('twitter:card', 'summary_large_image');
     setMetaByName('twitter:title', seo.title);
     setMetaByName('twitter:description', seo.description);
     setMetaByName('twitter:image', seo.image);
 
-    setMetaByProperty('og:type', 'website');
+    setMetaByProperty('og:type', seo.ogType || 'website');
     setMetaByProperty('og:site_name', siteName);
     setMetaByProperty('og:title', seo.title);
     setMetaByProperty('og:description', seo.description);
-    setMetaByProperty('og:url', fullUrl);
+    setMetaByProperty('og:url', isKnownRoute ? fullUrl : `${siteUrl}/`);
     setMetaByProperty('og:image', seo.image);
     setStructuredData(seo.structuredData || null);
   }, [location.pathname]);
@@ -422,11 +713,40 @@ function AppContent() {
       });
 
       setHasSubmittedForm(true);
+      setShowPopup(false);
+      if (typeof window !== 'undefined') {
+        window.localStorage.setItem(POPUP_SUBMITTED_KEY, 'true');
+      }
     } catch (error) {
       console.error('Error submitting form:', error);
       throw error;
     }
   };
+
+  const handlePopupClose = () => {
+    setShowPopup(false);
+    if (hasSubmittedForm || isAdmin) return;
+
+    if (reopenTimerRef.current) {
+      window.clearTimeout(reopenTimerRef.current);
+    }
+
+    reopenTimerRef.current = window.setTimeout(() => {
+      setShowPopup((current) => {
+        if (current || hasSubmittedForm || isAdmin) return current;
+        return true;
+      });
+      reopenTimerRef.current = null;
+    }, 10000);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (reopenTimerRef.current) {
+        window.clearTimeout(reopenTimerRef.current);
+      }
+    };
+  }, []);
 
   if (dbConnectionStatus && !dbConnectionStatus.success) {
     return (
@@ -469,6 +789,33 @@ function AppContent() {
           <Route path="/admin/access" element={<AdminAccess />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<Terms />} />
+          <Route
+            path="*"
+            element={
+              <div className="min-h-[60vh] flex items-center justify-center bg-gray-50 px-4 py-16">
+                <div className="max-w-2xl w-full bg-white border border-gray-200 rounded-xl shadow-sm p-8 text-center">
+                  <h1 className="text-3xl font-bold text-gray-900">Page Not Found</h1>
+                  <p className="mt-3 text-gray-600">
+                    This page does not exist. Explore our admission guidance pages and continue your college search.
+                  </p>
+                  <div className="mt-6 flex flex-wrap justify-center gap-3">
+                    <a
+                      href="/"
+                      className="inline-flex items-center rounded-lg bg-blue-600 px-5 py-2.5 text-white font-semibold hover:bg-blue-700 transition-colors"
+                    >
+                      Go to Home
+                    </a>
+                    <a
+                      href="/colleges"
+                      className="inline-flex items-center rounded-lg border border-gray-300 px-5 py-2.5 text-gray-700 font-semibold hover:border-blue-500 hover:text-blue-700 transition-colors"
+                    >
+                      Browse Colleges
+                    </a>
+                  </div>
+                </div>
+              </div>
+            }
+          />
         </Routes>
       </main>
       {location.pathname.startsWith('/admin') ? null : <Footer />}
@@ -477,6 +824,7 @@ function AppContent() {
           <PopupForm
             isOpen={showPopup && !hasSubmittedForm && !isAdmin}
             onSubmit={handleFormSubmit}
+            onClose={handlePopupClose}
           />
           <WhatsAppButton phoneNumber="+918877434088" />
         </>

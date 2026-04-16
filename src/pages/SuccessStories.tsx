@@ -9,6 +9,7 @@ import {
   MessageCircle,
   Star
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import ConsultationButton from '../components/consultation/ConsultationButton';
 
 interface SuccessStory {
@@ -350,6 +351,24 @@ export default function SuccessStories() {
               <MessageCircle className="h-5 w-5" aria-hidden="true" />
               WhatsApp Us Now
             </a>
+          </div>
+        </section>
+
+        <section className="mt-8 bg-white border border-slate-200 rounded-2xl p-6">
+          <h2 className="text-xl font-bold text-slate-900">Plan Your Next Step</h2>
+          <p className="mt-2 text-slate-600 text-sm">
+            Use these resources to shortlist colleges and understand admission pathways before counselling.
+          </p>
+          <div className="mt-3 flex flex-wrap gap-4 text-sm font-medium">
+            <Link to="/colleges" className="text-blue-700 hover:text-blue-800 hover:underline">
+              Compare Colleges
+            </Link>
+            <Link to="/testimonials" className="text-blue-700 hover:text-blue-800 hover:underline">
+              Read Testimonials
+            </Link>
+            <Link to="/blog" className="text-blue-700 hover:text-blue-800 hover:underline">
+              Read Admission Blog
+            </Link>
           </div>
         </section>
       </div>

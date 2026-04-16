@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { createClient } from '@supabase/supabase-js';
+import { X } from 'lucide-react';
 import FormInput from './forms/FormInput';
 import FormSelect from './forms/FormSelect';
 import SubmitButton from './forms/SubmitButton';
@@ -39,9 +40,10 @@ const courseOptions = [
 interface PopupFormProps {
   isOpen: boolean;
   onSubmit: (formData: any) => Promise<void>;
+  onClose: () => void;
 }
 
-export default function PopupForm({ isOpen, onSubmit }: PopupFormProps) {
+export default function PopupForm({ isOpen, onSubmit, onClose }: PopupFormProps) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -89,8 +91,18 @@ export default function PopupForm({ isOpen, onSubmit }: PopupFormProps) {
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
-        className="bg-white rounded-lg p-8 max-w-md w-full mx-4"
+        className="bg-white rounded-lg p-8 max-w-md w-full mx-4 relative"
       >
+        {!isSubmitted && (
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Close popup form"
+            className="absolute top-3 right-3 text-gray-500 hover:text-gray-700 transition-colors"
+          >
+            <X className="h-5 w-5" aria-hidden="true" />
+          </button>
+        )}
         {isSubmitted ? (
           <SuccessMessage
             title="Thank You!"

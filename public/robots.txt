@@ -32,5 +32,4 @@ User-agent: PerplexityBot
 Allow: /
 Disallow: /admin/
 
-Sitemap: https://eduhorizon.online/sitemap.xml
 Sitemap: https://www.eduhorizon.online/sitemap.xml

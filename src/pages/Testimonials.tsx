@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { CheckCircle, MessageCircle, Star } from 'lucide-react';
 import ConsultationButton from '../components/consultation/ConsultationButton';
+import { Link } from 'react-router-dom';
 
 const testimonialReviews = [
   {
@@ -247,6 +248,24 @@ export default function TestimonialsPage() {
               <MessageCircle className="h-5 w-5" aria-hidden="true" />
               Chat on WhatsApp
             </a>
+          </div>
+        </section>
+
+        <section className="mt-8 bg-white border border-slate-200 rounded-2xl p-6">
+          <h2 className="text-xl font-bold text-slate-900">Explore Related Pages</h2>
+          <p className="mt-2 text-slate-600 text-sm">
+            Review outcomes, compare colleges, and read expert tips before final admission decisions.
+          </p>
+          <div className="mt-3 flex flex-wrap gap-4 text-sm font-medium">
+            <Link to="/success-stories" className="text-blue-700 hover:text-blue-800 hover:underline">
+              Student Success Stories
+            </Link>
+            <Link to="/colleges" className="text-blue-700 hover:text-blue-800 hover:underline">
+              Top Colleges in Greater Noida
+            </Link>
+            <Link to="/blog" className="text-blue-700 hover:text-blue-800 hover:underline">
+              Admission & Career Blog
+            </Link>
           </div>
         </section>
       </div>

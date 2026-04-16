@@ -1,4 +1,5 @@
 import { Users, Award, BookOpen, Trophy } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const stats = [
   { icon: <Users className="h-6 w-6" />, value: "1000+", label: "Students Guided" },
@@ -12,16 +13,19 @@ export default function About() {
     <div className="pt-24 pb-12 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900">About EduHorizon | Education Consultant in Patna</h1>
-          <p className="mt-4 text-xl text-gray-600">Trusted admission guidance for students in Patna and Noida since 2018.</p>
+          <h1 className="text-4xl font-bold text-gray-900">About EduHorizon | Admission Consultancy in Noida & Greater Noida</h1>
+          <p className="mt-4 text-xl text-gray-600">
+            Trusted admission guidance for students across Noida, Greater Noida, Delhi NCR and major Indian cities since 2018.
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
           <div>
             <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Mission</h2>
             <p className="text-lg text-gray-600 mb-4">
-            At EduHorizon, Noida's leading admission consultancy, we believe every student deserves access to quality education. 
-            We specialize in MBA, Engineering, Medical, and Study Abroad admissions, helping students choose the right college based on their goals and budget.
+            At EduHorizon, we believe every student deserves access to quality education.
+            We specialize in MBA, Engineering, Medical, and Study Abroad admissions, helping students choose the right
+            college based on their goals and budget.
             </p>
             <p className="text-lg text-gray-600">
               With over a decade of experience in education consulting, we've helped thousands of students 
@@ -38,7 +42,7 @@ export default function About() {
         <div className="bg-white rounded-lg shadow-lg p-8 mb-16">
           <h2 className="text-3xl font-bold text-gray-900 mb-3 text-center">Meet Our Counsellors</h2>
           <p className="text-center text-gray-600 max-w-3xl mx-auto mb-8">
-            Work with an experienced education consultant in Patna for personalized counselling, college shortlisting,
+            Work with experienced counsellors for personalized guidance, college shortlisting,
             and end-to-end admission support.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -51,7 +55,7 @@ export default function About() {
               <h3 className="text-xl font-semibold text-gray-900 text-center">Akshat Ansh - Founder - 7+ Years Experience</h3>
               <p className="text-gray-700 text-center mt-2">B.Tech from A.K.T.U</p>
               <p className="text-gray-600 text-center mt-3">
-                Specializes in career counselling, college selection, and admission planning for students across Bihar.
+                Specializes in career counselling, college selection, and admission planning for students across India.
               </p>
             </article>
 
@@ -101,6 +105,27 @@ export default function About() {
                 We continuously adapt our methods to meet the evolving needs of education.
               </p>
             </div>
+          </div>
+        </div>
+
+        <div className="bg-blue-50 border border-blue-100 rounded-lg p-6">
+          <h2 className="text-2xl font-bold text-gray-900 mb-3">Explore More Admission Resources</h2>
+          <p className="text-gray-600 mb-4">
+            Compare colleges, review real student outcomes, and read expert guidance before finalizing your admission.
+          </p>
+          <div className="flex flex-wrap gap-4 text-sm font-medium">
+            <Link to="/colleges" className="text-blue-700 hover:text-blue-800 hover:underline">
+              Compare Top Colleges
+            </Link>
+            <Link to="/success-stories" className="text-blue-700 hover:text-blue-800 hover:underline">
+              Student Success Stories
+            </Link>
+            <Link to="/testimonials" className="text-blue-700 hover:text-blue-800 hover:underline">
+              Verified Testimonials
+            </Link>
+            <Link to="/blog" className="text-blue-700 hover:text-blue-800 hover:underline">
+              Read Admission Blog
+            </Link>
           </div>
         </div>
       </div>

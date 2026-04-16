@@ -59,6 +59,27 @@ export default function BlogPost() {
     };
   }, [id]);
 
+  React.useEffect(() => {
+    if (isLoading || post) return;
+
+    const siteUrl = 'https://www.eduhorizon.online';
+    let robotsTag = document.head.querySelector('meta[name="robots"]') as HTMLMetaElement | null;
+    if (!robotsTag) {
+      robotsTag = document.createElement('meta');
+      robotsTag.setAttribute('name', 'robots');
+      document.head.appendChild(robotsTag);
+    }
+    robotsTag.setAttribute('content', 'noindex, follow');
+
+    let canonical = document.head.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonical);
+    }
+    canonical.setAttribute('href', `${siteUrl}/blog`);
+  }, [isLoading, post]);
+
   if (isLoading) {
     return (
       <div className="py-20 bg-gray-50">
@@ -175,6 +196,26 @@ export default function BlogPost() {
                     </span>
                   ))}
                 </div>
+              </div>
+            </div>
+
+            <div className="mt-8 rounded-xl border border-blue-100 bg-blue-50/60 p-5">
+              <h2 className="text-lg font-semibold text-gray-900">Related Resources</h2>
+              <p className="mt-2 text-sm text-gray-600">
+                Continue exploring practical admission guidance and compare your best-fit college options.
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                <Link to="/colleges" className="text-sm font-medium text-blue-700 hover:text-blue-800 hover:underline">
+                  Compare Top Colleges in Greater Noida
+                </Link>
+                <span className="text-gray-300">|</span>
+                <Link to="/success-stories" className="text-sm font-medium text-blue-700 hover:text-blue-800 hover:underline">
+                  Read Student Success Stories
+                </Link>
+                <span className="text-gray-300">|</span>
+                <Link to="/testimonials" className="text-sm font-medium text-blue-700 hover:text-blue-800 hover:underline">
+                  See Verified Testimonials
+                </Link>
               </div>
             </div>
           </div>
