@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && npm run generate:sitemap",
-    "build:prerender": "vite build && react-snap",
-    "build:mac": "vite build && PUPPETEER_EXECUTABLE_PATH=\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" react-snap",
+    "build": "npm run generate:sitemap && vite build && node scripts/create-route-shells.mjs",
+    "build:prerender": "npm run generate:sitemap && vite build && node scripts/create-route-shells.mjs",
+    "build:mac": "npm run generate:sitemap && vite build && node scripts/create-route-shells.mjs",
     "postinstall": "patch-package",
     "lint": "eslint .",
     "preview": "vite preview",
