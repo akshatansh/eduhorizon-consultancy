@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '../../utils/supabase';
 import { slugify } from '../../utils/slug';
 import { uploadPublicImage } from '../../utils/storageUpload';
 import AdminTopBar from '../../components/admin/AdminTopBar';
@@ -21,11 +21,6 @@ type CollegeRow = {
   highlights: string[] | null;
   updated_at: string;
 };
-
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_ANON_KEY
-);
 
 export default function AdminCollegesManager() {
   const navigate = useNavigate();

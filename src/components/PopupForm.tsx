@@ -1,16 +1,10 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { createClient } from '@supabase/supabase-js';
 import { X } from 'lucide-react';
 import FormInput from './forms/FormInput';
 import FormSelect from './forms/FormSelect';
 import SubmitButton from './forms/SubmitButton';
 import SuccessMessage from './forms/SuccessMessage';
-
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_ANON_KEY
-);
 
 const courseOptions = [
   { value: 'btech-cse', label: 'B.Tech - Computer Science Engineering' },
@@ -39,7 +33,12 @@ const courseOptions = [
 
 interface PopupFormProps {
   isOpen: boolean;
-  onSubmit: (formData: any) => Promise<void>;
+  onSubmit: (formData: {
+    name: string;
+    email: string;
+    phone: string;
+    course: string;
+  }) => Promise<void>;
   onClose: () => void;
 }
 
@@ -71,7 +70,7 @@ export default function PopupForm({ isOpen, onSubmit, onClose }: PopupFormProps)
     try {
       await onSubmit(formData);
       setIsSubmitted(true);
-    } catch (err) {
+    } catch {
       setError('An unexpected error occurred. Please try again.');
     } finally {
       setIsLoading(false);

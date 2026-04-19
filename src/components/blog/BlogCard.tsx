@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, Clock, Tag } from 'lucide-react';
+import { Calendar, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { BlogPost } from '../../types';
 
@@ -9,14 +9,10 @@ interface BlogCardProps {
   index: number;
 }
 
-const FALLBACK_COVER = '/EDUHORIZON%20(1).jpg';
-const FALLBACK_AVATAR = '/EDUHORIZON%20(1).jpg';
+const FALLBACK_COVER = '/images/blog-cover-1.jpg';
+const FALLBACK_AVATAR = '/images/blog-avatar-1.jpg';
 
 export default function BlogCard({ post, index }: BlogCardProps) {
-  const isPrerender = typeof navigator !== 'undefined' && navigator.userAgent === 'ReactSnap';
-  const coverSrc = isPrerender ? FALLBACK_COVER : post.image;
-  const avatarSrc = isPrerender ? FALLBACK_AVATAR : post.author.avatar;
-
   return (
     <motion.article
       initial={{ opacity: 0, y: 20 }}
@@ -26,12 +22,14 @@ export default function BlogCard({ post, index }: BlogCardProps) {
     >
       <Link to={`/blog/${post.id}`}>
         <img
-          src={coverSrc}
+          src={post.image}
           alt={post.title}
           onError={(e) => {
             e.currentTarget.onerror = null;
             e.currentTarget.src = FALLBACK_COVER;
           }}
+          loading="lazy"
+          decoding="async"
           className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
         />
       </Link>
@@ -54,12 +52,14 @@ export default function BlogCard({ post, index }: BlogCardProps) {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <img
-              src={avatarSrc}
+              src={post.author.avatar}
               alt={post.author.name}
               onError={(e) => {
                 e.currentTarget.onerror = null;
                 e.currentTarget.src = FALLBACK_AVATAR;
               }}
+              loading="lazy"
+              decoding="async"
               className="w-10 h-10 rounded-full object-cover"
             />
             <div>

@@ -11,15 +11,19 @@ interface CollegeCardProps {
 export default function CollegeCard({ college, index }: CollegeCardProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  const imageSources = college.images.length > 0 ? college.images : ['/images/college-placeholder.svg'];
+
   useEffect(() => {
+    if (imageSources.length <= 1) return; // Don't auto-scroll if only one image
+    
     const timer = setInterval(() => {
       setCurrentImageIndex((prevIndex) => 
-        prevIndex === college.images.length - 1 ? 0 : prevIndex + 1
+        prevIndex === imageSources.length - 1 ? 0 : prevIndex + 1
       );
     }, 3000);
 
     return () => clearInterval(timer);
-  }, [college.images.length]);
+  }, [imageSources.length]);
 
   return (
     <motion.div
@@ -29,28 +33,54 @@ export default function CollegeCard({ college, index }: CollegeCardProps) {
       viewport={{ once: true }}
       className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
     >
-      <div className="relative h-48 overflow-hidden">
-        {college.images.map((image, idx) => (
-          <motion.img
-            key={idx}
-            src={image}
-            alt={`${college.name} - Image ${idx + 1}`}
-            className="absolute inset-0 w-full h-full object-cover"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: idx === currentImageIndex ? 1 : 0 }}
-            transition={{ duration: 0.5 }}
+      <div className="relative h-48 overflow-hidden bg-gray-200">
+        {imageSources.length === 1 ? (
+          // Single image - no animation needed
+          <img
+            src={imageSources[0]}
+            alt={`${college.name} - Image 1`}
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-cover"
+            onError={(e) => {
+              e.currentTarget.onerror = null;
+              e.currentTarget.src = '/images/college-placeholder.svg';
+            }}
           />
-        ))}
-        <div className="absolute bottom-0 left-0 right-0 flex justify-center p-2">
-          {college.images.map((_, idx) => (
-            <div
+        ) : (
+          // Multiple images - with animation
+          imageSources.map((image, idx) => (
+            <motion.img
               key={idx}
-              className={`w-2 h-2 rounded-full mx-1 ${
-                idx === currentImageIndex ? 'bg-white' : 'bg-white/50'
-              }`}
+              src={image}
+              alt={`${college.name} - Image ${idx + 1}`}
+              loading="lazy"
+              decoding="async"
+              className="absolute inset-0 w-full h-full object-cover"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: idx === currentImageIndex ? 1 : 0 }}
+              transition={{ duration: 0.5 }}
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = '/images/college-placeholder.svg';
+              }}
             />
-          ))}
-        </div>
+          ))
+        )}
+        
+        {/* Indicators for multiple images */}
+        {imageSources.length > 1 && (
+          <div className="absolute bottom-0 left-0 right-0 flex justify-center p-2">
+            {imageSources.map((_, idx) => (
+              <div
+                key={idx}
+                className={`w-2 h-2 rounded-full mx-1 ${
+                  idx === currentImageIndex ? 'bg-white' : 'bg-white/50'
+                }`}
+              />
+            ))}
+          </div>
+        )}
       </div>
       <div className="p-6">
         <h2 className="text-xl font-semibold text-gray-900 mb-2">{college.name}</h2>

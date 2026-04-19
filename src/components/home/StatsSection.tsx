@@ -8,25 +8,25 @@ const stats = [
     icon: <Users className="h-12 w-12" aria-hidden="true" />,
     value: "1000+",
     label: "Students Guided",
-    description: "Successfully helped students achieve their academic goals"
+    description: "Students supported with expert counselling and admission planning"
   },
   {
     icon: <Award className="h-12 w-12" aria-hidden="true" />,
     value: "95%",
     label: "Success Rate",
-    description: "Of our students get into their preferred colleges"
+    description: "Students secure admission in preferred colleges and branches"
   },
   {
     icon: <BookOpen className="h-12 w-12" aria-hidden="true" />,
     value: "200+",
     label: "Partner Colleges",
-    description: "Strong network of top colleges in Greater Noida"
+    description: "Partner and recommended colleges across Greater Noida and Noida"
   },
   {
     icon: <Trophy className="h-12 w-12" aria-hidden="true" />,
     value: "7+",
     label: "Years Experience",
-    description: "Decade of expertise in education consulting"
+    description: "Trusted admission consultancy experience in Delhi NCR"
   }
 ];
 
@@ -56,13 +56,13 @@ export default function StatsSection() {
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.2 + index * 0.2 }}
               >
-                <div className="text-4xl font-bold text-gray-900 mb-2">
+                <div className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
                   {stat.value}
                 </div>
-                <div className="text-lg font-semibold text-gray-900 mb-2">
+                <div className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">
                   {stat.label}
                 </div>
-                <p className="text-gray-600">{stat.description}</p>
+                <p className="text-sm sm:text-base text-gray-600">{stat.description}</p>
               </motion.div>
             </motion.div>
           ))}

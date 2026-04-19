@@ -26,8 +26,8 @@ const featuredStories: FeaturedStory[] = [
     packageValue: '27 LPA',
     quote: (
       <>
-        <strong>GL Bajaj for B.Tech CSE</strong> choose karna meri life ka best decision tha. EduHorizon ke
-        counselling sessions ne meri placement preparation ko next level par le gaya.
+        Choosing <strong>GL Bajaj for B.Tech CSE</strong> was a turning point for my career. EduHorizon's counselling
+        and preparation support helped me stay focused and placement-ready.
       </>
     )
   },
@@ -43,8 +43,8 @@ const featuredStories: FeaturedStory[] = [
     packageValue: '8.5 LPA',
     quote: (
       <>
-        Mujhe <strong>B.Tech colleges in Delhi NCR</strong> compare karne me clarity yahi mili. EduHorizon ne right
-        branch selection aur final admission me full support diya.
+        I got clarity while comparing <strong>B.Tech colleges in Delhi NCR</strong>. EduHorizon guided me with the
+        right branch selection and complete admission support.
       </>
     )
   },
@@ -60,8 +60,8 @@ const featuredStories: FeaturedStory[] = [
     packageValue: '8.2 LPA',
     quote: (
       <>
-        Inhone mujhe <strong>B.Tech college options in Greater Noida</strong> practical way me samjhaye. Result:
-        focused prep and placement at HCL Technologies.
+        Their team explained <strong>B.Tech college options in Greater Noida</strong> in a practical way. The result
+        was focused preparation and a placement at HCL Technologies.
       </>
     )
   }
@@ -82,11 +82,11 @@ export default function SuccessStoriesSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Student Success Stories</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Real placement outcomes after expert admission counselling in Greater Noida.
-          </p>
-        </motion.div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Student Success Stories</h2>
+            <p className="text-base sm:text-xl text-gray-600 max-w-3xl mx-auto">
+              Real student outcomes after expert admission guidance in Noida and Greater Noida.
+            </p>
+          </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           {featuredStories.map((story, index) => (
@@ -97,16 +97,16 @@ export default function SuccessStoriesSection() {
               transition={{ duration: 0.6, delay: index * 0.2 }}
               className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-lg transition-all transform hover:-translate-y-1"
             >
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-semibold text-slate-900">{story.name}</h3>
-                <span className="text-xs font-semibold px-2.5 py-1 rounded bg-emerald-100 text-emerald-700">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 gap-3">
+                <h3 className="text-xl sm:text-2xl font-semibold text-slate-900">{story.name}</h3>
+                <span className="text-xs sm:text-sm font-semibold px-2.5 py-1 rounded bg-emerald-100 text-emerald-700">
                   {story.packageValue}
                 </span>
               </div>
 
-              <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 mb-3">{story.batch}</p>
+              <p className="text-xs sm:text-sm font-semibold uppercase tracking-wide text-slate-500 mb-3">{story.batch}</p>
 
-              <div className="space-y-3 mb-4 text-sm text-slate-700">
+              <div className="space-y-3 mb-4 text-sm sm:text-base text-slate-700">
                 <div className="flex gap-2">
                   <Building className="h-4 w-4 mt-0.5 text-blue-600 shrink-0" aria-hidden="true" />
                   <p>{story.college}</p>

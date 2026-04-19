@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Search, MapPin, Building2, Award, Wallet, TrendingUp } from 'lucide-react';
-import { colleges as seedColleges } from '../data/colleges';
 import CollegeCard from '../components/colleges/CollegeCard';
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '../utils/supabase';
 import { mapDbCollegeToUi, type DbCollegeRow } from '../utils/cmsMappers';
 import type { College } from '../types/college';
 import { Link } from 'react-router-dom';
 import ConsultationButton from '../components/consultation/ConsultationButton';
+import LoadingSpinner from '../components/common/LoadingSpinner';
 
 export default function Colleges() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -15,23 +15,36 @@ export default function Colleges() {
   const [quickFilter, setQuickFilter] = useState<
     'all' | 'engineering' | 'management' | 'bca-mca' | 'nirf' | 'under-1-5' | 'placements'
   >('all');
-  const [colleges, setColleges] = useState<College[]>(seedColleges);
+  const [colleges, setColleges] = useState<College[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-    const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-    if (!supabaseUrl || !supabaseAnonKey) return;
-
-    const supabase = createClient(supabaseUrl, supabaseAnonKey);
     const run = async () => {
-      const { data, error } = await supabase
-        .from('colleges')
-        .select('slug,name,location,courses,images,description,fees,website,established,ranking,facilities,highlights')
-        .order('name', { ascending: true });
+      setLoading(true);
+      try {
+        const { data, error } = await supabase
+          .from('colleges')
+          .select('slug,name,location,courses,images,description,fees,website,established,ranking,facilities,highlights')
+          .order('name', { ascending: true });
 
-      if (error || !data) return;
-      if (data.length === 0) return;
-      setColleges((data as DbCollegeRow[]).map(mapDbCollegeToUi));
+        if (error) {
+          console.error('Error fetching colleges:', error);
+          setColleges([]);
+          return;
+        }
+
+        if (data && data.length > 0) {
+          const mappedColleges = (data as DbCollegeRow[]).map(mapDbCollegeToUi);
+          setColleges(mappedColleges);
+        } else {
+          setColleges([]);
+        }
+      } catch (err) {
+        console.error('Failed to fetch colleges:', err);
+        setColleges([]);
+      } finally {
+        setLoading(false);
+      }
     };
     run();
   }, []);
@@ -223,16 +236,24 @@ export default function Colleges() {
 
           <div className="flex items-baseline justify-between gap-4 flex-wrap mb-6">
             <h2 className="text-2xl font-bold text-gray-900">Top Colleges in Greater Noida — Admission 2026</h2>
-            <p className="text-sm text-gray-600">
-              Showing <span className="font-semibold text-gray-900">{filteredColleges.length}</span> colleges
-            </p>
+            {!loading && (
+              <p className="text-sm text-gray-600">
+                Showing <span className="font-semibold text-gray-900">{filteredColleges.length}</span> colleges
+              </p>
+            )}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredColleges.map((college, index) => (
-              <CollegeCard key={college.id} college={college} index={index} />
-            ))}
-          </div>
+          {loading ? (
+            <div className="flex justify-center items-center py-20">
+              <LoadingSpinner />
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredColleges.map((college, index) => (
+                <CollegeCard key={college.id} college={college} index={index} />
+              ))}
+            </div>
+          )}
 
           {/* SEO content */}
           <div className="mt-14 bg-white rounded-2xl border border-gray-200 shadow-sm p-6 sm:p-10">

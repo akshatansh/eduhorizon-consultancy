@@ -9,10 +9,8 @@ import { createClient } from '@supabase/supabase-js';
 import { mapDbBlogPostToUi, type DbBlogPostRow } from '../../utils/cmsMappers';
 import type { BlogPost as BlogPostType } from '../../types';
 
-const FALLBACK_COVER =
-  'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80';
-const FALLBACK_AVATAR =
-  'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80';
+const FALLBACK_COVER = '/images/blog-cover-1.jpg';
+const FALLBACK_AVATAR = '/images/blog-avatar-1.jpg';
 
 export default function BlogPost() {
   const { id } = useParams();
@@ -132,6 +130,8 @@ export default function BlogPost() {
             onError={(e) => {
               e.currentTarget.src = FALLBACK_COVER;
             }}
+            loading="lazy"
+            decoding="async"
             className="w-full h-[400px] object-cover rounded-xl mb-8"
           />
 
@@ -163,6 +163,8 @@ export default function BlogPost() {
                 onError={(e) => {
                   e.currentTarget.src = FALLBACK_AVATAR;
                 }}
+                loading="lazy"
+                decoding="async"
                 className="w-12 h-12 rounded-full object-cover"
               />
               <div>

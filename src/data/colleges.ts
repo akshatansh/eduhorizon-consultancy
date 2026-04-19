@@ -7,10 +7,10 @@ export const colleges: College[] = [
     location: 'Greater Noida',
     courses: ['B.Tech', 'M.Tech', 'MBA', 'MCA'],
     images: [
-      'https://images.shiksha.com/mediadata/images/1499333475phpY9hQNo.jpeg',
-      'https://images.shiksha.com/mediadata/images/1710933795phpbiQwoo.jpeg',
-      'https://images.shiksha.com/mediadata/images/1499333636phpOAy5hb.jpeg',
-      'https://images.shiksha.com/mediadata/images/1499333659phpK1b768.jpeg'
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg'
     ],
     description: 'GNIOT is AICTE approved and offers various undergraduate and postgraduate programs with excellent placement records.',
     fees: '₹1.2L - ₹2.5L per year',
@@ -26,10 +26,10 @@ export const colleges: College[] = [
     location: 'Greater Noida',
     courses: ['B.Tech', 'M.Tech', 'MBA', 'BBA', 'BCA'],
     images: [
-      'https://www.iimtindia.net/IGImages/7Campus.png',
-      'https://www.iimtindia.net/IGImages/11campus3.jpg',
-      'https://www.iimtindia.net/IGImages/425465124140_990613419759482_6042442540803547562_n.jpg',
-      'https://www.iimtindia.net/IGImages/85Orientation-2.jpg'
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg'
     ],
     description: 'IIMT College of Engineering is known for its innovative teaching methods and strong industry connections.',
     fees: '₹1.3L - ₹2.8L per year',
@@ -44,10 +44,10 @@ export const colleges: College[] = [
     location: 'Greater Noida',
     courses: ['B.Tech', 'MBA', 'PGDM'],
     images: [
-      'https://images.shiksha.com/mediadata/images/1595857333phpLkYBTR.jpeg',
-      'https://www.mangalmay.org/gallery/1650277370-img%201.JPG',
-      'https://www.mangalmay.org/gallery/1650277370-img%202.jpeg',
-      'https://www.mangalmay.org/gallery/1734608108-456580895_826500452996152_1341594035968922255_n.jpg'
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg'
     ],
     description: 'Mangalmay focuses on holistic development with emphasis on practical learning and personality development.',
     fees: '₹1.1L - ₹2.2L per year',
@@ -62,10 +62,10 @@ export const colleges: College[] = [
     location: 'Greater Noida',
     courses: ['B.Tech', 'MBA', 'BCA', 'MCA'],
     images: [
-      'https://images.shiksha.com/mediadata/images/1656072461phpvxIkaz.jpeg',
-      'https://images.shiksha.com/mediadata/images/1656072717phpugvs8v.jpeg',
-      'https://www.kccitm.edu.in/uploads/LargeImages/741pg_999999999999(2).jpg',
-      'https://images.shiksha.com/mediadata/images/1656072619phpWZZt9c.jpeg'
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg'
     ],
     description: 'KCC Institute provides quality technical education with modern infrastructure and experienced faculty.',
     fees: '₹1.2L - ₹2.4L per year',
@@ -80,10 +80,10 @@ export const colleges: College[] = [
     location: 'Greater Noida',
     courses: ['B.Tech', 'M.Tech', 'MBA', 'BBA'],
     images: [
-      'https://itsengg.edu.in/photoset/Infrastrcuture/2%20its%20engineering%20college%20greater%20noida%20one%20of%20the%20premier%20institutes%20in%20delhi%20ncr.jpg',
-      'https://itsengg.edu.in/photoset/Infrastrcuture/2.1%20Boys%20hostel%20of%20ITS%20Engineering%20College%20Greater%20Noida%20Delhi%20NCR%20India.jpg',
-      'https://itsengg.edu.in/photoset/Infrastrcuture/10%20auditorium.png',
-      'https://itsengg.edu.in/photoset/Infrastrcuture/5%20centre%20of%20excellence%20at%20its%20engineering%20college%20greater%20noida%20noida.jpg'
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg'
     ],
     description: 'ITS Engineering College offers industry-oriented programs with focus on practical training.',
     fees: '₹1.4L - ₹2.6L per year',
@@ -98,10 +98,10 @@ export const colleges: College[] = [
     location: 'Greater Noida',
     courses: ['B.Tech', 'M.Tech', 'MBA', 'MCA'],
     images: [
-      'https://images.shiksha.com/mediadata/images/1642425392phplAHaCD.jpeg',
-      'https://images.shiksha.com/mediadata/images/1579768219phpkfVrPj.jpeg',
-      'https://images.shiksha.com/mediadata/images/1579768197phpytLng3.jpeg',
-      'https://images.shiksha.com/mediadata/images/1579768230phpCE7dF1.jpeg'
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg'
     ],
     description: 'NIET is committed to excellence in technical education with state-of-the-art facilities.',
     fees: '₹1.5L - ₹2.8L per year',
@@ -117,10 +117,10 @@ export const colleges: College[] = [
     location: 'Greater Noida',
     courses: ['B.Tech', 'M.Tech', 'MBA', 'Medical', 'Law'],
     images: [
-      'https://images.shiksha.com/mediadata/images/1499333475phpY9hQNo.jpeg',
-      'https://images.shiksha.com/mediadata/images/1499333636phpOAy5hb.jpeg',
-      'https://images.shiksha.com/mediadata/images/1499333659phpK1b768.jpeg',
-      'https://images.shiksha.com/mediadata/images/1499333475phpY9hQNo.jpeg'
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg'
     ],
     description: 'Sharda University offers global education with diverse program options.',
     fees: '₹2.2L - ₹4.5L per year',
@@ -135,10 +135,10 @@ export const colleges: College[] = [
     location: 'Greater Noida',
     courses: ['B.Tech', 'M.Tech', 'MBA', 'Law', 'Nursing'],
     images: [
-      'https://images.shiksha.com/mediadata/images/1642425392phplAHaCD.jpeg',
-      'https://images.shiksha.com/mediadata/images/1579768219phpkfVrPj.jpeg',
-      'https://images.shiksha.com/mediadata/images/1579768197phpytLng3.jpeg',
-      'https://images.shiksha.com/mediadata/images/1579768230phpCE7dF1.jpeg'
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg'
     ],
     description: 'Galgotias University is known for its industry-focused education.',
     fees: '₹2.0L - ₹4.0L per year',
@@ -153,10 +153,10 @@ export const colleges: College[] = [
     location: 'Greater Noida',
     courses: ['B.Tech', 'MBA', 'Law', 'Media', 'Liberal Arts'],
     images: [
-      'https://images.shiksha.com/mediadata/images/1642425392phplAHaCD.jpeg',
-      'https://images.shiksha.com/mediadata/images/1579768219phpkfVrPj.jpeg',
-      'https://images.shiksha.com/mediadata/images/1579768197phpytLng3.jpeg',
-      'https://images.shiksha.com/mediadata/images/1579768230phpCE7dF1.jpeg'
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg'
     ],
     description: 'Bennett University offers industry-aligned programs with Times Group advantage.',
     fees: '₹3.0L - ₹5.5L per year',
@@ -171,10 +171,10 @@ export const colleges: College[] = [
     location: 'Greater Noida',
     courses: ['B.Tech', 'MBA', 'MCA', 'PGDM'],
     images: [
-      'https://images.shiksha.com/mediadata/images/1499333475phpY9hQNo.jpeg',
-      'https://images.shiksha.com/mediadata/images/1499333636phpOAy5hb.jpeg',
-      'https://images.shiksha.com/mediadata/images/1499333659phpK1b768.jpeg',
-      'https://images.shiksha.com/mediadata/images/1499333475phpY9hQNo.jpeg'
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg'
     ],
     description: 'GL Bajaj offers quality education with strong industry connections.',
     fees: '₹1.5L - ₹3.0L per year',
@@ -189,10 +189,10 @@ export const colleges: College[] = [
     location: 'Greater Noida',
     courses: ['B.Tech', 'MBA', 'BBA', 'BCA'],
     images: [
-      'https://images.shiksha.com/mediadata/images/1642425392phplAHaCD.jpeg',
-      'https://images.shiksha.com/mediadata/images/1579768219phpkfVrPj.jpeg',
-      'https://images.shiksha.com/mediadata/images/1579768197phpytLng3.jpeg',
-      'https://images.shiksha.com/mediadata/images/1579768230phpCE7dF1.jpeg'
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg'
     ],
     description: 'Accurate Institute focuses on holistic development of students.',
     fees: '₹1.2L - ₹2.5L per year',
@@ -207,10 +207,10 @@ export const colleges: College[] = [
     location: 'Greater Noida',
     courses: ['B.Tech', 'M.Tech', 'MBA'],
     images: [
-      'https://images.shiksha.com/mediadata/images/1499333475phpY9hQNo.jpeg',
-      'https://images.shiksha.com/mediadata/images/1499333636phpOAy5hb.jpeg',
-      'https://images.shiksha.com/mediadata/images/1499333659phpK1b768.jpeg',
-      'https://images.shiksha.com/mediadata/images/1499333475phpY9hQNo.jpeg'
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg'
     ],
     description: 'United College provides quality technical education with modern facilities.',
     fees: '₹1.3L - ₹2.4L per year',
@@ -225,10 +225,10 @@ export const colleges: College[] = [
     location: 'Greater Noida',
     courses: ['B.Tech', 'MBA', 'BBA', 'MCA'],
     images: [
-      'https://images.shiksha.com/mediadata/images/1642425392phplAHaCD.jpeg',
-      'https://images.shiksha.com/mediadata/images/1579768219phpkfVrPj.jpeg',
-      'https://images.shiksha.com/mediadata/images/1579768197phpytLng3.jpeg',
-      'https://images.shiksha.com/mediadata/images/1579768230phpCE7dF1.jpeg'
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg',
+      '/images/college-placeholder.svg'
     ],
     description: 'Skyline Institute offers comprehensive technical education.',
     fees: '₹1.2L - ₹2.3L per year',

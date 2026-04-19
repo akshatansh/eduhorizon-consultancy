@@ -1,32 +1,68 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { createClient } from '@supabase/supabase-js';
 import { testSupabaseConnection } from './utils/supabaseTest';
+import { supabase } from './utils/supabase';
 import { sendEmail } from './utils/email';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Home from './pages/Home';
-import About from './pages/About';
-import Colleges from './pages/Colleges';
-import SuccessStories from './pages/SuccessStories';
-import TestimonialsPage from './pages/Testimonials';
-import Blog from './pages/Blog';
-import BlogPost from './components/blog/BlogPost';
 import PopupForm from './components/PopupForm';
 import WhatsAppButton from './components/WhatsAppButton';
-import AdminLogin from './pages/admin/Login';
-import AdminDashboard from './pages/admin/Dashboard';
-import AdminBlogs from './pages/admin/Blogs';
-import AdminCollegesManager from './pages/admin/CollegesManager';
-import AdminAccess from './pages/admin/AdminAccess';
-import PrivacyPolicy from './pages/PrivacyPolicy';
-import Terms from './pages/Terms';
 import { blogPosts } from './data/blogPosts';
 
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_ANON_KEY
-);
+// Lazy load pages
+const Home = lazy(() => import('./pages/Home'));
+const About = lazy(() => import('./pages/About'));
+const Colleges = lazy(() => import('./pages/Colleges'));
+const SuccessStories = lazy(() => import('./pages/SuccessStories'));
+const TestimonialsPage = lazy(() => import('./pages/Testimonials'));
+const Blog = lazy(() => import('./pages/Blog'));
+const BlogPost = lazy(() => import('./components/blog/BlogPost'));
+const AdminLogin = lazy(() => import('./pages/admin/Login'));
+const AdminDashboard = lazy(() => import('./pages/admin/Dashboard'));
+const AdminBlogs = lazy(() => import('./pages/admin/Blogs'));
+const AdminCollegesManager = lazy(() => import('./pages/admin/CollegesManager'));
+const AdminAccess = lazy(() => import('./pages/admin/AdminAccess'));
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+const Terms = lazy(() => import('./pages/Terms'));
+
+function BlogRouteShell() {
+  return (
+    <div className="py-20 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <div className="mx-auto mb-4 h-10 w-48 rounded-full bg-gray-200 animate-pulse" />
+          <div className="mx-auto h-4 w-96 rounded-full bg-gray-200 animate-pulse" />
+        </div>
+
+        <div className="bg-white border border-gray-200 rounded-xl p-5 mb-8 animate-pulse">
+          <div className="h-4 w-72 bg-gray-200 rounded mb-3" />
+          <div className="h-4 w-48 bg-gray-200 rounded" />
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {Array.from({ length: 6 }).map((_, index) => (
+            <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden">
+              <div className="h-48 bg-gray-200" />
+              <div className="p-6 space-y-4">
+                <div className="h-4 w-3/4 bg-gray-200 rounded" />
+                <div className="h-3 w-full bg-gray-200 rounded" />
+                <div className="h-3 w-5/6 bg-gray-200 rounded" />
+                <div className="h-3 w-1/2 bg-gray-200 rounded" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+interface PopupInquiryData {
+  name: string;
+  email: string;
+  phone: string;
+  course: string;
+}
 
 function AppContent() {
   const location = useLocation();
@@ -696,7 +732,7 @@ function AppContent() {
     setStructuredData(seo.structuredData || null);
   }, [location.pathname]);
 
-  const handleFormSubmit = async (formData: any) => {
+  const handleFormSubmit = async (formData: PopupInquiryData) => {
     try {
       const { error } = await supabase
         .from('popup_inquiries')
@@ -774,49 +810,58 @@ function AppContent() {
       {/** Hide user-side shell on admin routes */}
       {location.pathname.startsWith('/admin') ? null : <Navbar />}
       <main className="flex-grow">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/colleges" element={<Colleges />} />
-          <Route path="/success-stories" element={<SuccessStories />} />
-          <Route path="/testimonials" element={<TestimonialsPage />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:id" element={<BlogPost />} />
-          <Route path="/admin/login" element={<AdminLogin />} />
-          <Route path="/admin/dashboard" element={<AdminDashboard />} />
-          <Route path="/admin/blogs" element={<AdminBlogs />} />
-          <Route path="/admin/colleges" element={<AdminCollegesManager />} />
-          <Route path="/admin/access" element={<AdminAccess />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/terms" element={<Terms />} />
+        <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div></div>}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/colleges" element={<Colleges />} />
+            <Route path="/success-stories" element={<SuccessStories />} />
+            <Route path="/testimonials" element={<TestimonialsPage />} />
           <Route
-            path="*"
+            path="/blog"
             element={
-              <div className="min-h-[60vh] flex items-center justify-center bg-gray-50 px-4 py-16">
-                <div className="max-w-2xl w-full bg-white border border-gray-200 rounded-xl shadow-sm p-8 text-center">
-                  <h1 className="text-3xl font-bold text-gray-900">Page Not Found</h1>
-                  <p className="mt-3 text-gray-600">
-                    This page does not exist. Explore our admission guidance pages and continue your college search.
-                  </p>
-                  <div className="mt-6 flex flex-wrap justify-center gap-3">
-                    <a
-                      href="/"
-                      className="inline-flex items-center rounded-lg bg-blue-600 px-5 py-2.5 text-white font-semibold hover:bg-blue-700 transition-colors"
-                    >
-                      Go to Home
-                    </a>
-                    <a
-                      href="/colleges"
-                      className="inline-flex items-center rounded-lg border border-gray-300 px-5 py-2.5 text-gray-700 font-semibold hover:border-blue-500 hover:text-blue-700 transition-colors"
-                    >
-                      Browse Colleges
-                    </a>
-                  </div>
-                </div>
-              </div>
+              <Suspense fallback={<BlogRouteShell />}>
+                <Blog />
+              </Suspense>
             }
           />
-        </Routes>
+            <Route path="/blog/:id" element={<BlogPost />} />
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin/dashboard" element={<AdminDashboard />} />
+            <Route path="/admin/blogs" element={<AdminBlogs />} />
+            <Route path="/admin/colleges" element={<AdminCollegesManager />} />
+            <Route path="/admin/access" element={<AdminAccess />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route
+              path="*"
+              element={
+                <div className="min-h-[60vh] flex items-center justify-center bg-gray-50 px-4 py-16">
+                  <div className="max-w-2xl w-full bg-white border border-gray-200 rounded-xl shadow-sm p-8 text-center">
+                    <h1 className="text-3xl font-bold text-gray-900">Page Not Found</h1>
+                    <p className="mt-3 text-gray-600">
+                      This page does not exist. Explore our admission guidance pages and continue your college search.
+                    </p>
+                    <div className="mt-6 flex flex-wrap justify-center gap-3">
+                      <a
+                        href="/"
+                        className="inline-flex items-center rounded-lg bg-blue-600 px-5 py-2.5 text-white font-semibold hover:bg-blue-700 transition-colors"
+                      >
+                        Go to Home
+                      </a>
+                      <a
+                        href="/colleges"
+                        className="inline-flex items-center rounded-lg border border-gray-300 px-5 py-2.5 text-gray-700 font-semibold hover:border-blue-500 hover:text-blue-700 transition-colors"
+                      >
+                        Browse Colleges
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              }
+            />
+          </Routes>
+        </Suspense>
       </main>
       {location.pathname.startsWith('/admin') ? null : <Footer />}
       {location.pathname.startsWith('/admin') ? null : (
@@ -835,7 +880,7 @@ function AppContent() {
 
 export default function App() {
   return (
-    <Router>
+    <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <AppContent />
     </Router>
   );

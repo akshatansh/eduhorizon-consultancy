@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <rect width="1200" height="800" fill="#e5e7eb" />
+  <rect x="100" y="150" width="1000" height="500" rx="40" fill="#ffffff" stroke="#cbd5e1" stroke-width="12" />
+  <path d="M200 580h800" stroke="#cbd5e1" stroke-width="8" stroke-linecap="round" />
+  <path d="M200 360h360v120H200z" fill="#e2e8f0" />
+  <path d="M520 360h360v120H520z" fill="#f8fafc" />
+  <circle cx="300" cy="285" r="50" fill="#cbd5e1" />
+  <text x="600" y="450" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="48" fill="#94a3b8">College image</text>
+</svg>

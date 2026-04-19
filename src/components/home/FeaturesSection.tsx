@@ -6,27 +6,27 @@ import { BookOpen, Users, Target, Calendar, CheckCircle } from 'lucide-react';
 const features = [
   {
     icon: <BookOpen className="h-8 w-8" aria-hidden="true" />,
-    title: "Expert College Selection",
-    description: "Get personalized guidance on choosing the right college based on your academic profile and career goals.",
-    points: ["Profile Analysis", "College Shortlisting", "Course Selection"]
+    title: "College Selection Guidance",
+    description: "Choose the right college in Noida and Greater Noida based on your score, budget, location preference, and career goals.",
+    points: ["Profile Analysis", "College Comparison", "Branch Selection"]
   },
   {
     icon: <Users className="h-8 w-8" aria-hidden="true" />,
-    title: "Application Support",
-    description: "Comprehensive assistance throughout your college application process.",
-    points: ["Document Preparation", "Form Filling", "Interview Preparation"]
+    title: "Admission Application Support",
+    description: "Get end-to-end support during application, counselling rounds, and final seat confirmation.",
+    points: ["Document Checklist", "Form Filling Support", "Admission Follow-up"]
   },
   {
     icon: <Target className="h-8 w-8" aria-hidden="true" />,
     title: "Career Counseling",
-    description: "Make informed decisions about your career path with expert guidance.",
-    points: ["Career Assessment", "Industry Insights", "Future Planning"]
+    description: "Make better career decisions with clear guidance on future scope, placements, and skill roadmap.",
+    points: ["Career Assessment", "Placement Insights", "Future Planning"]
   },
   {
     icon: <Calendar className="h-8 w-8" aria-hidden="true" />,
-    title: "Admission Timeline",
-    description: "Stay on track with a customized admission timeline and regular updates.",
-    points: ["Deadline Tracking", "Regular Updates", "Process Management"]
+    title: "Admission Timeline Management",
+    description: "Never miss deadlines for counselling, applications, scholarship forms, and reporting dates.",
+    points: ["Deadline Tracking", "Regular Updates", "Round-wise Planning"]
   }
 ];
 
@@ -45,11 +45,11 @@ export default function FeaturesSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Comprehensive Admission Support
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+            Complete College Admission Support
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            We provide end-to-end support for your college admission journey
+          <p className="text-base sm:text-xl text-gray-600 max-w-3xl mx-auto">
+            From shortlisting to final admission, we support every step of your higher education journey.
           </p>
         </motion.div>
 
@@ -63,15 +63,15 @@ export default function FeaturesSection() {
               className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow"
             >
               <div className="text-blue-600 mb-4">{feature.icon}</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+              <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-3">
                 {feature.title}
               </h3>
-              <p className="text-gray-600 mb-4">{feature.description}</p>
+              <p className="text-base sm:text-lg text-gray-600 mb-4">{feature.description}</p>
               <ul className="space-y-2">
                 {feature.points.map((point, idx) => (
-                  <li key={idx} className="flex items-center gap-2 text-gray-700">
-                    <CheckCircle className="h-4 w-4 text-blue-600" aria-hidden="true" />
-                    <span>{point}</span>
+                  <li key={idx} className="flex items-start gap-2 text-gray-700">
+                    <CheckCircle className="h-4 w-4 mt-1 text-blue-600" aria-hidden="true" />
+                    <span className="text-sm sm:text-base">{point}</span>
                   </li>
                 ))}
               </ul>

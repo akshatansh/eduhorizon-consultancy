@@ -49,7 +49,7 @@ export default function Contact() {
         phone: '',
         message: ''
       });
-    } catch (err) {
+    } catch {
       setError('An unexpected error occurred. Please try again.');
     } finally {
       setIsLoading(false);
@@ -61,23 +61,24 @@ export default function Contact() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div>
-            <h2 className="text-3xl font-bold text-gray-900">Get in Touch</h2>
-            <p className="mt-4 text-lg text-gray-600">
-              Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">Contact EduHorizon Admission Experts</h2>
+            <p className="mt-4 text-base sm:text-lg text-gray-600 max-w-2xl">
+              Have questions about college admission in Noida or Greater Noida? Share your details and our counselling
+              team will contact you with a personalized admission plan.
             </p>
             
             <div className="mt-8 space-y-6">
-              <div className="flex items-center">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3">
                 <Mail className="h-6 w-6 text-blue-600" />
-                <span className="ml-4 text-gray-600">contact@educonsult.com</span>
+                <span className="text-gray-600 break-words">contact@eduhorizon.com</span>
               </div>
-              <div className="flex items-center">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3">
                 <Phone className="h-6 w-6 text-blue-600" />
-                <span className="ml-4 text-gray-600">+91 8877434088</span>
+                <span className="text-gray-600">+91 8877434088</span>
               </div>
-              <div className="flex items-center">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3">
                 <MapPin className="h-6 w-6 text-blue-600" />
-                <span className="ml-4 text-gray-600">Kankarbagh, Kumhrar, Patna, Bihar 800001</span>
+                <span className="text-gray-600 break-words">Kankarbagh, Kumhrar, Patna, Bihar 800001</span>
               </div>
             </div>
           </div>
@@ -128,7 +129,7 @@ export default function Contact() {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                    className="mt-1 block w-full min-h-[120px] rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                   ></textarea>
                 </div>
 
@@ -136,6 +137,7 @@ export default function Contact() {
                   isLoading={isLoading}
                   text="Send Message"
                   loadingText="Sending..."
+                  className="w-full"
                 />
               </form>
             )}

@@ -5,18 +5,20 @@ interface SubmitButtonProps {
   isLoading: boolean;
   text: string;
   loadingText?: string;
+  className?: string;
 }
 
 export default function SubmitButton({
   isLoading,
   text,
-  loadingText = 'Submitting...'
+  loadingText = 'Submitting...',
+  className = ''
 }: SubmitButtonProps) {
   return (
     <button
       type="submit"
       disabled={isLoading}
-      className="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors disabled:opacity-75 disabled:cursor-not-allowed"
+      className={`w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors disabled:opacity-75 disabled:cursor-not-allowed ${className}`.trim()}
     >
       {isLoading ? (
         <>

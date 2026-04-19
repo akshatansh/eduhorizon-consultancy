@@ -24,23 +24,29 @@ const DEFAULT_BLOG_COVER =
 const DEFAULT_AUTHOR_AVATAR =
   'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80';
 
-function normalizePublicImageUrl(raw: string | null | undefined, bucket: 'blog-images'): string {
+function normalizePublicImageUrl(raw: string | null | undefined, bucket: 'blog-images' | 'college-images'): string {
   const value = (raw || '').trim();
   if (!value) return '';
   if (/^(https?:)?\/\//i.test(value) || value.startsWith('data:') || value.startsWith('blob:')) {
     return value;
   }
-  if (value.startsWith('/')) return value;
+  if (value.startsWith('/')) {
+    return value;
+  }
 
   const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string | undefined;
-  if (!supabaseUrl) return value;
+  if (!supabaseUrl) {
+    return value;
+  }
 
   // Support values saved as:
   // - blogs/uuid.png
   // - avatars/uuid.png
   // - blog-images/blogs/uuid.png
+  // - college-images/colleges/uuid.png
   const cleaned = value.startsWith(`${bucket}/`) ? value.slice(bucket.length + 1) : value;
-  return `${supabaseUrl}/storage/v1/object/public/${bucket}/${cleaned}`;
+  const result = `${supabaseUrl}/storage/v1/object/public/${bucket}/${cleaned}`;
+  return result;
 }
 
 export function mapDbBlogPostToUi(row: DbBlogPostRow): BlogPost {
@@ -83,12 +89,13 @@ export type DbCollegeRow = {
 };
 
 export function mapDbCollegeToUi(row: DbCollegeRow): College {
+  const normalizedImages = (row.images || []).map(img => normalizePublicImageUrl(img, 'college-images')).filter(Boolean);
   return {
     id: row.slug,
     name: row.name,
     location: row.location as College['location'],
     courses: row.courses || [],
-    images: row.images || [],
+    images: normalizedImages,
     description: row.description || '',
     fees: row.fees || '',
     website: row.website || '',

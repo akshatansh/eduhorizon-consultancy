@@ -64,25 +64,25 @@ export default function BlogList() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
             Admission & Career Guidance Blog for Noida and Greater Noida
           </h1>
-          <p className="text-xl text-gray-600">
+          <p className="text-lg sm:text-xl text-gray-600">
             Expert articles on college admissions, branch selection, fees, placements and career planning.
           </p>
         </motion.div>
 
         <div className="bg-white border border-gray-200 rounded-xl p-5 mb-8">
-          <p className="text-sm text-gray-600">
+          <p className="text-sm sm:text-base text-gray-600 flex flex-wrap gap-2">
             Explore related resources:
-            <Link to="/colleges" className="ml-2 font-medium text-blue-700 hover:text-blue-800 hover:underline">
+            <Link to="/colleges" className="font-medium text-blue-700 hover:text-blue-800 hover:underline">
               Top Colleges
             </Link>
-            <span className="mx-2 text-gray-300">|</span>
+            <span className="text-gray-300">|</span>
             <Link to="/success-stories" className="font-medium text-blue-700 hover:text-blue-800 hover:underline">
               Success Stories
             </Link>
-            <span className="mx-2 text-gray-300">|</span>
+            <span className="text-gray-300">|</span>
             <Link to="/testimonials" className="font-medium text-blue-700 hover:text-blue-800 hover:underline">
               Student Testimonials
             </Link>

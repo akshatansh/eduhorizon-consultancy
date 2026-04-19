@@ -13,59 +13,61 @@ export default function About() {
     <div className="pt-24 pb-12 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900">About EduHorizon | Admission Consultancy in Noida & Greater Noida</h1>
-          <p className="mt-4 text-xl text-gray-600">
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900">About EduHorizon | Admission Consultancy in Noida & Greater Noida</h1>
+          <p className="mt-4 text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
             Trusted admission guidance for students across Noida, Greater Noida, Delhi NCR and major Indian cities since 2018.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
           <div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Mission</h2>
-            <p className="text-lg text-gray-600 mb-4">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Our Mission</h2>
+            <p className="text-base sm:text-lg text-gray-600 mb-4">
             At EduHorizon, we believe every student deserves access to quality education.
             We specialize in MBA, Engineering, Medical, and Study Abroad admissions, helping students choose the right
             college based on their goals and budget.
             </p>
-            <p className="text-lg text-gray-600">
+            <p className="text-base sm:text-lg text-gray-600">
               With over a decade of experience in education consulting, we've helped thousands of students 
               achieve their academic dreams through personalized guidance and support.
             </p>
           </div>
-          <img 
-            src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80" 
-            alt="Education consulting" 
-            className="rounded-lg shadow-xl"
+          <img
+            src="/images/about-image.jpg"
+            alt="Education consulting"
+            className="rounded-lg shadow-xl w-full max-w-xl mx-auto"
+            loading="lazy"
+            decoding="async"
           />
         </div>
 
         <div className="bg-white rounded-lg shadow-lg p-8 mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-3 text-center">Meet Our Counsellors</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 text-center">Meet Our Counsellors</h2>
           <p className="text-center text-gray-600 max-w-3xl mx-auto mb-8">
             Work with experienced counsellors for personalized guidance, college shortlisting,
             and end-to-end admission support.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <article className="border border-gray-200 rounded-xl p-6">
+            <article className="border border-gray-200 rounded-xl p-6 min-w-0">
               <img
                 src="/images/akshat-ansh.png"
                 alt="Akshat Ansh education counsellor at EduHorizon"
-                className="w-40 h-40 object-cover rounded-full mx-auto mb-4 shadow-md"
+                className="w-32 h-32 sm:w-40 sm:h-40 object-cover rounded-full mx-auto mb-4 shadow-md"
               />
-              <h3 className="text-xl font-semibold text-gray-900 text-center">Akshat Ansh - Founder - 7+ Years Experience</h3>
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 text-center">Akshat Ansh - Founder - 7+ Years Experience</h3>
               <p className="text-gray-700 text-center mt-2">B.Tech from A.K.T.U</p>
-              <p className="text-gray-600 text-center mt-3">
+              <p className="text-gray-600 text-center mt-3 text-sm sm:text-base">
                 Specializes in career counselling, college selection, and admission planning for students across India.
               </p>
             </article>
 
-            <article className="border border-dashed border-gray-300 rounded-xl p-6">
-              <div className="w-40 h-40 rounded-full bg-gray-100 mx-auto mb-4 flex items-center justify-center text-gray-500">
+            <article className="border border-dashed border-gray-300 rounded-xl p-6 min-w-0">
+              <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-full bg-gray-100 mx-auto mb-4 flex items-center justify-center text-gray-500">
                 Photo Coming Soon
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 text-center">Sonali Lodhi - Head Counsellor</h3>
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 text-center">Sonali Lodhi - Head Counsellor</h3>
               <p className="text-gray-700 text-center mt-2">4+ Years of Experience</p>
-              <p className="text-gray-600 text-center mt-3">
+              <p className="text-gray-600 text-center mt-3 text-sm sm:text-base">
                 Provides strategic admission guidance and student-first counselling support for top college admissions.
               </p>
             </article>

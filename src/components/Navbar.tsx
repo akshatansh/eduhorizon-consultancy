@@ -26,7 +26,7 @@ export default function Navbar() {
             </Link>
           </div>
           
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6 text-sm lg:text-base">
             {navItems.map((item) => (
               <Link
                 key={item.path}
@@ -64,7 +64,7 @@ export default function Navbar() {
               <Link
                 key={item.path}
                 to={item.path}
-                className="block px-3 py-2 text-gray-600 hover:text-blue-600"
+                className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.label}

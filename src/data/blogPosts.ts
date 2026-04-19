@@ -36,12 +36,12 @@ export const blogPosts: BlogPost[] = [
     `,
     author: {
       name: 'Dr. Rajesh Kumar',
-      avatar: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80',
+      avatar: '/images/blog-avatar-1.jpg',
       role: 'Senior Education Counselor'
     },
     date: '2024-03-10',
     readTime: '8 min read',
-    image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80',
+    image: '/images/blog-cover-1.jpg',
     category: 'Admissions',
     tags: ['college selection', 'career guidance', 'admissions']
   },
@@ -81,12 +81,12 @@ export const blogPosts: BlogPost[] = [
     `,
     author: {
       name: 'Priya Sharma',
-      avatar: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80',
+      avatar: '/images/blog-avatar-2.jpg',
       role: 'Career Counselor'
     },
     date: '2024-03-08',
     readTime: '10 min read',
-    image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80',
+    image: '/images/blog-cover-1.jpg',
     category: 'Career Guidance',
     tags: ['engineering', 'management', 'career choice']
   },
@@ -119,12 +119,12 @@ export const blogPosts: BlogPost[] = [
     `,
     author: {
       name: 'Amit Verma',
-      avatar: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80',
+      avatar: '/images/blog-avatar-3.jpg',
       role: 'Student Counselor'
     },
     date: '2024-03-05',
     readTime: '6 min read',
-    image: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&q=80',
+    image: '/images/blog-cover-3.jpg',
     category: 'College Life',
     tags: ['campus life', 'student guide', 'Greater Noida']
   }
