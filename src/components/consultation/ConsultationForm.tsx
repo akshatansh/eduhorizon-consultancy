@@ -5,8 +5,18 @@ import LoadingSpinner from '../common/LoadingSpinner';
 import FormInput from '../forms/FormInput';
 import FormSelect from '../forms/FormSelect';
 
+interface ConsultationFormData {
+  name: string;
+  email: string;
+  phone: string;
+  course: string;
+  preferred_date: string;
+  preferred_time: string;
+  message: string;
+}
+
 interface ConsultationFormProps {
-  onSubmit: (formData: any) => Promise<void>;
+  onSubmit: (formData: ConsultationFormData) => Promise<void>;
   isSubmitted?: boolean;
 }
 
@@ -53,7 +63,7 @@ export default function ConsultationForm({ onSubmit, isSubmitted = false }: Cons
 
     try {
       await onSubmit(formData);
-    } catch (err) {
+    } catch {
       setError('Failed to submit form. Please try again.');
     } finally {
       setIsLoading(false);

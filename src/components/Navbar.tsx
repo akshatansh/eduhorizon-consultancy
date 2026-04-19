@@ -10,6 +10,7 @@ export default function Navbar() {
     { path: '/', label: 'Home' },
     { path: '/about', label: 'About Us' },
     { path: '/colleges', label: 'Colleges' },
+    { path: '/faq', label: 'FAQ' },
     { path: '/success-stories', label: 'Success Stories' },
     { path: '/testimonials', label: 'Testimonials' },
     { path: '/blog', label: 'Blog' }

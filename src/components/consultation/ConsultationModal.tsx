@@ -6,6 +6,16 @@ import ConsultationForm from './ConsultationForm';
 import { sendEmail } from '../../utils/email';
 import { sendNotifications } from '../../utils/notifications';
 
+interface ConsultationFormData {
+  name: string;
+  email: string;
+  phone: string;
+  course: string;
+  preferred_date: string;
+  preferred_time: string;
+  message: string;
+}
+
 interface ConsultationModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -15,7 +25,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = async (formData: any) => {
+  const handleSubmit = async (formData: ConsultationFormData) => {
     try {
       setError(null);
 

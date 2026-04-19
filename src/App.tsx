@@ -13,6 +13,7 @@ import { blogPosts } from './data/blogPosts';
 const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
 const Colleges = lazy(() => import('./pages/Colleges'));
+const Faq = lazy(() => import('./pages/Faq'));
 const SuccessStories = lazy(() => import('./pages/SuccessStories'));
 const TestimonialsPage = lazy(() => import('./pages/Testimonials'));
 const Blog = lazy(() => import('./pages/Blog'));
@@ -21,6 +22,7 @@ const AdminLogin = lazy(() => import('./pages/admin/Login'));
 const AdminDashboard = lazy(() => import('./pages/admin/Dashboard'));
 const AdminBlogs = lazy(() => import('./pages/admin/Blogs'));
 const AdminCollegesManager = lazy(() => import('./pages/admin/CollegesManager'));
+const AdminFaqs = lazy(() => import('./pages/admin/Faqs'));
 const AdminAccess = lazy(() => import('./pages/admin/AdminAccess'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const Terms = lazy(() => import('./pages/Terms'));
@@ -815,6 +817,7 @@ function AppContent() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/colleges" element={<Colleges />} />
+            <Route path="/faq" element={<Faq />} />
             <Route path="/success-stories" element={<SuccessStories />} />
             <Route path="/testimonials" element={<TestimonialsPage />} />
           <Route
@@ -830,6 +833,7 @@ function AppContent() {
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
             <Route path="/admin/blogs" element={<AdminBlogs />} />
             <Route path="/admin/colleges" element={<AdminCollegesManager />} />
+            <Route path="/admin/faqs" element={<AdminFaqs />} />
             <Route path="/admin/access" element={<AdminAccess />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<Terms />} />

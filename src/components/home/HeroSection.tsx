@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Users, Award, BookOpen, Trophy } from 'lucide-react';
 import ConsultationButton from '../consultation/ConsultationButton';
+import { Link } from 'react-router-dom';
 
 const stats = [
   { icon: <Users className="h-6 w-6" aria-hidden="true" />, label: "1000+ Students Guided" },
@@ -32,14 +33,18 @@ export default function HeroSection() {
               courses. Compare colleges, fees, placements, and eligibility in one place with personalized counselling.
             </p>
             <div className="flex flex-wrap gap-4 mb-12">
-              <ConsultationButton className="w-full sm:w-auto" />
-              <motion.button
+              <ConsultationButton className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg w-full sm:w-auto shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2" />
+              <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-lg font-semibold w-full sm:w-auto"
               >
-                Learn More
-              </motion.button>
+                <Link
+                  to="/about"
+                  className="border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-lg font-semibold w-full sm:w-auto inline-block text-center hover:bg-blue-50 transition-colors"
+                >
+                  Learn More
+                </Link>
+              </motion.div>
             </div>
             <div className="flex flex-wrap gap-4">
               {stats.map((stat, index) => (

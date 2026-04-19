@@ -323,6 +323,12 @@ export default function Dashboard() {
                 >
                   Manage Colleges
                 </Link>
+                <Link
+                  to="/admin/faqs"
+                  className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                >
+                  Manage FAQs
+                </Link>
                 {currentRole === 'super_admin' && (
                   <Link
                     to="/admin/access"

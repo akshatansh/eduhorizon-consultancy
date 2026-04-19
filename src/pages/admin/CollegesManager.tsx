@@ -181,8 +181,9 @@ export default function AdminCollegesManager() {
 
       await fetchRows();
       startNew();
-    } catch (e: any) {
-      setError(e?.message || 'Save failed');
+    } catch (e: unknown) {
+      const error = e as Error;
+      setError(error?.message || 'Save failed');
     } finally {
       setSaving(false);
     }
