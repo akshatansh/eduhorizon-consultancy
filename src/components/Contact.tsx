@@ -70,7 +70,7 @@ export default function Contact() {
             <div className="mt-8 space-y-6">
               <div className="flex flex-col sm:flex-row sm:items-center gap-3">
                 <Mail className="h-6 w-6 text-blue-600" />
-                <span className="text-gray-600 break-words">contact@eduhorizon.com</span>
+                <span className="text-gray-600 break-words">info@eduhorizon.online</span>
               </div>
               <div className="flex flex-col sm:flex-row sm:items-center gap-3">
                 <Phone className="h-6 w-6 text-blue-600" />
@@ -78,7 +78,7 @@ export default function Contact() {
               </div>
               <div className="flex flex-col sm:flex-row sm:items-center gap-3">
                 <MapPin className="h-6 w-6 text-blue-600" />
-                <span className="text-gray-600 break-words">Kankarbagh, Kumhrar, Patna, Bihar 800001</span>
+                <span className="text-gray-600 break-words">Urbtech NPX, Sector-153, NOIDA, Gautam Buddha Nagar, Uttar Pradesh, India - 201310</span>
               </div>
             </div>
           </div>
