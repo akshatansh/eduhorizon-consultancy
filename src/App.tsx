@@ -216,13 +216,13 @@ function AppContent() {
 
       if (pathname === '/') {
         return {
-          title: 'Best Admission Consultancy in India | B.Tech, MBA & Medical Guidance | EduHorizon',
+          title: 'EduHorizon | Best Admission Consultancy in Noida & Delhi NCR',
           description:
-            'Get expert admission guidance for B.Tech, MBA, BCA, MBBS, and other courses across India. Compare top colleges in Delhi NCR, UP, Bihar, Pune, Bangalore. Direct admission support.',
+            'Get free expert guidance for B.Tech, MBA, BCA & MBBS admissions. Compare top colleges in Noida, Greater Noida, Delhi, Patna. 1000+ students guided. Call now!',
           robots: 'index, follow',
           image: defaultImage,
           keywords:
-            'admission consultancy india, direct admission noida, top engineering admission, mba admission consultants, best education consultant, direct admission in b.tech, bca admission, college counselling ncr, mbbs admission guidance, direct admission in greater noida, best admission consultancy in patna',
+            'best admission consultancy noida, direct admission noida, admission consultancy greater noida, b.tech admission 2026, mba admission noida, college admission help delhi ncr, education consultant patna, direct admission btech',
           ogType: 'website' as const,
           structuredData: [
             {
