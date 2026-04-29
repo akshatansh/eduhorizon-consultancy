@@ -126,7 +126,7 @@ export default function BlogPost() {
         >
           <img
             src={post.image}
-            alt={post.title}
+            alt={`EduHorizon Blog: ${post.title} - Admission & Career Guidance`}
             onError={(e) => {
               e.currentTarget.src = FALLBACK_COVER;
             }}

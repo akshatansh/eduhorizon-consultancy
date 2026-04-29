@@ -34,7 +34,7 @@ export default function About() {
           </div>
           <img
             src="/images/about-image.jpg"
-            alt="Education consulting"
+            alt="EduHorizon Education Consultants Team in Noida providing career counselling"
             className="rounded-lg shadow-xl w-full max-w-xl mx-auto"
             loading="lazy"
             decoding="async"
@@ -50,8 +50,8 @@ export default function About() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <article className="border border-gray-200 rounded-xl p-6 min-w-0">
               <img
-                src="/images/akshat-ansh.png"
-                alt="Akshat Ansh education counsellor at EduHorizon"
+                src="/images/akshat-ansh.jpg"
+                alt="Akshat Ansh - Top Education Counsellor at EduHorizon providing admission guidance"
                 className="w-32 h-32 sm:w-40 sm:h-40 object-cover rounded-full mx-auto mb-4 shadow-md"
               />
               <h3 className="text-lg sm:text-xl font-semibold text-gray-900 text-center">Akshat Ansh - Founder - 7+ Years Experience</h3>

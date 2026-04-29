@@ -38,7 +38,7 @@ export default function CollegeCard({ college, index }: CollegeCardProps) {
           // Single image - no animation needed
           <img
             src={imageSources[0]}
-            alt={`${college.name} - Image 1`}
+            alt={`${college.name} campus building - Top College Admission`}
             loading="lazy"
             decoding="async"
             className="w-full h-full object-cover"
@@ -53,7 +53,7 @@ export default function CollegeCard({ college, index }: CollegeCardProps) {
             <motion.img
               key={idx}
               src={image}
-              alt={`${college.name} - Image ${idx + 1}`}
+              alt={`${college.name} infrastructure and campus view ${idx + 1}`}
               loading="lazy"
               decoding="async"
               className="absolute inset-0 w-full h-full object-cover"

@@ -33,6 +33,9 @@ export default function Footer() {
                 <Link to="/colleges" className="hover:text-blue-400">Colleges</Link>
               </li>
               <li>
+                <Link to="/cities-we-serve" className="hover:text-blue-400">Cities We Serve</Link>
+              </li>
+              <li>
                 <Link to="/success-stories" className="hover:text-blue-400">Success Stories</Link>
               </li>
               <li>

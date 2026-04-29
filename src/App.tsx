@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import PopupForm from './components/PopupForm';
 import WhatsAppButton from './components/WhatsAppButton';
 import { blogPosts } from './data/blogPosts';
+import { citiesData } from './data/citiesData';
 
 // Lazy load pages
 const Home = lazy(() => import('./pages/Home'));
@@ -26,6 +27,8 @@ const AdminFaqs = lazy(() => import('./pages/admin/Faqs'));
 const AdminAccess = lazy(() => import('./pages/admin/AdminAccess'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const Terms = lazy(() => import('./pages/Terms'));
+const CitiesWeServe = lazy(() => import('./pages/CitiesWeServe'));
+const CityPage = lazy(() => import('./pages/CityPage'));
 
 function BlogRouteShell() {
   return (
@@ -135,7 +138,7 @@ function AppContent() {
     };
 
     const isKnownStaticPath = (path: string) =>
-      ['/', '/about', '/colleges', '/success-stories', '/testimonials', '/blog', '/privacy-policy', '/terms'].includes(path);
+      ['/', '/about', '/colleges', '/success-stories', '/testimonials', '/blog', '/privacy-policy', '/terms', '/cities-we-serve'].includes(path);
 
     const normalizedPathname = normalizePath(location.pathname);
     const pathname = normalizedPathname;
@@ -143,10 +146,15 @@ function AppContent() {
     const dynamicBlogMatch = pathname.match(/^\/blog\/([^/]+)$/);
     const blogSlug = dynamicBlogMatch?.[1] || '';
     const hasKnownSeedBlog = blogPosts.some((item) => item.id === blogSlug);
+    
+    // Check if it's a dynamic city route
+    const dynamicCityMatch = pathname.match(/^\/best-admission-consultation-in-([^/]+)$/);
+    
     const isKnownRoute =
       isKnownStaticPath(pathname) ||
       pathname.startsWith('/admin') ||
-      (Boolean(dynamicBlogMatch) && hasKnownSeedBlog);
+      (Boolean(dynamicBlogMatch) && hasKnownSeedBlog) ||
+      Boolean(dynamicCityMatch);
 
     const setMetaByName = (name: string, content: string) => {
       let tag = document.head.querySelector(`meta[name="${name}"]`) as HTMLMetaElement | null;
@@ -208,26 +216,139 @@ function AppContent() {
 
       if (pathname === '/') {
         return {
-          title: 'Best Admission Consultancy in Noida & Greater Noida | EduHorizon',
+          title: 'Best Admission Consultancy in India | B.Tech, MBA & Medical Guidance | EduHorizon',
           description:
-            'Get expert admission guidance for B.Tech, MBA, BCA and other courses in Noida and Greater Noida. Compare colleges, fees and placements with EduHorizon.',
+            'Get expert admission guidance for B.Tech, MBA, BCA, MBBS, and other courses across India. Compare top colleges in Delhi NCR, UP, Bihar, Pune, Bangalore. Direct admission support.',
           robots: 'index, follow',
           image: defaultImage,
           keywords:
-            'admission consultancy noida, direct admission noida, engineering admission, mba admission, bca admission, college counselling',
-          ogType: 'website' as const
+            'admission consultancy india, direct admission noida, top engineering admission, mba admission consultants, best education consultant, direct admission in b.tech, bca admission, college counselling ncr, mbbs admission guidance, direct admission in greater noida, best admission consultancy in patna',
+          ogType: 'website' as const,
+          structuredData: [
+            {
+              '@context': 'https://schema.org',
+              '@type': 'EducationalOrganization',
+              '@id': `${siteUrl}/#organization`,
+              name: 'EduHorizon Admission Consultancy',
+              alternateName: 'EduHorizon',
+              url: siteUrl,
+              logo: defaultImage,
+              image: defaultImage,
+              description: 'EduHorizon is India\'s trusted admission consultancy helping students secure direct admissions in top B.Tech, MBA, BCA, MBBS colleges across Noida, Greater Noida, Delhi NCR, Patna and 12+ cities.',
+              foundingDate: '2018',
+              founder: {
+                '@type': 'Person',
+                name: 'Akshat Ansh',
+                jobTitle: 'Founder & Lead Education Counsellor'
+              },
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: 'Greater Noida',
+                addressRegion: 'Uttar Pradesh',
+                addressCountry: 'IN'
+              },
+              contactPoint: {
+                '@type': 'ContactPoint',
+                contactType: 'Admission Counselling',
+                availableLanguage: ['Hindi', 'English']
+              },
+              areaServed: [
+                'Noida', 'Greater Noida', 'Delhi', 'Patna', 'Ghaziabad',
+                'Lucknow', 'Agra', 'Meerut', 'Kanpur', 'Varanasi',
+                'Prayagraj', 'Faridabad'
+              ],
+              hasOfferCatalog: {
+                '@type': 'OfferCatalog',
+                name: 'Admission Consultancy Services',
+                itemListElement: [
+                  { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'B.Tech Admission Guidance', description: 'Expert guidance for B.Tech admissions in top AKTU, IPU and private engineering colleges.' } },
+                  { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'MBA Admission Counselling', description: 'MBA admission support for top business schools in Delhi NCR and across India.' } },
+                  { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'BCA/MCA Admission Support', description: 'Direct admission assistance in BCA and MCA programs at top universities.' } },
+                  { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Medical College Guidance', description: 'NEET counselling and admission guidance for MBBS, BDS and medical courses.' } },
+                  { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Career Counselling', description: 'Personalized career mapping, aptitude analysis and course selection guidance.' } }
+                ]
+              },
+              aggregateRating: {
+                '@type': 'AggregateRating',
+                ratingValue: '4.9',
+                reviewCount: '500',
+                bestRating: '5'
+              },
+              sameAs: [siteUrl]
+            },
+            {
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              '@id': `${siteUrl}/#website`,
+              url: siteUrl,
+              name: 'EduHorizon',
+              description: 'India\'s trusted admission consultancy for B.Tech, MBA, BCA, MBBS colleges.',
+              publisher: { '@id': `${siteUrl}/#organization` },
+              potentialAction: {
+                '@type': 'SearchAction',
+                target: `${siteUrl}/colleges?search={search_term_string}`,
+                'query-input': 'required name=search_term_string'
+              }
+            },
+            {
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: [
+                {
+                  '@type': 'Question',
+                  name: 'What is EduHorizon?',
+                  acceptedAnswer: { '@type': 'Answer', text: 'EduHorizon is a leading admission consultancy in India, headquartered in Greater Noida. We help students secure direct admissions in top B.Tech, MBA, BCA, and MBBS colleges across Delhi NCR, Bihar, UP and 12+ cities since 2018.' }
+                },
+                {
+                  '@type': 'Question',
+                  name: 'How does EduHorizon help with college admissions?',
+                  acceptedAnswer: { '@type': 'Answer', text: 'EduHorizon provides free counselling, college comparison, campus visits, fee negotiation, and end-to-end admission support. Our expert counsellors analyse your profile, budget and career goals to recommend the best-fit colleges.' }
+                },
+                {
+                  '@type': 'Question',
+                  name: 'Which cities does EduHorizon operate in?',
+                  acceptedAnswer: { '@type': 'Answer', text: 'EduHorizon serves students from Noida, Greater Noida, Delhi, Patna, Ghaziabad, Lucknow, Agra, Meerut, Kanpur, Varanasi, Prayagraj, and Faridabad — covering 12+ major cities across India.' }
+                },
+                {
+                  '@type': 'Question',
+                  name: 'Is EduHorizon free to use?',
+                  acceptedAnswer: { '@type': 'Answer', text: 'Yes, EduHorizon provides free initial counselling and college comparison. Our counsellors help you understand fee structures, placement records and course options at no charge before you decide.' }
+                },
+                {
+                  '@type': 'Question',
+                  name: 'What courses does EduHorizon help with?',
+                  acceptedAnswer: { '@type': 'Answer', text: 'EduHorizon provides admission guidance for B.Tech (Computer Science, Mechanical, Civil, etc.), MBA, BCA, MCA, MBBS, BDS, B.Pharm, Law (LLB), BBA, and Polytechnic courses across top colleges in India.' }
+                },
+                {
+                  '@type': 'Question',
+                  name: 'What is the success rate of EduHorizon?',
+                  acceptedAnswer: { '@type': 'Answer', text: 'EduHorizon has a 95% admission success rate, having guided 1000+ students to top colleges in Greater Noida, Delhi NCR and across India. Our students have secured placements at HCL, JusPay, TCS and other top companies with packages up to 27 LPA.' }
+                }
+              ]
+            },
+            {
+              '@context': 'https://schema.org',
+              '@type': 'WebPage',
+              speakable: {
+                '@type': 'SpeakableSpecification',
+                cssSelector: ['h1', '.hero-description', '.stats-section']
+              },
+              name: 'EduHorizon - Best Admission Consultancy in India',
+              url: siteUrl
+            }
+          ]
         };
       }
 
       if (pathname === '/about') {
         return {
-          title: `About ${siteName} | Trusted Education Consultants`,
+          title: `About ${siteName} | Trusted Education Consultants in India`,
           description:
-            'Learn about Edu Horizon, our mission, and how our expert counselors help students choose the right college and career path.',
+            'Learn about Edu Horizon, our mission, and how our expert counselors help students choose the right college and career path for engineering, management, and medical fields.',
           robots: 'index, follow',
           image: defaultImage,
           keywords:
-            'about eduhorizon, education consultants, admission guidance, career counselling, noida consultancy',
+            'about eduhorizon, education consultants india, admission guidance experts, career counselling, top noida consultancy, patna admission consultant, engineering admission guide',
           ogType: 'website' as const
         };
       }
@@ -392,11 +513,12 @@ function AppContent() {
 
       if (pathname === '/success-stories') {
         return {
-          title: 'Student Success Stories | EduHorizon - Placements from GL Bajaj, GNIOT, IIMT and More',
+          title: 'Student Success Stories & Placements | EduHorizon',
           description:
-            'Read real placement success stories of students admitted to top Greater Noida colleges through EduHorizon. Placements include HCL, JusPay, and Kanini Software with packages up to 27 LPA.',
+            'Read real placement success stories of students admitted to top colleges through EduHorizon. Excellent placements in HCL, JusPay, TCS, and more with high packages.',
           robots: 'index, follow',
           image: defaultImage,
+          keywords: 'eduhorizon success stories, student placements, b.tech placements ncr, highest package greater noida colleges, mba placement stories, direct admission success',
           structuredData: [
             {
               '@context': 'https://schema.org',
@@ -475,11 +597,12 @@ function AppContent() {
 
       if (pathname === '/testimonials') {
         return {
-          title: 'Student Testimonials | EduHorizon Admission Consultancy Reviews - Greater Noida',
+          title: 'Student Testimonials & Reviews | EduHorizon Admission Consultancy',
           description:
-            'Read real student success stories for B.Tech, MBA, and BCA admissions in Greater Noida with EduHorizon expert counselling and end-to-end admission support.',
+            'Read authentic student reviews for B.Tech, MBA, and BCA admissions with EduHorizon. See why thousands of students trust our expert career counselling.',
           robots: 'index, follow',
           image: defaultImage,
+          keywords: 'eduhorizon reviews, eduhorizon student testimonials, admission consultancy reviews, best education consultant feedback, greater noida college reviews',
           structuredData: {
             '@context': 'https://schema.org',
             '@type': 'EducationalOrganization',
@@ -550,6 +673,65 @@ function AppContent() {
               }
             ]
           }
+        };
+      }
+
+      if (pathname === '/faq') {
+        return {
+          title: 'Frequently Asked Questions | College Admissions | EduHorizon',
+          description: 'Get answers to common queries regarding college admissions, management quota, fee structures, and counselling processes across India.',
+          robots: 'index, follow',
+          image: defaultImage,
+          keywords: 'admission faqs, college admission questions, direct admission faq, management quota queries, eduhorizon faqs',
+          ogType: 'website' as const,
+          structuredData: [
+            {
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: [
+                {
+                  '@type': 'Question',
+                  name: 'What is direct admission in engineering colleges?',
+                  acceptedAnswer: { '@type': 'Answer', text: 'Direct admission means getting a seat in an engineering college without going through the standard counselling process. Many private colleges in Noida and Greater Noida offer management quota seats where students can get direct admission based on 12th marks or entrance exam scores. EduHorizon helps students secure these seats at the best possible fee structure.' }
+                },
+                {
+                  '@type': 'Question',
+                  name: 'How much does B.Tech admission cost in Greater Noida?',
+                  acceptedAnswer: { '@type': 'Answer', text: 'B.Tech fees in Greater Noida colleges typically range from ₹60,000 to ₹2,50,000 per year depending on the college and branch. Top colleges like GL Bajaj, GNIOT, and IIMT offer competitive fees. EduHorizon provides free fee comparison and helps negotiate the best fee structure for students.' }
+                },
+                {
+                  '@type': 'Question',
+                  name: 'Which are the best engineering colleges in Noida and Greater Noida?',
+                  acceptedAnswer: { '@type': 'Answer', text: 'The top engineering colleges in the Noida-Greater Noida region include JIIT Noida, Amity University, GL Bajaj Institute, GNIOT, IIMT College of Engineering, NIET, and Galgotias University. These colleges are AKTU/AICTE approved and offer excellent placements with packages ranging from 4-27 LPA.' }
+                },
+                {
+                  '@type': 'Question',
+                  name: 'Can I get admission without entrance exam?',
+                  acceptedAnswer: { '@type': 'Answer', text: 'Yes, many private colleges in Greater Noida and Delhi NCR accept students based on 12th marks without requiring JEE or other entrance exams. Management quota and direct admission seats are available. Contact EduHorizon for personalized guidance on colleges offering such admissions.' }
+                },
+                {
+                  '@type': 'Question',
+                  name: 'Does EduHorizon charge any fee for counselling?',
+                  acceptedAnswer: { '@type': 'Answer', text: 'EduHorizon provides free initial counselling, college comparison, and career guidance. Students can visit our office or connect online to get expert advice on college selection, fee comparison, and admission processes without any charges.' }
+                },
+                {
+                  '@type': 'Question',
+                  name: 'What is management quota admission?',
+                  acceptedAnswer: { '@type': 'Answer', text: 'Management quota is a percentage of seats reserved by private colleges for direct admission. These seats are filled without the regular counselling process. Students need to meet minimum eligibility criteria and pay the prescribed fee. EduHorizon helps students understand and avail management quota seats at genuine fees without any donation.' }
+                }
+              ]
+            },
+            {
+              '@context': 'https://schema.org',
+              '@type': 'WebPage',
+              speakable: {
+                '@type': 'SpeakableSpecification',
+                cssSelector: ['h1', '.faq-question', '.faq-answer']
+              },
+              name: 'EduHorizon FAQ - College Admission Questions Answered',
+              url: `${siteUrl}/faq`
+            }
+          ]
         };
       }
 
@@ -680,6 +862,48 @@ function AppContent() {
         };
       }
 
+      if (pathname === '/cities-we-serve') {
+        return {
+          title: 'Cities We Serve | EduHorizon - Admission Consultancy Across India',
+          description:
+            'EduHorizon provides expert admission guidance in Noida, Greater Noida, Patna, Delhi, Lucknow, Kanpur, Varanasi, Agra, Meerut, Ghaziabad and more cities across India.',
+          robots: 'index, follow',
+          image: defaultImage,
+          keywords:
+            'admission consultancy cities india, eduhorizon noida, eduhorizon patna, eduhorizon delhi, cities we serve, admission guidance india',
+          ogType: 'website' as const,
+          structuredData: [
+            {
+              '@context': 'https://schema.org',
+              '@type': 'EducationalOrganization',
+              name: 'EduHorizon Admission Consultancy',
+              url: siteUrl,
+              description:
+                'EduHorizon provides admission counselling across 12+ cities including Noida, Greater Noida, Patna, Delhi, Lucknow and more.',
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: 'Greater Noida',
+                addressRegion: 'Uttar Pradesh',
+                addressCountry: 'IN'
+              },
+              areaServed: [
+                'Noida', 'Greater Noida', 'Patna', 'Delhi', 'Ghaziabad',
+                'Lucknow', 'Agra', 'Meerut', 'Kanpur', 'Varanasi',
+                'Prayagraj', 'Faridabad'
+              ]
+            },
+            {
+              '@context': 'https://schema.org',
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+                { '@type': 'ListItem', position: 2, name: 'Cities We Serve', item: `${siteUrl}/cities-we-serve` }
+              ]
+            }
+          ]
+        };
+      }
+
       if (pathname === '/privacy-policy') {
         return {
           title: `Privacy Policy | ${siteName}`,
@@ -700,6 +924,59 @@ function AppContent() {
           keywords: 'terms and conditions, eduhorizon terms',
           ogType: 'website' as const
         };
+      }
+
+      if (pathname.startsWith('/best-admission-consultation-in-')) {
+        const slug = pathname.split('/best-admission-consultation-in-')[1] || '';
+        const city = citiesData.find(c => c.slug === slug);
+
+        if (city) {
+          return {
+            title: city.seo.title,
+            description: city.seo.description,
+            robots: 'index, follow',
+            image: defaultImage,
+            keywords: city.seo.keywords,
+            ogType: 'website' as const,
+            structuredData: [
+              {
+                '@context': 'https://schema.org',
+                '@type': 'EducationalOrganization',
+                name: `EduHorizon Admission Consultancy ${city.name}`,
+                description: city.seo.description,
+                url: `${siteUrl}/best-admission-consultation-in-${city.slug}`,
+                areaServed: {
+                  '@type': 'City',
+                  name: city.name,
+                  containedInPlace: {
+                    '@type': 'State',
+                    name: city.state
+                  }
+                },
+                makesOffer: {
+                  '@type': 'Offer',
+                  itemOffered: {
+                    '@type': 'Service',
+                    name: 'Admission Counselling',
+                    description: `Expert career guidance and admission support for top colleges in ${city.name}.`
+                  }
+                }
+              },
+              {
+                '@context': 'https://schema.org',
+                '@type': 'FAQPage',
+                mainEntity: city.faqs.map(faq => ({
+                  '@type': 'Question',
+                  name: faq.question,
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: faq.answer
+                  }
+                }))
+              }
+            ]
+          };
+        }
       }
 
       return {
@@ -835,6 +1112,8 @@ function AppContent() {
             <Route path="/admin/colleges" element={<AdminCollegesManager />} />
             <Route path="/admin/faqs" element={<AdminFaqs />} />
             <Route path="/admin/access" element={<AdminAccess />} />
+            <Route path="/cities-we-serve" element={<CitiesWeServe />} />
+            <Route path="/best-admission-consultation-in-:citySlug" element={<CityPage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<Terms />} />
             <Route

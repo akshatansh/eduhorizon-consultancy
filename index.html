@@ -1,14 +1,20 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1D2H5CTGSC"></script>
+    <!-- DNS Prefetch for faster external resource loading -->
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://images.unsplash.com" />
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+
+    <!-- Google tag (gtag.js) - deferred to not block rendering -->
+    <script async defer src="https://www.googletagmanager.com/gtag/js?id=G-1D2H5CTGSC"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-1D2H5CTGSC');
+      gtag('config', 'G-1D2H5CTGSC', { send_page_view: false });
+      window.addEventListener('load', function() { gtag('event', 'page_view'); });
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -45,6 +51,17 @@
       content="Direct Admission in Noida Colleges Without Donation"
     />
     <meta name="twitter:image" content="https://www.eduhorizon.online/EDUHORIZON%20(1).jpg" />
+
+    <!-- AEO (Answer Engine Optimization) Meta Tags -->
+    <meta name="ai-content-type" content="educational-service" />
+    <meta name="subject" content="College Admission Consultancy in India" />
+    <meta name="classification" content="Education" />
+    <meta name="category" content="Admission Consultancy" />
+    <meta name="coverage" content="India" />
+    <meta name="target" content="Students seeking college admissions in India" />
+    <meta name="summary" content="EduHorizon is India's leading admission consultancy since 2018. We provide free counselling and direct admission guidance for B.Tech, MBA, BCA, MBBS colleges across Noida, Greater Noida, Delhi NCR, Patna, and 12+ cities. 95% success rate with 1000+ students guided." />
+    <meta name="abstract" content="Expert college admission consultancy for engineering, management, and medical courses across India with personalized guidance and placement support." />
+    <meta name="topic" content="College Admission Guidance India" />
   </head>
   <body>
     <div id="root"></div>

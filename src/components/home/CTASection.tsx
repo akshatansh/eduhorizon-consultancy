@@ -52,9 +52,9 @@ export default function CTASection() {
             className="relative"
           >
             <img
-              src="/images/cta-image.jpg"
-              alt="Students discussing"
-              className="rounded-2xl shadow-2xl"
+              src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+              alt="EduHorizon Expert Admission Counsellors guiding a student to a top engineering college"
+              className="rounded-2xl shadow-2xl object-cover w-full h-full max-h-[500px]"
               loading="lazy"
               decoding="async"
             />

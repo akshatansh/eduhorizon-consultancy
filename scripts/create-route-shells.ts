@@ -1,5 +1,6 @@
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
+import { citiesData } from '../src/data/citiesData';
 
 const distDir = resolve(process.cwd(), 'dist');
 const templatePath = join(distDir, 'index.html');
@@ -109,6 +110,17 @@ const routes = [
   }
 ];
 
+// Add dynamic city routes
+for (const city of citiesData) {
+  routes.push({
+    path: `/best-admission-consultation-in-${city.slug}`,
+    heading: `EduHorizon Admission Consultancy ${city.name}`,
+    title: city.seo.title,
+    description: city.seo.description,
+    keywords: city.seo.keywords
+  });
+}
+
 const internalLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About EduHorizon' },
@@ -117,16 +129,22 @@ const internalLinks = [
   { href: '/testimonials', label: 'Testimonials' },
   { href: '/blog', label: 'Admission Blog' },
   { href: '/privacy-policy', label: 'Privacy Policy' },
-  { href: '/terms', label: 'Terms and Conditions' }
+  { href: '/terms', label: 'Terms and Conditions' },
+  ...citiesData.map(city => ({
+    href: `/best-admission-consultation-in-${city.slug}`,
+    label: `Admission Consultant in ${city.name}`
+  }))
 ];
 
-const escapeHtml = (value) =>
-  value
+const escapeHtml = (value) => {
+  if (!value) return '';
+  return String(value)
     .replaceAll('&', '&amp;')
     .replaceAll('<', '&lt;')
     .replaceAll('>', '&gt;')
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&#39;');
+};
 
 const setTag = (html, pattern, replacement) =>
   pattern.test(html) ? html.replace(pattern, replacement) : html.replace('</head>', `    ${replacement}\n  </head>`);
@@ -150,8 +168,14 @@ const getStructuredData = (route, canonicalUrl) => {
     areaServed: ['Noida', 'Greater Noida', 'Delhi NCR', 'India'],
     sameAs: [siteUrl]
   };
+  
+  let pageType = 'WebPage';
+  if (route.path === '/about') pageType = 'AboutPage';
+  if (route.path.startsWith('/blog/')) pageType = 'Article';
+  if (route.path.startsWith('/best-admission-consultation-in-')) pageType = 'FAQPage';
+  
   const webPage = {
-    '@type': route.path === '/about' ? 'AboutPage' : route.path.startsWith('/blog/') ? 'Article' : 'WebPage',
+    '@type': pageType,
     '@id': `${canonicalUrl}#webpage`,
     url: canonicalUrl,
     name: route.title,
@@ -245,6 +269,42 @@ const getStructuredData = (route, canonicalUrl) => {
         }
       ]
     };
+  }
+
+  // Schema for city pages
+  if (route.path.startsWith('/best-admission-consultation-in-')) {
+    const slug = route.path.replace('/best-admission-consultation-in-', '');
+    const city = citiesData.find((c) => c.slug === slug);
+    
+    if (city) {
+      return {
+        '@context': 'https://schema.org',
+        '@graph': [
+          organization,
+          webPage,
+          {
+            '@type': 'BreadcrumbList',
+            '@id': `${canonicalUrl}#breadcrumb`,
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+              { '@type': 'ListItem', position: 2, name: 'Cities We Serve', item: `${siteUrl}/cities-we-serve` },
+              { '@type': 'ListItem', position: 3, name: city.name, item: canonicalUrl }
+            ]
+          },
+          {
+            '@type': 'FAQPage',
+            mainEntity: city.faqs.map(faq => ({
+              '@type': 'Question',
+              name: faq.question,
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: faq.answer
+              }
+            }))
+          }
+        ]
+      };
+    }
   }
 
   return {

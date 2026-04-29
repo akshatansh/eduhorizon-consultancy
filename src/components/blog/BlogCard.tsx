@@ -23,7 +23,7 @@ export default function BlogCard({ post, index }: BlogCardProps) {
       <Link to={`/blog/${post.id}`}>
         <img
           src={post.image}
-          alt={post.title}
+          alt={`EduHorizon Blog Article: ${post.title}`}
           onError={(e) => {
             e.currentTarget.onerror = null;
             e.currentTarget.src = FALLBACK_COVER;
@@ -53,7 +53,7 @@ export default function BlogCard({ post, index }: BlogCardProps) {
           <div className="flex items-center gap-2">
             <img
               src={post.author.avatar}
-              alt={post.author.name}
+              alt={`${post.author.name} - EduHorizon Education Expert`}
               onError={(e) => {
                 e.currentTarget.onerror = null;
                 e.currentTarget.src = FALLBACK_AVATAR;
