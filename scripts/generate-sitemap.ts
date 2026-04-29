@@ -14,16 +14,16 @@ const BASE_URL = 'https://www.eduhorizon.online';
 
 function generateSitemap() {
   const staticRoutes = [
-    '',
-    '/about',
-    '/colleges',
-    '/success-stories',
-    '/testimonials',
-    '/blog',
-    '/faq',
-    '/cities-we-serve',
-    '/privacy-policy',
-    '/terms',
+    { path: '',                  priority: '1.0', changefreq: 'daily'   },
+    { path: '/about',            priority: '0.8', changefreq: 'monthly' },
+    { path: '/colleges',         priority: '0.9', changefreq: 'weekly'  },
+    { path: '/success-stories',  priority: '0.8', changefreq: 'monthly' },
+    { path: '/testimonials',     priority: '0.7', changefreq: 'monthly' },
+    { path: '/blog',             priority: '0.9', changefreq: 'weekly'  },
+    { path: '/faq',              priority: '0.8', changefreq: 'monthly' },
+    { path: '/cities-we-serve',  priority: '0.9', changefreq: 'monthly' },
+    { path: '/privacy-policy',   priority: '0.4', changefreq: 'yearly'  },
+    { path: '/terms',            priority: '0.4', changefreq: 'yearly'  },
   ];
 
   const currentDate = new Date().toISOString();
@@ -34,10 +34,10 @@ function generateSitemap() {
   // Static routes
   for (const route of staticRoutes) {
     xml += `  <url>\n`;
-    xml += `    <loc>${BASE_URL}${route}</loc>\n`;
+    xml += `    <loc>${BASE_URL}${route.path}</loc>\n`;
     xml += `    <lastmod>${currentDate}</lastmod>\n`;
-    xml += `    <changefreq>${route === '' ? 'weekly' : 'monthly'}</changefreq>\n`;
-    xml += `    <priority>${route === '' ? '1.0' : '0.8'}</priority>\n`;
+    xml += `    <changefreq>${route.changefreq}</changefreq>\n`;
+    xml += `    <priority>${route.priority}</priority>\n`;
     xml += `  </url>\n`;
   }
 
