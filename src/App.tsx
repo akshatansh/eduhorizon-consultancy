@@ -278,6 +278,41 @@ function AppContent() {
             },
             {
               '@context': 'https://schema.org',
+              '@type': 'LocalBusiness',
+              name: 'EduHorizon Admission Consultancy',
+              image: defaultImage,
+              url: siteUrl,
+              telephone: '+918877434088',
+              priceRange: 'Free Consultation',
+              openingHours: 'Mo-Sa 09:00-19:00',
+              address: {
+                '@type': 'PostalAddress',
+                streetAddress: 'Urbtech NPX, Sector-153',
+                addressLocality: 'Noida',
+                addressRegion: 'Uttar Pradesh',
+                postalCode: '201310',
+                addressCountry: 'IN'
+              },
+              areaServed: [
+                'Noida', 'Greater Noida', 'Delhi', 'Patna', 'Lucknow',
+                'Ghaziabad', 'Agra', 'Meerut', 'Kanpur', 'Varanasi',
+                'Prayagraj', 'Faridabad'
+              ]
+            },
+            {
+              '@context': 'https://schema.org',
+              '@type': 'HowTo',
+              name: 'How to Get Admission in Top Colleges through EduHorizon',
+              description: 'Step-by-step process to get college admission guidance from EduHorizon consultancy.',
+              step: [
+                { '@type': 'HowToStep', position: 1, name: 'Book Free Counselling', text: 'Call or WhatsApp EduHorizon at +91 88774 34088. Our counsellor will schedule a free session to understand your academic background, budget and career goals.' },
+                { '@type': 'HowToStep', position: 2, name: 'College Shortlisting', text: 'Our expert prepares a personalised college list comparing fees, placement records, NIRF rankings and course options for your profile.' },
+                { '@type': 'HowToStep', position: 3, name: 'Application & Documentation', text: 'EduHorizon helps complete application forms, prepare documents and submit them to the college admission office on time.' },
+                { '@type': 'HowToStep', position: 4, name: 'Admission Confirmation', text: 'Our team coordinates with the college to confirm your seat, guide on fee payment, and support you until admission is fully secured.' }
+              ]
+            },
+            {
+              '@context': 'https://schema.org',
               '@type': 'WebSite',
               '@id': `${siteUrl}/#website`,
               url: siteUrl,
