@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
-import { useParams, Navigate, Link } from 'react-router-dom';
+import { useLocation, Navigate, Link } from 'react-router-dom';
 import { MapPin, CheckCircle, ArrowRight, Building2, BookOpen, GraduationCap } from 'lucide-react';
 import { citiesData } from '../data/citiesData';
 import ConsultationButton from '../components/consultation/ConsultationButton';
 
 export default function CityPage() {
-  const { citySlug } = useParams<{ citySlug: string }>();
+  const location = useLocation();
+  const pathParts = location.pathname.split('/best-admission-consultation-in-');
+  const citySlug = pathParts.length > 1 ? pathParts[1] : '';
   const city = citiesData.find(c => c.slug === citySlug);
 
   useEffect(() => {

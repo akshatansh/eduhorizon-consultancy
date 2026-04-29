@@ -129,7 +129,7 @@ function AppContent() {
   useEffect(() => {
     const siteName = 'Edu Horizon';
     const siteUrl = 'https://www.eduhorizon.online';
-    const defaultImage = `${siteUrl}/EDUHORIZON%20(1).jpg`;
+    const defaultImage = `${siteUrl}/images/logo.jpg`;
     const normalizePath = (path: string) => {
       if (!path) return '/';
       const clean = path.startsWith('/') ? path : `/${path}`;
@@ -1113,7 +1113,14 @@ function AppContent() {
             <Route path="/admin/faqs" element={<AdminFaqs />} />
             <Route path="/admin/access" element={<AdminAccess />} />
             <Route path="/cities-we-serve" element={<CitiesWeServe />} />
-            <Route path="/best-admission-consultation-in-:citySlug" element={<CityPage />} />
+            {/* React Router v6 does not support partial params like /prefix-:id. We explicitly map them. */}
+            {citiesData.map((city) => (
+              <Route 
+                key={city.slug} 
+                path={`/best-admission-consultation-in-${city.slug}`} 
+                element={<CityPage />} 
+              />
+            ))}
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<Terms />} />
             <Route

@@ -26,7 +26,7 @@ export default function Navbar() {
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
               <img 
-                src="/EDUHORIZON (1).jpg" 
+                src="/images/logo.jpg" 
                 alt="EduHorizon Admission Consultancy Logo" 
                 className="h-10 w-auto object-contain rounded-sm" 
               />
@@ -34,7 +34,7 @@ export default function Navbar() {
             </Link>
           </div>
           
-          <div className="hidden md:flex items-center space-x-6 text-sm lg:text-base">
+          <div className="hidden lg:flex items-center space-x-3 xl:space-x-6 text-[13px] xl:text-base font-medium">
             {navItems.map((item) => {
               if (item.label === 'Cities We Serve') {
                 return (
@@ -77,7 +77,7 @@ export default function Navbar() {
             />
           </div>
 
-          <div className="md:hidden flex items-center">
+          <div className="lg:hidden flex items-center">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
@@ -93,7 +93,7 @@ export default function Navbar() {
       </div>
 
       {isMenuOpen && (
-        <div className="md:hidden border-t border-gray-100 bg-white max-h-[80vh] overflow-y-auto">
+        <div className="lg:hidden border-t border-gray-100 bg-white max-h-[80vh] overflow-y-auto">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navItems.map((item) => {
               if (item.label === 'Cities We Serve') {

@@ -8,7 +8,7 @@ const stats = [
   { icon: <Users className="h-6 w-6" aria-hidden="true" />, label: "1000+ Students Guided" },
   { icon: <Award className="h-6 w-6" aria-hidden="true" />, label: "95% Admission Success" },
   { icon: <BookOpen className="h-6 w-6" aria-hidden="true" />, label: "200+ College Options" },
-  { icon: <Trophy className="h-6 w-6" aria-hidden="true" />, label: "7+ Years Expertise" }
+  { icon: <Trophy className="h-6 w-6" aria-hidden="true" />, label: "8+ Years Expertise" }
 ];
 
 export default function HeroSection() {

@@ -7,7 +7,7 @@ import { citiesData } from '../data/citiesData';
 const stats = [
   { label: 'Cities Covered', value: '12+', icon: MapPin, color: 'text-blue-600', bg: 'bg-blue-100' },
   { label: 'Partner Colleges', value: '200+', icon: Building2, color: 'text-purple-600', bg: 'bg-purple-100' },
-  { label: 'Students Guided', value: '10,000+', icon: Users, color: 'text-green-600', bg: 'bg-green-100' },
+  { label: 'Students Guided', value: '1000+', icon: Users, color: 'text-green-600', bg: 'bg-green-100' },
   { label: 'Success Rate', value: '98%', icon: TrendingUp, color: 'text-orange-600', bg: 'bg-orange-100' },
 ];
 

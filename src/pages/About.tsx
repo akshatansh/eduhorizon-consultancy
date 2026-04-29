@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 const stats = [
   { icon: <Users className="h-6 w-6" />, value: "1000+", label: "Students Guided" },
   { icon: <Award className="h-6 w-6" />, value: "95%", label: "Success Rate" },
-  { icon: <BookOpen className="h-6 w-6" />, value: "50+", label: "Partner Colleges" },
-  { icon: <Trophy className="h-6 w-6" />, value: "10+", label: "Years Experience" }
+  { icon: <BookOpen className="h-6 w-6" />, value: "200+", label: "Partner Colleges" },
+  { icon: <Trophy className="h-6 w-6" />, value: "8+", label: "Years Experience" }
 ];
 
 export default function About() {
@@ -28,7 +28,7 @@ export default function About() {
             college based on their goals and budget.
             </p>
             <p className="text-base sm:text-lg text-gray-600">
-              With over a decade of experience in education consulting, we've helped thousands of students 
+              With over 8 years of experience in education consulting, we've helped over 1000 students 
               achieve their academic dreams through personalized guidance and support.
             </p>
           </div>
@@ -54,7 +54,7 @@ export default function About() {
                 alt="Akshat Ansh - Top Education Counsellor at EduHorizon providing admission guidance"
                 className="w-32 h-32 sm:w-40 sm:h-40 object-cover rounded-full mx-auto mb-4 shadow-md"
               />
-              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 text-center">Akshat Ansh - Founder - 7+ Years Experience</h3>
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 text-center">Akshat Ansh - Founder - 8+ Years Experience</h3>
               <p className="text-gray-700 text-center mt-2">B.Tech from A.K.T.U</p>
               <p className="text-gray-600 text-center mt-3 text-sm sm:text-base">
                 Specializes in career counselling, college selection, and admission planning for students across India.
