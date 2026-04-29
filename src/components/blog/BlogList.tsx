@@ -7,25 +7,23 @@ import { mapDbBlogPostToUi, type DbBlogPostRow } from '../../utils/cmsMappers';
 import type { BlogPost } from '../../types';
 import { Link } from 'react-router-dom';
 
+// In-memory cache so Supabase is only fetched once per session
+let _cachedPosts: BlogPost[] | null = null;
+let _cacheTime = 0;
+const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+
 export default function BlogList() {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  // Show static posts instantly (optimistic), then update from Supabase
+  const [posts, setPosts] = useState<BlogPost[]>(_cachedPosts ?? blogPosts);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const isPrerender = typeof navigator !== 'undefined' && navigator.userAgent === 'ReactSnap';
-    if (isPrerender) {
-      setPosts(blogPosts);
-      setIsLoading(false);
-      return;
-    }
+    // If we have a fresh cache, skip the network call entirely
+    if (_cachedPosts && Date.now() - _cacheTime < CACHE_TTL) return;
 
     const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
     const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-    if (!supabaseUrl || !supabaseAnonKey) {
-      setPosts(blogPosts);
-      setIsLoading(false);
-      return;
-    }
+    if (!supabaseUrl || !supabaseAnonKey) return;
 
     const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
@@ -39,19 +37,18 @@ export default function BlogList() {
           .eq('published', true)
           .order('published_at', { ascending: false });
 
-        if (error || !data) {
-          setPosts(blogPosts);
-          return;
-        }
+        if (error || !data) return;
 
-        setPosts((data as DbBlogPostRow[]).map(mapDbBlogPostToUi));
+        const mapped = (data as DbBlogPostRow[]).map(mapDbBlogPostToUi);
+        _cachedPosts = mapped;
+        _cacheTime = Date.now();
+        setPosts(mapped);
       } catch {
-        setPosts(blogPosts);
+        // Static fallback already shown, no need to do anything
       } finally {
         setIsLoading(false);
       }
     };
-
     run();
   }, []);
 
@@ -90,7 +87,7 @@ export default function BlogList() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {isLoading
+          {isLoading && posts.length === 0
             ? Array.from({ length: 6 }).map((_, idx) => (
                 <div key={idx} className="bg-white rounded-lg shadow-lg overflow-hidden">
                   <div className="h-48 bg-gray-200 animate-pulse" />

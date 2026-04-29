@@ -145,6 +145,24 @@ export default function CityPage() {
               </div>
             </div>
             
+            {/* Dynamic SEO Content Block to fix thin content */}
+            <div className="mb-16 prose prose-blue max-w-none text-gray-600">
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">Expert Admission Guidance in {city.name}</h2>
+              <p>
+                As a leading educational consultant in {city.state}, <strong>EduHorizon</strong> has established a strong presence in <strong>{city.name}</strong> to help students navigate the complex landscape of higher education. Whether you are aiming for top engineering colleges or prestigious B-Schools, our dedicated counsellors provide localized support tailored specifically for students in and around {city.name}.
+              </p>
+              
+              <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Direct Admission in Top Colleges from {city.name}</h3>
+              <p>
+                Many students from {city.name} aspire to study in the educational hubs of Delhi NCR, Pune, and Bangalore. We specialize in providing transparent <strong>direct admission in B.Tech and MBA</strong> programs. We help you compare the best colleges based on your budget, entrance exam scores (like JEE, NEET, or state-level exams), and placement records. If you are looking for management quota admissions without heavy donations, our {city.name} branch experts are here to guide you legally and ethically.
+              </p>
+
+              <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Why Consult an Education Expert?</h3>
+              <p>
+                Choosing a college is a monumental decision. With hundreds of colleges claiming 100% placements, distinguishing the genuine institutions from the rest is challenging. Our <strong>career counselling in {city.name}</strong> includes an in-depth analysis of your profile, interest mapping, and providing a curated list of colleges where you have the highest probability of success and ROI. We handle the documentation, counselling rounds, and application processes so you can focus on your studies.
+              </p>
+            </div>
+
             {/* FAQs */}
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>

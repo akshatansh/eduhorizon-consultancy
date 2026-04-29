@@ -27,6 +27,9 @@ export default function Footer() {
             <h3 className="text-lg font-semibold text-white mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
+                <Link to="/" className="hover:text-blue-400">Home</Link>
+              </li>
+              <li>
                 <Link to="/about" className="hover:text-blue-400">About Us</Link>
               </li>
               <li>
@@ -39,6 +42,9 @@ export default function Footer() {
                 <Link to="/success-stories" className="hover:text-blue-400">Success Stories</Link>
               </li>
               <li>
+                <Link to="/testimonials" className="hover:text-blue-400">Testimonials</Link>
+              </li>
+              <li>
                 <Link to="/blog" className="hover:text-blue-400">Blog</Link>
               </li>
               <li>
@@ -47,21 +53,15 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Legal & Admin */}
+          {/* Legal */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-4">Legal & Admin</h3>
+            <h3 className="text-lg font-semibold text-white mb-4">Legal</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/privacy-policy" className="hover:text-blue-400">Privacy Policy</Link>
               </li>
               <li>
                 <Link to="/terms" className="hover:text-blue-400">Terms & Conditions</Link>
-              </li>
-              <li>
-                <Link to="/admin/login" className="hover:text-blue-400 flex items-center gap-2">
-                  <Lock className="h-4 w-4" aria-hidden="true" />
-                  Admin Login
-                </Link>
               </li>
             </ul>
           </div>

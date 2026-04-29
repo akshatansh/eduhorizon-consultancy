@@ -26,25 +26,36 @@ export default function HeroSection() {
               <span className="text-2xl font-bold text-blue-600">EduHorizon</span>
             </div>
             <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 leading-tight mb-6">
-              Best Admission Consultancy in Noida and Greater Noida
+              Best Admission Consultancy in India | Expert Guidance for B.Tech, MBA & Medical
             </h1>
             <p className="text-lg sm:text-xl text-gray-600 mb-8 max-w-xl">
-              EduHorizon provides expert college admission guidance for B.Tech, MBA, BCA, MCA, and other career-focused
-              courses. Compare colleges, fees, placements, and eligibility in one place with personalized counselling.
+              EduHorizon provides expert college admission guidance and direct admission support for top colleges. Compare fees, placements, and eligibility in one place.
             </p>
-            <div className="flex flex-wrap gap-4 mb-12">
-              <ConsultationButton className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg w-full sm:w-auto shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2" />
+            <div className="flex flex-wrap gap-4 mb-8">
+              <ConsultationButton className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-8 py-4 rounded-xl font-bold text-lg w-full sm:w-auto shadow-xl shadow-blue-600/20 hover:shadow-2xl hover:shadow-blue-600/40 transition-all duration-300 flex items-center justify-center gap-2 transform hover:-translate-y-1" />
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <Link
-                  to="/about"
-                  className="border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-lg font-semibold w-full sm:w-auto inline-block text-center hover:bg-blue-50 transition-colors"
+                  to="/colleges"
+                  className="bg-white border-2 border-gray-100 text-gray-800 px-8 py-4 rounded-xl font-bold w-full sm:w-auto inline-block text-center hover:border-blue-200 hover:bg-blue-50/50 hover:text-blue-700 shadow-sm transition-all duration-300"
                 >
-                  Learn More
+                  Browse Top Colleges
                 </Link>
               </motion.div>
+            </div>
+            
+            {/* SEO Internal Links for immediate crawlability */}
+            <div className="mb-12">
+              <p className="text-sm font-bold text-gray-400 mb-3 uppercase tracking-wider">Top Locations We Serve:</p>
+              <div className="flex flex-wrap gap-2">
+                <Link to="/best-admission-consultation-in-noida" className="text-sm px-4 py-1.5 bg-white border border-gray-100 rounded-full text-gray-600 hover:border-blue-300 hover:text-blue-600 hover:shadow-sm transition-all font-medium">Noida</Link>
+                <Link to="/best-admission-consultation-in-greater-noida" className="text-sm px-4 py-1.5 bg-white border border-gray-100 rounded-full text-gray-600 hover:border-blue-300 hover:text-blue-600 hover:shadow-sm transition-all font-medium">Greater Noida</Link>
+                <Link to="/best-admission-consultation-in-delhi" className="text-sm px-4 py-1.5 bg-white border border-gray-100 rounded-full text-gray-600 hover:border-blue-300 hover:text-blue-600 hover:shadow-sm transition-all font-medium">Delhi</Link>
+                <Link to="/best-admission-consultation-in-patna" className="text-sm px-4 py-1.5 bg-white border border-gray-100 rounded-full text-gray-600 hover:border-blue-300 hover:text-blue-600 hover:shadow-sm transition-all font-medium">Patna</Link>
+                <Link to="/cities-we-serve" className="text-sm px-4 py-1.5 bg-blue-50 text-blue-700 rounded-full hover:bg-blue-100 transition-all font-semibold">View All 20+ Cities →</Link>
+              </div>
             </div>
             <div className="flex flex-wrap gap-4">
               {stats.map((stat, index) => (
@@ -53,10 +64,10 @@ export default function HeroSection() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 * (index + 1) }}
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 bg-white/60 backdrop-blur-sm px-3 py-2 rounded-lg border border-gray-100"
                 >
                   <div className="text-blue-600">{stat.icon}</div>
-                  <span className="font-semibold">{stat.label}</span>
+                  <span className="font-semibold text-gray-800">{stat.label}</span>
                 </motion.div>
               ))}
             </div>
@@ -71,13 +82,14 @@ export default function HeroSection() {
               <img
                 src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                 alt="EduHorizon Admission Consultants counselling students for top B.Tech and MBA colleges"
-                className="rounded-2xl shadow-2xl object-cover w-full h-[600px]"
+                className="rounded-3xl shadow-2xl object-cover w-full h-[600px] border-[6px] border-white"
                 loading="eager"
                 fetchPriority="high"
                 decoding="async"
               />
             </div>
-            <div className="absolute inset-0 bg-blue-600 rounded-2xl transform translate-x-4 translate-y-4 -z-10" />
+            {/* Premium Glow Effect */}
+            <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-indigo-500 rounded-[2.5rem] blur-2xl opacity-40 -z-10 animate-pulse" style={{ animationDuration: '4s' }} />
           </motion.div>
         </div>
       </div>
