@@ -11,8 +11,22 @@ const routes = [
   { path: '/success-stories', changefreq: 'weekly', priority: '0.8' },
   { path: '/testimonials', changefreq: 'weekly', priority: '0.8' },
   { path: '/blog', changefreq: 'daily', priority: '0.9' },
+  { path: '/cities-we-serve', changefreq: 'monthly', priority: '0.9' },
   { path: '/privacy-policy', changefreq: 'monthly', priority: '0.5' },
-  { path: '/terms', changefreq: 'monthly', priority: '0.5' }
+  { path: '/terms', changefreq: 'monthly', priority: '0.5' },
+  // City pages - high priority for local SEO
+  { path: '/best-admission-consultation-in-noida', changefreq: 'monthly', priority: '0.9' },
+  { path: '/best-admission-consultation-in-greater-noida', changefreq: 'monthly', priority: '0.9' },
+  { path: '/best-admission-consultation-in-patna', changefreq: 'monthly', priority: '0.9' },
+  { path: '/best-admission-consultation-in-delhi', changefreq: 'monthly', priority: '0.9' },
+  { path: '/best-admission-consultation-in-ghaziabad', changefreq: 'monthly', priority: '0.9' },
+  { path: '/best-admission-consultation-in-lucknow', changefreq: 'monthly', priority: '0.9' },
+  { path: '/best-admission-consultation-in-agra', changefreq: 'monthly', priority: '0.9' },
+  { path: '/best-admission-consultation-in-meerut', changefreq: 'monthly', priority: '0.9' },
+  { path: '/best-admission-consultation-in-kanpur', changefreq: 'monthly', priority: '0.9' },
+  { path: '/best-admission-consultation-in-varanasi', changefreq: 'monthly', priority: '0.9' },
+  { path: '/best-admission-consultation-in-prayagraj', changefreq: 'monthly', priority: '0.9' },
+  { path: '/best-admission-consultation-in-faridabad', changefreq: 'monthly', priority: '0.9' },
 ];
 
 const blogDataPath = resolve(process.cwd(), 'src/data/blogPosts.ts');
