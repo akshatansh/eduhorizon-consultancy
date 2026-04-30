@@ -1,24 +1,241 @@
-EduHorizon
+# EduHorizon - Best Admission Consultancy in India
 
-EduHorizon is an education consulting website focused on college admissions guidance in India.
+> EduHorizon is India's trusted college admission consultancy, founded in 2018 and headquartered in Greater Noida, Uttar Pradesh. We provide free expert guidance to students seeking admissions in top B.Tech, MBA, BCA, MBBS, and other professional courses across 20+ cities in India. We have guided 1000+ students with a 95% admission success rate.
 
-Primary website: https://www.eduhorizon.online/
-Sitemap: https://www.eduhorizon.online/sitemap.xml
+## About EduHorizon
 
-Important pages:
-- Home: https://www.eduhorizon.online/
-- About: https://www.eduhorizon.online/about
+- **Founded:** 2018
+- **Headquarters:** Urbtech NPX, Sector-153, Noida, Uttar Pradesh - 201310
+- **Branch Office:** Kumhrar, Patna, Bihar - 800026
+- **Phone / WhatsApp:** +91 88774 34088
+- **Email:** info@eduhorizon.online
+- **Website:** https://www.eduhorizon.online
+- **Students Guided:** 1000+
+- **Success Rate:** 95%
+- **Google Rating:** 4.9 / 5
+- **Founder:** Akshat Ansh (Lead Education Counsellor)
+- **Office Hours:** Monday to Saturday, 9:00 AM - 7:00 PM
+
+## What We Do
+
+EduHorizon helps students across India find and secure admissions in the right college for their profile, budget, and career goals. Our services are completely free for initial counselling.
+
+### Services Offered
+- Free initial counselling and career guidance session (30 minutes)
+- Personalised college shortlisting based on marks, budget, and goals
+- Comparison of fees, placements, NIRF rankings, and course options
+- Application form filling and documentation support
+- Direct coordination with college admission offices
+- Management quota / direct admission guidance
+- Fee negotiation and scholarship guidance
+- AKTU / UPSEE / IPU / NEET / JEE counselling support
+- Hostel and accommodation guidance for out-of-city students
+
+## Courses We Help With
+
+- B.Tech / B.E. — Computer Science, Mechanical, Civil, Electronics, IT, AI/ML
+- MBA / PGDM
+- BCA / MCA
+- MBBS / BDS / BAMS / BHMS (Medical)
+- B.Pharm / D.Pharm (Pharmacy)
+- BBA / BBM
+- LLB / BA LLB (Law)
+- B.Ed (Education)
+- Polytechnic / ITI / Diploma
+
+## Entrance Exams We Support
+
+- JEE Main & Advanced (B.Tech admissions)
+- NEET UG (MBBS/Medical admissions)
+- CAT / MAT / CMAT / XAT (MBA admissions)
+- UPSEE / AKTU state counselling (UP engineering colleges)
+- IPU CET (Delhi/IP University admissions)
+- CUET (Central University admissions)
+- CLAT (Law admissions)
+- Bihar DCECE (Bihar engineering)
+- BSEB / Bihar state counselling
+
+## Top Colleges We Work With (Greater Noida & Noida)
+
+### Greater Noida Colleges
+1. **GL Bajaj Institute of Technology & Management** — B.Tech, MBA, MCA, PGDM | Fees: ₹1.5L-3.0L/yr | Est. 2007 | https://www.glbajaj.org
+2. **Greater Noida Institute of Technology (GNIOT)** — B.Tech, M.Tech, MBA, MCA | Fees: ₹1.2L-2.5L/yr | NIRF Rank: 150-200 | Est. 1999 | https://www.gniot.edu.in
+3. **IIMT College of Engineering** — B.Tech, M.Tech, MBA, BBA, BCA | Fees: ₹1.3L-2.8L/yr | Est. 1994 | https://www.iimtindia.net
+4. **Mangalmay Institute of Engineering & Technology** — B.Tech, MBA, PGDM | Fees: ₹1.1L-2.2L/yr | Est. 1996 | https://www.mangalmay.org
+5. **KCC Institute of Technology & Management** — B.Tech, MBA, BCA, MCA | Fees: ₹1.2L-2.4L/yr | Est. 1999 | https://www.kcc.edu.in
+6. **Noida Institute of Engineering & Technology (NIET)** — B.Tech, M.Tech, MBA, MCA | Fees: ₹1.5L-2.8L/yr | NIRF Rank: 150-200 | Est. 2001 | https://www.niet.co.in
+7. **ITS Engineering College** — B.Tech, M.Tech, MBA, BBA | Fees: ₹1.4L-2.6L/yr | Est. 2006 | https://www.its.edu.in
+8. **Sharda University** — B.Tech, M.Tech, MBA, Medical, Law | Fees: ₹2.2L-4.5L/yr | Est. 2009 | https://www.sharda.ac.in
+9. **Galgotias University** — B.Tech, M.Tech, MBA, Law, Nursing | Fees: ₹2.0L-4.0L/yr | Est. 2011 | https://www.galgotiasuniversity.edu.in
+10. **Bennett University** — B.Tech, MBA, Law, Media | Fees: ₹3.0L-5.5L/yr | Est. 2016 (Times Group) | https://www.bennett.edu.in
+11. **Accurate Institute of Management & Technology** — B.Tech, MBA, BBA, BCA | Fees: ₹1.2L-2.5L/yr | Est. 2006 | https://www.accurate.in
+12. **Skyline Institute of Engineering & Technology** — B.Tech, MBA, BBA, MCA | Fees: ₹1.2L-2.3L/yr | Est. 2009 | https://www.skylineinstitute.ac.in
+13. **United College of Engineering & Research** — B.Tech, M.Tech, MBA | Fees: ₹1.3L-2.4L/yr | Est. 2004
+
+## Cities We Serve — Detailed
+
+### 1. Noida (Uttar Pradesh)
+- **Colleges:** 30+
+- **Popular Courses:** B.Tech, MBA, BCA, MCA
+- **Top Colleges:** JIIT, Amity University, JSS Academy, Galgotias University, NIET
+- **About:** Silicon Valley of India — top engineering & management colleges with excellent placements
+- **URL:** https://www.eduhorizon.online/best-admission-consultation-in-noida
+
+### 2. Greater Noida (Uttar Pradesh)
+- **Colleges:** 25+
+- **Popular Courses:** B.Tech, MBA, BCA
+- **Top Colleges:** GL Bajaj, GNIOT, IIMT, Mangalmay, KCC
+- **About:** Knowledge Park hub with some of India's most reputed private engineering and management colleges
+- **URL:** https://www.eduhorizon.online/best-admission-consultation-in-greater-noida
+
+### 3. Patna (Bihar)
+- **Colleges:** 20+
+- **Popular Courses:** B.Tech, MBBS, B.Pharm, MBA
+- **Top Colleges:** NIT Patna, Amity University Patna, BIT Patna
+- **Local Office:** Kumhrar, Patna, Bihar - 800026
+- **About:** Bihar capital — EduHorizon has a dedicated office here. Many students from Bihar seek admission in NCR colleges.
+- **URL:** https://www.eduhorizon.online/best-admission-consultation-in-patna
+
+### 4. Delhi (Delhi NCR)
+- **Colleges:** 40+
+- **Popular Courses:** B.Tech, MBA, Law, Design
+- **Top Colleges:** Delhi University colleges, IP University colleges, DTU, NSUT
+- **About:** India's educational capital — DU, IPU, and hundreds of top-tier colleges
+- **URL:** https://www.eduhorizon.online/best-admission-consultation-in-delhi
+
+### 5. Ghaziabad (Uttar Pradesh)
+- **Colleges:** 18+
+- **Popular Courses:** B.Tech, MBA, Polytechnic
+- **Top Colleges:** AKGEC, ABES Engineering, KIET Group, IMS Ghaziabad
+- **About:** Gateway to Delhi NCR with multiple AKTU-affiliated engineering colleges
+- **URL:** https://www.eduhorizon.online/best-admission-consultation-in-ghaziabad
+
+### 6. Lucknow (Uttar Pradesh)
+- **Colleges:** 22+
+- **Popular Courses:** MBBS, MBA, B.Tech, LLB
+- **Top Colleges:** IIM Lucknow, BBD University, Amity Lucknow, Integral University
+- **About:** UP state capital with premier medical and management institutions
+- **URL:** https://www.eduhorizon.online/best-admission-consultation-in-lucknow
+
+### 7. Agra (Uttar Pradesh)
+- **Colleges:** 14+
+- **Popular Courses:** B.Tech, B.Com, BBA, MBA
+- **Top Colleges:** Dayalbagh Educational Institute, Anand Engineering College
+- **URL:** https://www.eduhorizon.online/best-admission-consultation-in-agra
+
+### 8. Meerut (Uttar Pradesh)
+- **Colleges:** 16+
+- **Popular Courses:** B.Tech, BBA, Pharmacy, MBA
+- **Top Colleges:** Subharti University, MIET, IIMT University
+- **About:** Sports city with established private universities; great RRTS connectivity to Delhi NCR
+- **URL:** https://www.eduhorizon.online/best-admission-consultation-in-meerut
+
+### 9. Kanpur (Uttar Pradesh)
+- **Colleges:** 19+
+- **Popular Courses:** B.Tech, MBA, Polytechnic, BCA
+- **Top Colleges:** PSIT Kanpur, HBTU, Allenhouse Institute
+- **About:** Industrial hub with IIT Kanpur — strong technical education foundation
+- **URL:** https://www.eduhorizon.online/best-admission-consultation-in-kanpur
+
+### 10. Varanasi (Uttar Pradesh)
+- **Colleges:** 15+
+- **Popular Courses:** MBBS, B.Tech, B.Ed, MBA
+- **Top Colleges:** Banaras Hindu University (BHU), Ashoka Institute, SMS Varanasi
+- **About:** Spiritual capital with BHU — students from Purvanchal region seek NCR admissions through us
+- **URL:** https://www.eduhorizon.online/best-admission-consultation-in-varanasi
+
+### 11. Prayagraj (Uttar Pradesh)
+- **Colleges:** 17+
+- **Popular Courses:** Law, B.Tech, MBA, B.Ed
+- **Top Colleges:** Allahabad University, MNNIT, United College of Engineering
+- **About:** City of law & history — rich academic heritage with Allahabad University
+- **URL:** https://www.eduhorizon.online/best-admission-consultation-in-prayagraj
+
+### 12. Faridabad (Haryana)
+- **Colleges:** 13+
+- **Popular Courses:** B.Tech, MBA, BBA, Pharmacy
+- **Top Colleges:** YMCA University, Manav Rachna University, Lingaya's Vidyapeeth
+- **About:** Industrial Haryana city near Delhi with expanding private college options
+- **URL:** https://www.eduhorizon.online/best-admission-consultation-in-faridabad
+
+## Admission Process (Step-by-Step)
+
+**Step 1 — Book Free Counselling**
+Call or WhatsApp +91 88774 34088 or fill the online form at https://www.eduhorizon.online/#contact
+Our counsellor schedules a free 30-minute session to understand your stream, marks, budget, and career goals.
+
+**Step 2 — College Shortlisting**
+Our expert prepares a personalised list comparing fees, NIRF rankings, placement records, and course options based on your profile.
+
+**Step 3 — Application & Documentation**
+We help fill application forms and prepare required documents: marksheets, Aadhar card, passport photos, entrance score cards.
+
+**Step 4 — Admission Confirmation**
+We coordinate directly with the college admission office to confirm your seat and guide on fee payment until fully secured.
+
+## Frequently Asked Questions
+
+**Q: Is EduHorizon's counselling service free?**
+A: Yes. The initial counselling session and college comparison are completely free. We charge no hidden fees from students.
+
+**Q: How does EduHorizon get direct admissions?**
+A: We have direct tie-ups with top colleges' admission offices and management quota seats. This allows us to fast-track admissions for eligible students.
+
+**Q: Which entrance exams do you help with?**
+A: JEE (B.Tech), NEET (Medical), CAT/MAT/CMAT (MBA), UPSEE/AKTU (UP state), IPU CET (Delhi), CUET, CLAT (Law), and Bihar DCECE.
+
+**Q: Do you help students from Bihar get NCR admissions?**
+A: Yes. We have a dedicated office in Patna and have guided hundreds of Bihar students to top colleges in Noida and Greater Noida.
+
+**Q: What is the minimum marks required for admission?**
+A: It varies by college. Many private colleges accept students with 50-60% marks. Contact us with your specific marks for personalised options.
+
+**Q: Do you provide hostel assistance?**
+A: Yes, we guide students on hostel availability, cost, and quality at the shortlisted colleges.
+
+**Q: Which is the best college for B.Tech in Greater Noida?**
+A: Based on placements and infrastructure: GL Bajaj, Galgotias, Bennett, Sharda, and NIET are top choices. The best fit depends on your budget and branch preference.
+
+**Q: Can you help with management quota admissions?**
+A: Yes, we specialize in management quota and direct admission seats across top private colleges in Delhi NCR and UP.
+
+## Student Success Stories
+
+EduHorizon students have secured placements at top companies including:
+- HCL Technologies
+- TCS (Tata Consultancy Services)
+- JusPay
+- Infosys
+- Wipro
+- Cognizant
+- Accenture
+
+Top package achieved by EduHorizon students: **27 LPA**
+Average package: **6-12 LPA** (for top colleges)
+
+## Contact & Social
+
+- **Website:** https://www.eduhorizon.online
+- **Phone/WhatsApp:** +91 88774 34088
+- **Email:** info@eduhorizon.online
+- **Noida Office:** Urbtech NPX, Sector-153, Noida, UP - 201310
+- **Patna Office:** Kumhrar, Patna, Bihar - 800026
+- **Office Hours:** Monday–Saturday, 9:00 AM – 7:00 PM IST
+
+## All Pages
+
+- Homepage: https://www.eduhorizon.online
+- About Us: https://www.eduhorizon.online/about
 - Colleges: https://www.eduhorizon.online/colleges
+- Cities We Serve: https://www.eduhorizon.online/cities-we-serve
 - Success Stories: https://www.eduhorizon.online/success-stories
 - Testimonials: https://www.eduhorizon.online/testimonials
 - Blog: https://www.eduhorizon.online/blog
+- FAQ: https://www.eduhorizon.online/faq
+- Contact Form: https://www.eduhorizon.online/#contact
 - Privacy Policy: https://www.eduhorizon.online/privacy-policy
-- Terms: https://www.eduhorizon.online/terms
+- Terms & Conditions: https://www.eduhorizon.online/terms
 
-Blog articles:
-- https://www.eduhorizon.online/blog/choosing-right-college
-- https://www.eduhorizon.online/blog/engineering-vs-management
-- https://www.eduhorizon.online/blog/campus-life-greater-noida
+## Sitemap
 
-Restricted area:
-- https://www.eduhorizon.online/admin/
+https://www.eduhorizon.online/sitemap.xml
